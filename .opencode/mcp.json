@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "blu-filesystem": {
+      "command": "node",
+      "args": ["mcp-server.js", "--fs", "G:\\blu ai\\Proyecto-BLU-IA"],
+      "description": "Acceso a archivos del proyecto BLU IA"
+    },
+    "blu-python": {
+      "command": "py",
+      "args": ["-3.11", "mcp-server.py"],
+      "description": "Ejecucion de scripts Python del proyecto (TTS, transcripcion, graficas)"
+    }
+  }
+}
