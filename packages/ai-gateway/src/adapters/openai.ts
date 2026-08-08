@@ -1,14 +1,17 @@
-import type { ChatRequest, ChatResult, ModelProvider } from "../types.js";
+// Adapter OpenAI (API oficial, formato chat/completions).
 
-export class OpenAiProvider implements ModelProvider {
-  readonly id = "openai" as const;
+import { OpenAiCompatibleProvider, keyFromEnv } from "./openai-compatible.js";
 
-  listModels(): string[] {
-    return ["gpt-5", "gpt-4o-mini"];
-  }
-
-  async chat(_req: ChatRequest): Promise<ChatResult> {
-    // TODO Fase 2: implementar con openai SDK.
-    throw new Error("OpenAiProvider no implementado (Fase 2)");
+export class OpenAiProvider extends OpenAiCompatibleProvider {
+  constructor() {
+    super(
+      "openai",
+      ["gpt-4o-mini", "gpt-5"],
+      {
+        baseUrl: "https://api.openai.com/v1",
+        label: "openai",
+      },
+      keyFromEnv("OPENAI_API_KEY"),
+    );
   }
 }

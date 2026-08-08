@@ -1,15 +1,22 @@
-import type { ChatRequest, ChatResult, ModelProvider } from "../types.js";
+// Adapter OpenRouter (reúte los modelos abiertos; también sirve los fine-tunes Blu).
+// Es compatible con el formato de OpenAI; añade headers de identificación.
 
-/** Proveedor genérico que habla con cualquier modelo (incluidos los fine-tunes Blu). */
-export class OpenRouterProvider implements ModelProvider {
-  readonly id = "openrouter" as const;
+import { OpenAiCompatibleProvider, keyFromEnv } from "./openai-compatible.js";
 
-  listModels(): string[] {
-    return ["deepseek/deepseek-chat", "qwen/qwen-finetune-light"];
-  }
-
-  async chat(_req: ChatRequest): Promise<ChatResult> {
-    // TODO Fase 2: implementar con fetch a https://openrouter.ai/api/v1/chat/completions.
-    throw new Error("OpenRouterProvider no implementado (Fase 2)");
+export class OpenRouterProvider extends OpenAiCompatibleProvider {
+  constructor() {
+    super(
+      "openrouter",
+      ["deepseek-chat", "qwen-finetune-light", "gpt-4o-mini", "claude-sonnet-5"],
+      {
+        baseUrl: "https://openrouter.ai/api/v1",
+        label: "openrouter",
+        extraHeaders: {
+          "x-title": "BLU IA",
+          "http-referer": "https://blu-ia.com",
+        },
+      },
+      keyFromEnv("OPENROUTER_API_KEY"),
+    );
   }
 }

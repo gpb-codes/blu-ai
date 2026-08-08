@@ -15,7 +15,7 @@ function makeUser(overrides: Partial<UserEntity> & { id: string }): UserEntity {
     displayName: "Andrea",
     timezone: "America/Mexico_City",
     plan: "FREE",
-    role: "user",
+    role: "USER",
     tosAcceptedAt: null,
     passwordHash: null,
     ...overrides,
@@ -34,7 +34,11 @@ class InMemoryUserRepository implements UserRepository {
     return Promise.resolve(null);
   }
   create(data: { email?: string; phone?: string; displayName: string; passwordHash?: string }) {
-    const u = makeUser({ id: `u${this.users.length + 1}`, ...data } as Partial<UserEntity>);
+    const u = makeUser({ id: `u${this.users.length + 1}` });
+    u.email = data.email ?? null;
+    u.phone = data.phone ?? null;
+    u.displayName = data.displayName;
+    u.passwordHash = data.passwordHash ?? null;
     this.users.push(u);
     return Promise.resolve(u);
   }

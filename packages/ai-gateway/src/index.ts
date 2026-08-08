@@ -39,12 +39,16 @@ export async function invokeChat(gateway: TierRouter, ctx: ChatInvocation): Prom
 
   const tier = ctx.tier === "auto" ? classifyTask(ctx.text) : ctx.tier;
 
+  // BYOK: la key del usuario se pasa al proveedor principal del tier resuelto.
+  const primary = gateway.resolve(tier);
+  const apiKey = primary ? ctx.userApiKeys?.[primary.provider] : undefined;
+
   const result: ChatResult = await gateway.chat(tier, {
     messages: [
       ...ctx.history.map((m) => ({ role: m.role, content: m.content })),
       { role: "user", content: ctx.text },
     ],
-    apiKey: ctx.userApiKeys?.[providerIdOf(ctx)],
+    apiKey,
   });
 
   return {
@@ -60,9 +64,4 @@ export async function invokeChat(gateway: TierRouter, ctx: ChatInvocation): Prom
     },
     creditsSpent: creditsForModel(result.model),
   };
-}
-
-function providerIdOf(_ctx: ChatInvocation): "anthropic" | "openai" | "gemini" | "openrouter" | "blu-finetune" {
-  // Resuelto por el router internamente; placeholder por ahora (Fase 2 afina BYOK).
-  return "anthropic";
 }

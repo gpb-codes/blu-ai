@@ -16,6 +16,12 @@ export class TierRouter {
     return this.tierRoutes.find((r) => r.tier === tier);
   }
 
+  /** Proveedor (y modelo) base que serviría este tier — útil para BYOK (key por proveedor). */
+  resolve(tier: TierId): { provider: ProviderId; model: string } | undefined {
+    const route = this.routeFor(tier);
+    return route?.candidates[0];
+  }
+
   /** Intenta cada candidato del tier en orden hasta que uno responda. */
   async chat(tier: TierId, req: Omit<ChatRequest, "provider" | "model">): Promise<ChatResult> {
     const route = this.routeFor(tier);
@@ -32,7 +38,10 @@ export class TierRouter {
         // siguiente candidato (fallback)
       }
     }
-    throw new Error(`Todos los modelos del tier ${tier} fallaron`, { cause: lastError });
+    throw new Error(
+      `Todos los modelos del tier ${tier} fallaron: ${lastError instanceof Error && lastError.message ? lastError.message : "sin detalle"}`,
+      { cause: lastError },
+    );
   }
 }
 

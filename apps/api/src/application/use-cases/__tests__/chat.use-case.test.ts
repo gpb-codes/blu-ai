@@ -26,6 +26,9 @@ function makeNote(id: string, title: string, bodyMd: string): Note {
 /** Falso gateway que registra las llamadas y responde sin tocar proveedores. */
 class FakeGateway {
   calls: Array<{ tier: string; text: string }> = [];
+  resolve() {
+    return { provider: "openai" as const, model: "gpt-4o-mini" };
+  }
   async chat(tier: string, req: { messages: Array<{ content: string }> }): Promise<ChatResult> {
     this.calls.push({ tier, text: req.messages.at(-1)?.content ?? "" });
     return {

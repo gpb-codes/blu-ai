@@ -106,7 +106,7 @@ describe("Auth E2E", () => {
     expect(after.status).toBe(401);
   });
 
-  it("POST /chat con token: el pipeline enruta al tier (stub Fase 2 → 500 esperado)", async () => {
+  it("POST /chat con token: sin keys de IA configuradas → 502 legible", async () => {
     const login = await request(app.getHttpServer())
       .post("/auth/login")
       .send({ email, password: "secreto123" });
@@ -114,7 +114,8 @@ describe("Auth E2E", () => {
       .post("/chat")
       .set("Authorization", `Bearer ${login.body.accessToken}`)
       .send({ text: "hola blu", tier: "light" });
-    expect(res.status).toBe(500); // adapters reales = Fase 2; el stub falla con intención
+    expect(res.status).toBe(503);
+    expect(res.body.code).toBe("PROVIDER_NOT_CONFIGURED");
   });
 
   it("POST /chat sin token → 401", async () => {
