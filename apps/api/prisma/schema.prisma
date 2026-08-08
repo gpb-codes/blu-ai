@@ -1,0 +1,386 @@
+// Esquema de datos de la plataforma BLU IA.
+// PostgreSQL + pgvector (extensión vector) para la memoria del vault.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------- Usuarios y cuentas ----------
+
+model User {
+  id            String   @id @default(cuid())
+  email         String?  @unique
+  phone         String?  @unique
+  googleSub     String?  @unique
+  displayName   String
+  timezone      String   @default("America/Mexico_City")
+  plan          Plan     @default(FREE)
+  role          Role     @default(USER)
+  status        UserStatus @default(ACTIVE)
+  tosAcceptedAt DateTime?
+  passwordHash  String?
+
+  refreshTokens  RefreshToken[]
+  projectsOwned  Project[]          @relation("ProjectOwner")
+  memberships    ProjectMember[]
+  sessions       ChatSession[]
+  notesCreated   Note[]             @relation("NoteCreatedBy")
+  notesEdited    Note[]             @relation("NoteUpdatedBy")
+  noteVersions   NoteVersion[]
+  noteChunks     NoteChunk[]
+  userMemory     UserMemory[]
+  reminders      Reminder[]
+  aiUsage        AiUsage[]
+  creditLedger   CreditLedger[]
+  subscriptions  Subscription[]
+  pushTokens     PushToken[]
+  apiKeys        UserApiKey[]
+  connectedRepos ConnectedRepo[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+enum Plan {
+  FREE
+  BYOK
+  CREDITS
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  BANNED
+  DELETED
+}
+
+// ---------- Proyectos y colaboración ----------
+
+model Project {
+  id          String @id @default(cuid())
+  name        String
+  slug        String @unique
+  ownerId     String
+  owner       User   @relation("ProjectOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+
+  members    ProjectMember[]
+  sessions   ChatSession[]
+  notes      Note[]
+  noteLinks  NoteLink[]
+  reminders  Reminder[]
+  miniApps   MiniApp[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ProjectMember {
+  projectId String
+  project   Project    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role      MemberRole @default(VIEWER)
+  createdAt DateTime   @default(now())
+
+  @@id([projectId, userId])
+}
+
+enum MemberRole {
+  OWNER
+  ADMIN
+  EDITOR
+  VIEWER
+}
+
+// ---------- Chat y agentes ----------
+
+model ChatSession {
+  id        String @id @default(cuid())
+  projectId String?
+  project   Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  agentId   AgentId? // null = chat general
+  title     String @default("Nuevo chat")
+
+  messages ChatMessage[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ChatMessage {
+  id        String @id @default(cuid())
+  sessionId String
+  session   ChatSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  role      MessageRole
+  content   String
+  model     String? // modelo real que respondió
+  citedNoteIds Json? // ids de notas del vault usadas como contexto
+  inputTokens  Int?
+  outputTokens Int?
+
+  createdAt DateTime @default(now())
+}
+
+enum MessageRole {
+  system
+  user
+  assistant
+}
+
+enum AgentId {
+  plan
+  build
+  cowork
+  research
+  qa
+  automation
+  knowledge
+}
+
+// ---------- Vault (second brain estilo Obsidian) ----------
+
+model Note {
+  id        String @id @default(cuid())
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  title     String
+  bodyMd    String
+  tags      String[] @default([])
+  source    NoteSource @default(chat)
+  createdBy String
+  createdByUser User @relation("NoteCreatedBy", fields: [createdBy], references: [id])
+  updatedBy String
+  updatedByUser User @relation("NoteUpdatedBy", fields: [updatedBy], references: [id])
+  deletedAt DateTime?
+
+  links     NoteLink[] @relation("LinkSource")
+  backlinks NoteLink[] @relation("LinkTarget")
+  chunks    NoteChunk[]
+  versions  NoteVersion[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([projectId, deletedAt])
+  @@index([title])
+}
+
+model NoteLink {
+  sourceNoteId String
+  sourceNote   Note   @relation("LinkSource", fields: [sourceNoteId], references: [id], onDelete: Cascade)
+  targetNoteId String
+  targetNote   Note   @relation("LinkTarget", fields: [targetNoteId], references: [id], onDelete: Cascade)
+  label        String?
+  projectId    String?
+  project      Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@id([sourceNoteId, targetNoteId])
+  @@index([targetNoteId])
+  @@index([projectId])
+}
+
+model NoteChunk {
+  id     String @id @default(cuid())
+  noteId String
+  note   Note   @relation(fields: [noteId], references: [id], onDelete: Cascade)
+  userId String?
+  user   User?  @relation(fields: [userId], references: [id])
+  index  Int
+  text   String
+  embedding Unsupported("vector(1024)")?
+
+  @@index([noteId])
+}
+
+model NoteVersion {
+  id      String @id @default(cuid())
+  noteId  String
+  note    Note   @relation(fields: [noteId], references: [id], onDelete: Cascade)
+  version Int
+  bodyMd  String
+  editedBy String
+  editor   User   @relation(fields: [editedBy], references: [id])
+  editedAt DateTime @default(now())
+
+  @@unique([noteId, version])
+}
+
+enum NoteSource {
+  chat
+  manual
+  agent
+  import
+}
+
+// ---------- Memoria de usuario y recordatorios ----------
+
+model UserMemory {
+  id        String @id @default(cuid())
+  userId    String
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fact      String
+  source    String @default("chat")
+  createdAt DateTime @default(now())
+}
+
+model Reminder {
+  id        String @id @default(cuid())
+  userId    String
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  projectId String?
+  project   Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  text      String
+  dueAt     DateTime
+  timezone  String
+  repeat    String? // null | "diario"
+  status    ReminderStatus @default(PENDING)
+  firedAt   DateTime?
+
+  createdAt DateTime @default(now())
+}
+
+enum ReminderStatus {
+  PENDING
+  FIRED
+  CANCELLED
+}
+
+// ---------- Uso de IA y créditos ----------
+
+model AiUsage {
+  id          String @id @default(cuid())
+  userId      String
+  user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  provider    String
+  model       String
+  inputTokens Int
+  outputTokens Int
+  costUsd     Float
+  billedBy    String // "blu" | "user" (BYOK)
+  createdAt   DateTime @default(now())
+
+  @@index([userId, createdAt])
+}
+
+model CreditLedger {
+  id        String @id @default(cuid())
+  userId    String
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  delta     Int // positivo = grant diario, negativo = gasto
+  model     String?
+  reason    String
+  createdAt DateTime @default(now())
+
+  @@index([userId, createdAt])
+}
+
+// ---------- Planes y pagos ----------
+
+model Subscription {
+  id             String @id @default(cuid())
+  userId         String @unique
+  user           User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  stripeCustomer String?
+  stripeSubId    String?
+  plan           Plan
+  status         String // active | past_due | canceled
+  currentPeriodEnd DateTime?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+// ---------- Push y BYOK ----------
+
+model PushToken {
+  id        String @id @default(cuid())
+  userId    String
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  platform  String // fcm | apns | web
+  token     String
+  createdAt DateTime @default(now())
+
+  @@unique([userId, platform, token])
+}
+
+model UserApiKey {
+  id          String @id @default(cuid())
+  userId      String
+  user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  provider    String // anthropic | openai | gemini | openrouter
+  encryptedKey String // AES-256-GCM, KMS del proveedor
+  maskedKey   String // "sk-…abcd" para mostrar en UI
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([userId, provider])
+}
+
+// ---------- Blu Code ----------
+
+model ConnectedRepo {
+  id        String @id @default(cuid())
+  userId    String
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  githubInstallId String
+  repoFullName     String
+  defaultBranch    String @default("main")
+  createdAt DateTime @default(now())
+
+  @@unique([userId, repoFullName])
+}
+
+// ---------- Mini-apps interactivas ----------
+
+model MiniApp {
+  id          String @id @default(cuid())
+  projectId   String
+  project     Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  title       String
+  kind        String // calendar | checklist | tracker | custom
+  htmlBundle  String // self-contained HTML/JS sandbox
+  statsSchema Json?
+  createdBy   String
+  entries     MiniAppEntry[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model MiniAppEntry {
+  id        String @id @default(cuid())
+  miniAppId String
+  miniApp   MiniApp @relation(fields: [miniAppId], references: [id], onDelete: Cascade)
+  data      Json
+  createdBy String
+  createdAt DateTime @default(now())
+}
+
+// ---------- Imágenes (FLUX) ----------
+
+model ImageJob {
+  id         String @id @default(cuid())
+  userId     String
+  prompt     String
+  status     String // queued | done | failed
+  url        String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}

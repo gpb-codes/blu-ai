@@ -1,44 +1,48 @@
 # Secretos
 .env
-
-# Sesion activa de WhatsApp Web — si esto se sube, alguien podria secuestrar el WhatsApp sin tocar el telefono
-.wwebjs_auth/
-.wwebjs_cache/
+.env.*
+!.env.example
 
 # Dependencias
 node_modules/
-__pycache__/
-*.pyc
+.pnpm-store/
+
+# Builds
+dist/
+build/
+.next/
+out/
+coverage/
+.turbo/
+
+# Sesión activa de WhatsApp Web — si esto se sube, alguien podría secuestrar el WhatsApp sin tocar el teléfono
+.wwebjs_auth/
+.wwebjs_cache/
 
 # Logs y runtime
 *.log
-blu-debug.log
-blu-run.log
-blu-watchdog.log
-blu-whatsapp.log
-blu-whatsapp.err.log
-blu-stdout.log
-blu-stderr.log
 
 # Datos personales / conversaciones / memoria de usuarios reales
-blu-history.json
-blu-memoria-publica.json
-blu-agenda-publico.json
-blu-tos-aceptados.json
-blu-pendientes.json
-blu-pendientes-resueltos.flag
+blu-*.json
+blu-*.txt
+blu-*.flag
 reminders.json
-blu-briefing-lastsent.txt
-blu-zonas.json
-blu-whatsapp-chatid.txt
 test-stream.txt
+
+# Flutter
+.dart_tool/
+*.iml
+*.ipr
+*.iws
+
+# Python
+__pycache__/
+*.pyc
 
 # Archivos temporales / generados / binarios de prueba
 blu-qr.png
 blu-chart.png
 blu-diseno.png
-blu-diseno-input.html
-blu-graf-input.json
 test-*.mp3
 test-*.wav
 Blu_Reporte_Completo.pdf
