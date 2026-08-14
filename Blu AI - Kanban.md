@@ -5,6 +5,8 @@ tags:
   - tareas
   - kanban
 source: Notion - Base "Tareas BLU IA"
+estado: activo
+tipo: tareas
 ---
 
 # Blu AI - Kanban
@@ -85,4 +87,6 @@ source: Notion - Base "Tareas BLU IA"
 
 - [ ] **Firmar acuerdo con Gabriel** `📅 2026-07-28`
   - Responsable: Ignacio · Prioridad: Alta · Area: Legal · Fase: Mes 1 - Base
+
+
 

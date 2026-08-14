@@ -5,6 +5,7 @@ tags:
   - equipo
 source: Notion - Base "Tareas BLU IA"
 actualizacion: 14-ago-2026
+tipo: tareas
 ---
 
 # Blu AI - Tareas
@@ -57,3 +58,4 @@ actualizacion: 14-ago-2026
 ---
 
 Origen: [[Blu AI - Vision]] · Sincronizacion manual desde Notion (14-ago-2026).
+
