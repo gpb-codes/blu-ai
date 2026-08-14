@@ -17,10 +17,10 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
 
   if (status === "loading") {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-slate-50 dark:bg-slate-950">
+      <div className="flex min-h-screen items-center justify-center bg-blu-bg">
         <div className="flex flex-col items-center gap-3">
-          <div className="h-10 w-10 animate-spin rounded-full border-2 border-indigo-600 border-t-transparent" />
-          <p className="text-sm text-slate-500 dark:text-slate-400">Cargando…</p>
+          <div className="h-10 w-10 animate-spin rounded-full border-2 border-blu-primary border-t-transparent" />
+          <p className="text-sm text-blu-on-variant">Cargando…</p>
         </div>
       </div>
     );
@@ -29,7 +29,7 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
   if (status !== "authenticated") return null;
 
   return (
-    <div className="flex min-h-screen bg-slate-50 dark:bg-slate-950">
+    <div className="flex min-h-screen bg-blu-bg">
       <Sidebar />
       <main className="min-w-0 flex-1 p-6 md:p-8">{children}</main>
     </div>

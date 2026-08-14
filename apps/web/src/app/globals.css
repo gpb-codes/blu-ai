@@ -1,26 +1,53 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@theme {
+  /* Paleta BLU (tomada 1:1 de las variables Tailwind del diseño original, ver apps/mobile/lib/theme/app_colors.dart) */
+  --color-blu-bg: #0f131e;
+  --color-blu-surface: #1b1f2b;
+  --color-blu-surface-low: #171b27;
+  --color-blu-surface-high: #262a36;
+  --color-blu-surface-highest: #313441;
+  --color-blu-on: #dfe2f2;
+  --color-blu-on-variant: #c4c5da;
+  --color-blu-outline: #444657;
+  --color-blu-outline-soft: #8e8fa3;
+  --color-blu-primary: #bcc3ff;
+  --color-blu-primary-solid: #0a34f5;
+  --color-blu-primary-soft: #2141fe;
+  --color-blu-error: #ffb4ab;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-inter);
+  --font-geist: var(--font-geist-sans);
+  --font-mono: var(--font-jetbrains);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-blu-bg);
+  color: var(--color-blu-on);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-blu-primary-solid) 60%, transparent);
+  color: #fff;
+}
+
+/* Animación del indicador de escritura (3 puntos) */
+@keyframes blu-typing {
+  0%,
+  60%,
+  100% {
+    transform: scale(0.6);
+    opacity: 0.5;
+  }
+  30% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.blu-typing-dot {
+  animation: blu-typing 1.2s ease-in-out infinite;
 }
