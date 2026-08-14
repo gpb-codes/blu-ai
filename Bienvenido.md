@@ -21,6 +21,20 @@ actualizacion: 14-ago-2026
 > **Documento de contexto para el equipo** — desarrollo (Gabriel, Pablo), coordinación (Ignacio) y marketing.
 > Última actualización: **14-ago-2026** · Repositorio oficial: `blutechrobotics/Proyecto-BLU-IA`
 
+**Estado del sprint (Mes 1 - Base, agosto):** 3/20 tareas listas · 17 pendientes · Tablero: [[Blu AI - Kanban]] · Backlog: [[Blu AI - Tareas]]
+
+---
+
+## Índice
+
+1. [[#1. Qué es BLU]]
+2. [[#2. Estado actual del proyecto]]
+3. [[#3. Arquitectura en una línea]]
+4. [[#4. Mapa de notas]]
+5. [[#5. Equipo y roles]]
+6. [[#6. Cómo usar esta bóveda]]
+7. [[#7. Para el equipo — qué revisar]]
+
 ---
 
 ## 1. Qué es BLU
@@ -52,7 +66,7 @@ actualizacion: 14-ago-2026
 ### Origen
 
 - BLU nació como un **bot de WhatsApp**, que quedó **descontinuado** (prohibición de Meta a asistentes de propósito general vía WA Business API, 15-ene-2026).
-- Migración en curso hacia **plataforma SaaS** multi-dispositivo. Detalles e historia: [[Blu AI - Roadmap y estado]] y [[Blu AI - Bitacora]].
+- Migración en curso hacia **plataforma SaaS** multi-dispositivo. Historia completa: [[Blu AI - Bitacora]].
 
 ### Lo que ya está construido (repo, 14-ago-2026)
 
@@ -65,6 +79,15 @@ actualizacion: 14-ago-2026
 | Documento de plan completo (`docs/PLAN-MIGRACION-APP.md`) | ✅ DRAFT v2 |
 
 > ⚠️ **Decisión pendiente de confirmar (28-jul):** la Bitácora movió datos de Supabase/Postgres a **Cloudflare D1 + Vectorize**; el repo y la base de Tareas aún referencian Supabase/pgvector. Ver [[Blu AI - Stack tecnologico]].
+
+### Próximos hitos (agosto)
+
+| Fecha | Hito | Responsable |
+|---|---|---|
+| 20-ago | Landing page con waitlist | Ignacio + Marketing |
+| 25-ago | Sistema BYOK con API keys encriptadas | Gabriel |
+| 26-ago | Aviso de privacidad publicado en la web | Ignacio |
+| 31-ago | 100 personas en waitlist · Cierre de mes 1 y ajuste de roadmap | Ignacio + Marketing |
 
 ### Pendiente / próximos frentes
 
@@ -91,17 +114,12 @@ Stack: **NestJS** (backend) · **Flutter** (móvil/desktop) · **Next.js 15** (w
 
 ---
 
-## 4. Módulos (mapa de notas)
+## 4. Mapa de notas
 
 | Nota | Rol |
 |------|-----|
 | [[Blu AI - Vision]] | **Índice general** — visión, módulos, estado |
-| [[Blu AI - Blu Chat]] | Chat con Model Router y modo Auto |
-| [[Blu AI - Blu Code]] | Edición de código web + CLI local |
-| [[Blu AI - Gateway y Modelos]] | Gateway multi-proveedor, tiers y BYOK |
-| [[Blu AI - Memoria compartida]] | Memoria unificada + RAG |
-| [[Blu AI - Agentes]] | 7 agentes de tareas |
-| [[Blu AI - Skills y mini-apps]] | Sistema extensible de capacidades |
+| [[Blu AI - Blu Chat]] · [[Blu AI - Blu Code]] · [[Blu AI - Gateway y Modelos]] · [[Blu AI - Memoria compartida]] · [[Blu AI - Agentes]] · [[Blu AI - Skills y mini-apps]] | Módulos del producto |
 | [[Blu AI - Stack tecnologico]] | Arquitectura y stack |
 | [[Blu AI - Planes y monetizacion]] | Gratis / BYOK $10 / Créditos $30 |
 | [[Blu AI - Roadmap y estado]] | Decisiones, historial y hitos |
@@ -129,9 +147,9 @@ Stack: **NestJS** (backend) · **Flutter** (móvil/desktop) · **Next.js 15** (w
 
 - **Wikilinks**: escribe `[[` para enlazar notas (ej. `[[Blu AI - Gateway y Modelos]]`).
 - **Templates**: `Ctrl/Cmd + P` → *Templater: Insert template* → "BLU - Nota de proyecto" (o "BLU - Tarea").
-- **Tareas**: usa el formato `- [ ] #task ... 📅 fecha` (plugin Tasks) o arrastra tarjetas en [[Blu AI - Kanban]].
-- **Diaria**: `Ctrl/Cmd + P` → *Periodic Notes: Open today's daily note*.
-- **Vista tipo Notion**: abre "BLU Roadmap" desde el icono de Projects (board por estado / tabla).
+- **Tareas**: arrastra tarjetas en [[Blu AI - Kanban]]; el estado de Notion se vuelca en [[Blu AI - Tareas]].
+- **Diaria**: `Ctrl/Cmd + P` → *Periodic Notes: Open today's daily note* (queda en `Diarias/`).
+- **Vista tipo Notion**: desde el icono **Projects** podes crear un proyecto con vistas board/tabla usando los campos del frontmatter (`estado`, `prioridad`, `responsable`, `fase`).
 - **Vista dinámica de módulos** (Dataview):
 
 ```dataview
@@ -145,8 +163,12 @@ SORT fase ASC
 
 ---
 
-## 7. Para el equipo
+## 7. Para el equipo — qué revisar
 
-- **Desarrollo:** el punto de partida es [[Blu AI - Roadmap y estado]] y el plan del repo (`docs/PLAN-MIGRACION-APP.md`).
-- **Coordinación (Ignacio):** [[Blu AI - Roadmap y estado]] resume decisiones y próximos hitos; cualquier cambio relevante se refleja aquí.
-- **Marketing:** [[Blu AI - Clientes ideales]] define a quién le hablamos; [[Blu AI - Planes y monetizacion]] la oferta; [[Blu AI - Metricas semanales]] lo que importa. Preguntas de contexto: Gabriel o Pablo.
+| Rol | Punto de entrada | Ritmo |
+|-----|------------------|-------|
+| **Desarrollo** (Gabriel, Pablo) | [[Blu AI - Roadmap y estado]] + [[Blu AI - Tareas]] + plan del repo (`docs/PLAN-MIGRACION-APP.md`) | Diario: Kanban → tus tareas con fecha |
+| **Coordinación** (Ignacio) | [[Blu AI - Roadmap y estado]] (decisiones) + [[Blu AI - Bitacora]] (historial) + [[Blu AI - Metricas semanales]] | Semanal (lunes): métricas + mover roadmap |
+| **Marketing** | [[Blu AI - Clientes ideales]] (a quién hablamos) + [[Blu AI - Planes y monetizacion]] (oferta) + [[Blu AI - Metricas semanales]] (views) | Semanal: llenar métricas; contenido 10 piezas/semana |
+
+Preguntas de contexto: Gabriel o Pablo. Cualquier cambio relevante se refleja en [[Blu AI - Roadmap y estado]] y [[Blu AI - Bitacora]].
