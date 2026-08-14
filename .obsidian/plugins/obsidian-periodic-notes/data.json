@@ -1,25 +1,26 @@
 {
-  "installedVersion": "1.0.0-beta1",
-  "activeCalendarSet": "Default",
-  "showGettingStartedBanner": true,
-  "hasMigratedDailyNoteSettings": false,
-  "hasMigratedWeeklyNoteSettings": false,
-  "calendarSets": [
-    {
-      "day": {
-        "enabled": true,
-        "openAtStartup": false,
-        "format": "",
-        "templatePath": "",
-        "folder": ""
-      },
-      "week": {},
-      "month": {},
-      "quarter": {},
-      "year": {},
-      "id": "Default",
-      "ctime": "2026-08-14T05:37:53-04:00"
-    }
-  ],
-  "enableTimelineComplication": true
+  "daily": {
+    "format": "YYYY-MM-DD",
+    "folder": "Diarias",
+    "template": "Templates/Diaria.md",
+    "enabled": true
+  },
+  "weekly": {
+    "format": "YYYY-[W]ww",
+    "folder": "Diarias",
+    "template": null,
+    "enabled": false
+  },
+  "monthly": {
+    "format": "YYYY-MM",
+    "folder": "Diarias",
+    "template": null,
+    "enabled": false
+  },
+  "yearly": {
+    "format": "YYYY",
+    "folder": "Diarias",
+    "template": null,
+    "enabled": false
+  }
 }

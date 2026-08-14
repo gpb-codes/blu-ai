@@ -1,0 +1,6 @@
+/* 排版美化器 - 设置页面 */
+
+.md-formatter-settings-textarea:focus {
+  border-color: var(--interactive-accent);
+  box-shadow: 0 0 0 2px var(--interactive-accent-hover);
+}

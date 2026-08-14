@@ -1,11 +1,12 @@
-[
-  "calendar-beta",
-  "dataview",
-  "obsidian-kanban",
-  "obsidian-git",
-  "obsidian-local-rest-api",
-  "periodic-notes",
-  "obsidian-projects",
-  "obsidian-tasks-plugin",
-  "templater-obsidian"
+﻿[
+    "calendar-beta",
+    "dataview",
+    "obsidian-kanban",
+    "obsidian-git",
+    "obsidian-local-rest-api",
+    "periodic-notes",
+    "obsidian-projects",
+    "obsidian-tasks-plugin",
+    "templater-obsidian",
+    "md-formatter"
 ]
