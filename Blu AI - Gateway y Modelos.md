@@ -1,4 +1,4 @@
-﻿---
+---
 tags:
   - blu
   - gateway
@@ -10,16 +10,16 @@ responsable: Gabriel
 tipo: modulo
 ---
 
-# Blu AI â€” Gateway y Modelos
+# Blu AI — Gateway y Modelos
 
-> CorazÃ³n del diferenciador de Blu: un gateway multi-proveedor en lugar de un ecosistema cerrado.
+> Corazón del diferenciador de Blu: un gateway multi-proveedor en lugar de un ecosistema cerrado.
 
-## QuÃ© es
+## Qué es
 
-Blu combina mÃºltiples proveedores de IA bajo un solo gateway, con **tiers propios** y **modo Auto**.
+Blu combina múltiples proveedores de IA bajo un solo gateway, con **tiers propios** y **modo Auto**.
 
 - **Tiers propios (fine-tunes de open-source):** Blu Light / Blu Flash / Blu Ultra
-- **Proveedores externos:** Claude (Anthropic), Gemini, GPT (OpenAI), OpenRouter, y otros vÃ­a adapters
+- **Proveedores externos:** Claude (Anthropic), Gemini, GPT (OpenAI), OpenRouter, y otros vía adapters
 - **BYOK:** el usuario puede conectar sus propias keys (encriptadas, AES-256-GCM)
 
 ## Adapters por proveedor
@@ -30,8 +30,8 @@ Cada adapter habla con el provider correspondiente; si uno falla, hay **fallback
 
 ## Modo Auto
 
-Clasificador de tarea (tipo Gemini Flash o reglas + embedding similarity) que decide el modelo segÃºn:
-- charla / cÃ³digo / investigaciÃ³n / agente
+Clasificador de tarea (tipo Gemini Flash o reglas + embedding similarity) que decide el modelo según:
+- charla / código / investigación / agente
 - calidad / velocidad / costo
 
 El usuario nunca elige modelo manualmente salvo que quiera.
@@ -44,4 +44,4 @@ El usuario nunca elige modelo manualmente salvo que quiera.
 
 Modelos propios: **fine-tuning de Qwen/Llama** (no entrenamiento desde cero).
 
-Ver tambiÃ©n: [[Blu AI - Blu Chat]] (Model Router), [[Blu AI - Memoria compartida]].
+Ver también: [[Blu AI - Blu Chat]] (Model Router), [[Blu AI - Memoria compartida]].

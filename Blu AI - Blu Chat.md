@@ -1,4 +1,4 @@
-﻿---
+---
 tags:
   - blu
   - chat
@@ -9,41 +9,41 @@ responsable: Gabriel
 tipo: modulo
 ---
 
-# Blu AI â€” Blu Chat
+# Blu AI — Blu Chat
 
-> NÃºcleo de Blu. AquÃ­ vive la conversaciÃ³n, el razonamiento y la decisiÃ³n de quÃ© modelo usar.
+> Núcleo de Blu. Aquí vive la conversación, el razonamiento y la decisión de qué modelo usar.
 
-## Capacidades del nÃºcleo
+## Capacidades del núcleo
 
 - Conversar y razonar
-- Analizar documentos, imÃ¡genes y cÃ³digo
+- Analizar documentos, imágenes y código
 - Trabajar con proyectos (con permisos por rol: owner/admin/editor/viewer)
-- Recordar contexto (sesiÃ³n + memoria de proyecto)
+- Recordar contexto (sesión + memoria de proyecto)
 - Utilizar herramientas y ejecutar agentes
-- Cambiar de modelo automÃ¡ticamente
+- Cambiar de modelo automáticamente
 
 ## Model Router
 
-El usuario no deberÃ­a preocuparse por quÃ© modelo usar. Blu decide segÃºn la tarea:
+El usuario no debería preocuparse por qué modelo usar. Blu decide según la tarea:
 
-| PeticiÃ³n | DecisiÃ³n de Blu |
+| Petición | Decisión de Blu |
 |----------|-----------------|
-| "Analiza este cÃ³digo" | Claude â†’ razonamiento/cÃ³digo |
-| "Genera una presentaciÃ³n" | Gemini/otro modelo â†’ contenido multimodal |
-| "Haz una tarea pesada" | Kimi/Claude â†’ contexto largo |
-| "Ejecuta esto localmente" | Ollama â†’ modelo local |
+| "Analiza este código" | Claude → razonamiento/código |
+| "Genera una presentación" | Gemini/otro modelo → contenido multimodal |
+| "Haz una tarea pesada" | Kimi/Claude → contexto largo |
+| "Ejecuta esto localmente" | Ollama → modelo local |
 
 En la plataforma real esto se implementa como **modo Auto** dentro del [[Blu AI - Gateway y Modelos]]: un clasificador de tarea elige entre los tiers Blu Light/Flash/Ultra y los proveedores externos.
 
-## Flujo del chat (nÃºcleo, segÃºn plan)
+## Flujo del chat (núcleo, según plan)
 
 ```
 POST /v1/chat { userId, projectId, sessionId, tier|auto, agentId?, messages }
-   â†’ Router de tier/modelo (modo Auto = clasificador de tarea)
-   â†’ Carga de contexto: historial de sesiÃ³n + memoria de proyecto (RAG)
+   → Router de tier/modelo (modo Auto = clasificador de tarea)
+   → Carga de contexto: historial de sesión + memoria de proyecto (RAG)
      + memoria de usuario + fecha/hora real
-   â†’ Provider adapter (fallback si falla) â†’ streaming (SSE/WS) â†’ UI
-   â†’ Costeo â†’ ai_usage â†’ contadores de cuota por plan
+   → Provider adapter (fallback si falla) → streaming (SSE/WS) → UI
+   → Costeo → ai_usage → contadores de cuota por plan
 ```
 
-Ver tambiÃ©n: [[Blu AI - Memoria compartida]], [[Blu AI - Agentes]], [[Blu AI - Planes y monetizacion]].
+Ver también: [[Blu AI - Memoria compartida]], [[Blu AI - Agentes]], [[Blu AI - Planes y monetizacion]].

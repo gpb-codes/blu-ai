@@ -1,5 +1,13 @@
-﻿---
+---
 tags:
+  - blu
+  - tareas
+  - equipo
+source: Notion - Base "Tareas BLU IA"
+actualizacion: 14-ago-2026
+tipo: tareas
+---
+ags:
   - blu
   - tareas
   - equipo

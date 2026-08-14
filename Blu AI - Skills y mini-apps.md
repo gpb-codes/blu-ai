@@ -1,4 +1,4 @@
-﻿---
+---
 tags:
   - blu
   - skills
@@ -9,9 +9,9 @@ responsable: equipo
 tipo: modulo
 ---
 
-# Blu AI â€” Skills y mini-apps
+# Blu AI — Skills y mini-apps
 
-> El sistema que hace a Blu **extensible**, el mÃ¡s interesante a largo plazo.
+> El sistema que hace a Blu **extensible**, el más interesante a largo plazo.
 
 ## Mini-apps (base del sistema)
 
@@ -20,37 +20,37 @@ Proyectos interactivos generados dentro del chat:
 - guardados en la barra lateral
 - personalizables
 
-Son el **embriÃ³n del futuro sistema de Skills**.
+Son el **embrión del futuro sistema de Skills**.
 
 ## Sistema de Skills
 
-En lugar de programar cada integraciÃ³n dentro del nÃºcleo:
+En lugar de programar cada integración dentro del núcleo:
 
 ```
 Blu
-â”‚
-â”œâ”€â”€ Skills
-â”‚   â”œâ”€â”€ coding
-â”‚   â”œâ”€â”€ browser
-â”‚   â”œâ”€â”€ excel
-â”‚   â”œâ”€â”€ powerpoint
-â”‚   â”œâ”€â”€ word
-â”‚   â”œâ”€â”€ email
-â”‚   â”œâ”€â”€ github
-â”‚   â”œâ”€â”€ docker
-â”‚   â”œâ”€â”€ databases
-â”‚   â”œâ”€â”€ research
-â”‚   â”œâ”€â”€ design
-â”‚   â””â”€â”€ automation
-â”‚
-â””â”€â”€ Plugins
-    â”œâ”€â”€ Slack
-    â”œâ”€â”€ Notion
-    â”œâ”€â”€ Discord
-    â”œâ”€â”€ Jira
-    â””â”€â”€ etc.
+│
+├── Skills
+│   ├── coding
+│   ├── browser
+│   ├── excel
+│   ├── powerpoint
+│   ├── word
+│   ├── email
+│   ├── github
+│   ├── docker
+│   ├── databases
+│   ├── research
+│   ├── design
+│   └── automation
+│
+└── Plugins
+    ├── Slack
+    ├── Notion
+    ├── Discord
+    ├── Jira
+    └── etc.
 ```
 
-Esto permite que Blu sea extensible por la comunidad y por el usuario, sin tocar el nÃºcleo.
+Esto permite que Blu sea extensible por la comunidad y por el usuario, sin tocar el núcleo.
 
-Ver tambiÃ©n: [[Blu AI - Agentes]], [[Blu AI - Gateway y Modelos]].
+Ver también: [[Blu AI - Agentes]], [[Blu AI - Gateway y Modelos]].

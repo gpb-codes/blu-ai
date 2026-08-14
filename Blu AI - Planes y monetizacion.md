@@ -1,4 +1,4 @@
-﻿---
+---
 tags:
   - blu
   - planes
@@ -8,9 +8,9 @@ responsable: Ignacio
 tipo: negocio
 ---
 
-# Blu AI â€” Planes y monetizaciÃ³n
+# Blu AI — Planes y monetización
 
-> Freemium: Gratis / BYOK / CrÃ©ditos, con cobro por usuario en proyectos colaborativos.
+> Freemium: Gratis / BYOK / Créditos, con cobro por usuario en proyectos colaborativos.
 
 ## Planes
 
@@ -18,19 +18,19 @@ tipo: negocio
 |------|--------|---------|
 | **Gratis** | $0 | Embudo de entrada |
 | **BYOK** | $10/mes | Usas tus propias keys (encriptadas) |
-| **CrÃ©ditos** | $30/mes | Soft caps por modelo |
+| **Créditos** | $30/mes | Soft caps por modelo |
 
-- **Enterprise** â†’ visiÃ³n futura (estudiantes/trabajadores), NO en V1.
+- **Enterprise** → visión futura (estudiantes/trabajadores), NO en V1.
 
-## ColaboraciÃ³n y cobro
+## Colaboración y cobro
 
 - Proyectos con permisos: owner / admin / editor / viewer
 - Memoria compartida por proyecto
-- **Cada persona paga su propio uso** (BYOK o crÃ©ditos)
-- Pago vÃ­a **Stripe** (checkout, portal, webhooks)
+- **Cada persona paga su propio uso** (BYOK o créditos)
+- Pago vía **Stripe** (checkout, portal, webhooks)
 
-## BÃºsqueda web
+## Búsqueda web
 
-BÃºsqueda: DuckDuckGo Lite (gratis) o Tavily.
+Búsqueda: DuckDuckGo Lite (gratis) o Tavily.
 
-Ver tambiÃ©n: [[Blu AI - Gateway y Modelos]], [[Blu AI - Stack tecnologico]].
+Ver también: [[Blu AI - Gateway y Modelos]], [[Blu AI - Stack tecnologico]].
