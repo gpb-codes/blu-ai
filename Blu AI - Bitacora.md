@@ -13,6 +13,18 @@ responsable: equipo
 > Registro de decisiones y cambios importantes. Lo más reciente arriba.
 > Fuente: Notion (subpágina "Bitácora de actualizaciones" de BLU IA) · Sincronizado 14-ago-2026.
 
+## 14 de agosto de 2026
+
+- **Cumplimiento y seguridad documentado:** se cierra la tarea de Kanban "Documentar cumplimiento legal de la arquitectura" con el nuevo documento [[Blu AI - Cumplimiento y Seguridad]] — tratamiento de datos por país, residencia y transferencias internacionales (GDPR, Ley 19.628/21.719 de Chile, LFPDPPP reformada de México), retención y eliminación, registro de DPAs por proveedor, riesgo de proveedores de IA (Claude, OpenAI, Gemini, OpenRouter, y **Kimi/Moonshot AI marcado como riesgo crítico** por falta de residencia de datos pública y de DPA verificado), matriz de riesgos, manejo de contraseñas/pagos, y requisitos legales por mercado. Kanban y Roadmap actualizados (4 tarjetas nuevas en "Sin empezar", tarjeta original movida a "Listo").
+- **Gabriel toma la responsabilidad de elegir proveedor de storage S3-compatible y proveedor de email transaccional** — quedaban sin responsable asignado en el vault.
+- **Decisiones legales pendientes del equipo** (no técnicas, salen del documento de cumplimiento):
+  - Definir la entidad legal de Blu (razón social, país de constitución, una entidad o varias por mercado).
+  - Postura sobre Kimi y proveedores de IA en China para datos personales (excluir, limitar a tareas sin datos personales, o firmar DPA).
+  - Designar responsable de privacidad / DPO y contacto ante AEPD (España), la futura Agencia chilena (vigencia plena dic-2026) y la nueva autoridad mexicana (Secretaría Anticorrupción y Buen Gobierno).
+  - Presupuesto y calendario para revisión legal local en Chile, México y España.
+  - Cerrar la conversación pendiente con la persona de seguridad (alcance, frecuencia, compensación).
+  - Definir mecanismo real de verificación de edad mínima.
+
 ## 1 de agosto de 2026
 
 Nota de estrategia de contenido: ningún guion debe asumir audiencia previa (ej. "me preguntan...", "la gente comenta..."). Todavía nadie conoce la marca — el objetivo de esta etapa es captar audiencia desde cero, no responder a una comunidad que aún no existe. Los ganchos deben plantearse como apertura ("voy a mostrarte...", "esto es...") y no como respuesta a interés previo.
