@@ -3,22 +3,15 @@ tags:
   - blu
   - tareas
   - equipo
+tipo: tareas
+estado: activo
 source: Notion - Base "Tareas BLU IA"
 actualizacion: 14-ago-2026
-tipo: tareas
----
-ags:
-  - blu
-  - tareas
-  - equipo
-source: Notion - Base "Tareas BLU IA"
-actualizacion: 14-ago-2026
-tipo: tareas
 ---
 
 # Blu AI - Tareas
 
-> Backlog de tareas de BLU IA, sincronizado desde Notion (base "Tareas BLU IA"). Fuente viva: https://www.notion.so (pagina BLU IA).
+> Backlog del equipo, sincronizado desde Notion (base "Tareas BLU IA"). Tablero visual: [[Blu AI - Kanban]]. Fuente viva: Notion > BLU IA.
 
 ## Resumen
 
@@ -27,43 +20,90 @@ tipo: tareas
 | Listo | 3 |
 | Sin empezar | 17 |
 
-## Tareas
+### Por área
 
-| Tarea | Estado | Prioridad | Fase | Area | Responsable | Fecha |
-|---|---|---|---|---|---|---|
-| Cierre de mes 1 y ajuste de roadmap | Sin empezar | Media | Mes 1 - Base | Negocio | Ignacio | 2026-08-31 |
-  - Notas: Revisar métricas, qué se cumplió y qué se mueve al mes 2.
-| Llegar a 100 personas en waitlist | Sin empezar | Alta | Mes 1 - Base | Marketing | Ignacio + Marketing | 2026-08-31 |
-| Publicar aviso de privacidad en la web | Sin empezar | Media | Mes 1 - Base | Legal | Ignacio | 2026-08-26 |
-| Sistema BYOK con API keys encriptadas | Sin empezar | Alta | Mes 1 - Base | Backend | Gabriel | 2026-08-25 |
-  - Notas: El usuario mete su propia API key, guardada encriptada.
-| Landing page con waitlist | Sin empezar | Alta | Mes 1 - Base | Marketing | Ignacio + Marketing | 2026-08-20 |
-  - Notas: La hacen Ignacio y el de marketing juntos, no Gabriel.
-| Enrutamiento multi-modelo básico | Sin empezar | Alta | Mes 1 - Base | Backend | Gabriel | 2026-08-18 |
-  - Notas: Claude + Gemini + GPT, con selección de modelo según tipo de tarea.
-| Login y registro funcionando | Sin empezar | Alta | Mes 1 - Base | Backend | Gabriel | 2026-08-12 |
-| Comprar dominio definitivo | Sin empezar | Media | Mes 1 - Base | Negocio | Ignacio | 2026-08-08 |
-| Esquema de base de datos | Sin empezar | Alta | Mes 1 - Base | Backend | Gabriel | 2026-08-08 |
-  - Notas: Usuarios, proyectos, mensajes, memoria vectorial.
-| Definir sistema de diseño del frontend (componentes base) | Sin empezar | Alta | Mes 1 - Base | Frontend | Pablo | 2026-08-05 |
-  - Notas: Coordinado con Gabriel para no chocar con el backend.
-| Configurar Supabase: Postgres + pgvector + auth | Sin empezar | Alta | Mes 1 - Base | Backend | Gabriel | 2026-08-05 |
-| Documentar cumplimiento legal de la arquitectura (residencia, transferencias, certificaciones, retención, DPA) | Sin empezar | Alta | Mes 1 - Base | Legal | Gabriel | 2026-08-04 |
-  - Notas: Puntos a documentar: residencia de datos, transferencias internacionales, certificaciones de seguridad (ISO 27001, SOC 2, EU Cloud CoC), política de retención, y DPA. Importante para futuras auditorías técnicas/legales si se trabaja con clientes corporativos. Propuesto por Gabriel.
-| Cerrar conversación con el de seguridad | Sin empezar | Alta | Mes 1 - Base | Legal | Ignacio | 2026-08-03 |
-  - Notas: Definir alcance, frecuencia, compensación e incompatibilidades por su empleo actual antes de comprometer equity.
-| Desplegar Next.js en Vercel | Sin empezar | Alta | Mes 1 - Base | Infraestructura | Gabriel | 2026-08-03 |
-| Firmar acuerdo con Pablo (frontend) | Sin empezar | Alta | Mes 1 - Base | Legal | Ignacio | 2026-08-01 |
-  - Notas: Mismas condiciones que Gabriel en vesting: 4 años, cliff de 1 año.
-| Arrancar contenido: 10 publicaciones por semana | Sin empezar | Alta | Mes 1 - Base | Contenido | Ignacio + Marketing | 2026-08-01 |
-  - Notas: 5 en cuenta personal + 5 en cuenta oficial de BLU. Empieza sin esperar al producto.
-| Definir 20 ganchos para el primer mes de contenido | Sin empezar | Alta | Mes 1 - Base | Contenido | Ignacio + Marketing | 2026-07-29 |
-| Firmar acuerdo con Gabriel | Listo | Alta | Mes 1 - Base | Legal | Ignacio | 2026-07-28 |
-| Redactar aviso de privacidad completo (LFPDPPP) | Listo | Alta | Mes 1 - Base | Legal | Ignacio | 2026-07-25 |
-  - Notas: Falta: identidad del responsable, derechos ARCO completos, finalidades que requieren consentimiento, y aviso integral en la web.
-| Crear repositorio y entornos dev/producción | Listo | Alta | Mes 1 - Base | Infraestructura | Gabriel | 2026-06-27 |
+| Área | Conteo |
+|---|---|
+| Legal | 6 |
+| Backend | 5 |
+| Contenido | 2 |
+| Infraestructura | 2 |
+| Marketing | 2 |
+| Negocio | 2 |
+| Frontend | 1 |
+
+### Prioridades
+
+| Prioridad | Conteo |
+|---|---|
+| Alta | 17 |
+| Media | 3 |
 
 ---
 
-Origen: [[Blu AI - Vision]] · Sincronizacion manual desde Notion (14-ago-2026).
+## Tareas por área
 
+> Leyenda: **Alta** = bloquea el avance · **Media** = se puede posponer. Fase actual: Mes 1 - Base (agosto).
+
+### Legal
+
+| Tarea | Estado | Prioridad | Fecha | Responsable | Notas |
+|---|---|---|---|---|---|
+| Redactar aviso de privacidad completo (LFPDPPP) | Listo | Alta | 2026-07-25 | Ignacio | Falta: identidad del responsable, derechos ARCO completos, finalidades que requieren consentimiento, y aviso integral en la web. |
+| Firmar acuerdo con Gabriel | Listo | Alta | 2026-07-28 | Ignacio | — |
+| Firmar acuerdo con Pablo (frontend) | Sin empezar | Alta | 2026-08-01 | Ignacio | Mismas condiciones que Gabriel en vesting: 4 años, cliff de 1 año. |
+| Cerrar conversación con el de seguridad | Sin empezar | Alta | 2026-08-03 | Ignacio | Definir alcance, frecuencia, compensación e incompatibilidades por su empleo actual antes de comprometer equity. |
+| Documentar cumplimiento legal de la arquitectura (residencia, transferencias, certificaciones, retención, DPA) | Sin empezar | Alta | 2026-08-04 | Gabriel | Puntos a documentar: residencia de datos, transferencias internacionales, certificaciones de seguridad (ISO 27001, SOC 2, EU Cloud CoC), política de retención, y DPA. Importante para futuras auditorías técnicas/legales si se trabaja con clientes corporativos. Propuesto por Gabriel. |
+| Publicar aviso de privacidad en la web | Sin empezar | Media | 2026-08-26 | Ignacio | — |
+
+### Backend
+
+| Tarea | Estado | Prioridad | Fecha | Responsable | Notas |
+|---|---|---|---|---|---|
+| Configurar Supabase: Postgres + pgvector + auth | Sin empezar | Alta | 2026-08-05 | Gabriel | — |
+| Esquema de base de datos | Sin empezar | Alta | 2026-08-08 | Gabriel | Usuarios, proyectos, mensajes, memoria vectorial. |
+| Login y registro funcionando | Sin empezar | Alta | 2026-08-12 | Gabriel | — |
+| Enrutamiento multi-modelo básico | Sin empezar | Alta | 2026-08-18 | Gabriel | Claude + Gemini + GPT, con selección de modelo según tipo de tarea. |
+| Sistema BYOK con API keys encriptadas | Sin empezar | Alta | 2026-08-25 | Gabriel | El usuario mete su propia API key, guardada encriptada. |
+
+### Contenido
+
+| Tarea | Estado | Prioridad | Fecha | Responsable | Notas |
+|---|---|---|---|---|---|
+| Definir 20 ganchos para el primer mes de contenido | Sin empezar | Alta | 2026-07-29 | Ignacio + Marketing | — |
+| Arrancar contenido: 10 publicaciones por semana | Sin empezar | Alta | 2026-08-01 | Ignacio + Marketing | 5 en cuenta personal + 5 en cuenta oficial de BLU. Empieza sin esperar al producto. |
+
+### Infraestructura
+
+| Tarea | Estado | Prioridad | Fecha | Responsable | Notas |
+|---|---|---|---|---|---|
+| Crear repositorio y entornos dev/producción | Listo | Alta | 2026-06-27 | Gabriel | — |
+| Desplegar Next.js en Vercel | Sin empezar | Alta | 2026-08-03 | Gabriel | — |
+
+### Marketing
+
+| Tarea | Estado | Prioridad | Fecha | Responsable | Notas |
+|---|---|---|---|---|---|
+| Landing page con waitlist | Sin empezar | Alta | 2026-08-20 | Ignacio + Marketing | La hacen Ignacio y el de marketing juntos, no Gabriel. |
+| Llegar a 100 personas en waitlist | Sin empezar | Alta | 2026-08-31 | Ignacio + Marketing | — |
+
+### Negocio
+
+| Tarea | Estado | Prioridad | Fecha | Responsable | Notas |
+|---|---|---|---|---|---|
+| Comprar dominio definitivo | Sin empezar | Media | 2026-08-08 | Ignacio | — |
+| Cierre de mes 1 y ajuste de roadmap | Sin empezar | Media | 2026-08-31 | Ignacio | Revisar métricas, qué se cumplió y qué se mueve al mes 2. |
+
+### Frontend
+
+| Tarea | Estado | Prioridad | Fecha | Responsable | Notas |
+|---|---|---|---|---|---|
+| Definir sistema de diseño del frontend (componentes base) | Sin empezar | Alta | 2026-08-05 | Pablo | Coordinado con Gabriel para no chocar con el backend. |
+
+---
+
+## Actualización
+
+- **Origen único:** Notion (base "Tareas BLU IA") — si cambias algo en Notion, pedir re-sincronización para volcarlo aquí.
+- **Visualización:** arrastrar tarjetas se hace en [[Blu AI - Kanban]]; esta nota refleja el estado de Notion.
+- Última sincronización: **14-ago-2026**.
