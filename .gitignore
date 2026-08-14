@@ -2,3 +2,6 @@
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
 .trash/
+
+# API key del plugin Local REST API (secreto local - NUNCA subir)
+.obsidian/plugins/obsidian-local-rest-api/data.json
