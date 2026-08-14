@@ -14,7 +14,7 @@ aliases:
 > **Blu AI — Tu agente de inteligencia artificial que trabaja contigo en cualquier lugar.**
 > Una capa inteligente (AI Operating Layer) que conecta tus modelos de IA, aplicaciones, archivos, código, navegador y dispositivos en un solo ecosistema.
 
-Repositorio oficial: `gpb-codes/Proyecto-BLU-IA` (fork de `blutechrobotics/Proyecto-BLU-IA`)
+Repositorio oficial: `blutechrobotics/Proyecto-BLU-IA` (copia de trabajo en `gpb-codes/Proyecto-BLU-IA`)
 
 ## Qué es Blu
 

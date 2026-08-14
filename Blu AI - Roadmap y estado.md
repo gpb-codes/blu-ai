@@ -7,7 +7,7 @@ tags:
 
 # Blu AI — Roadmap y estado
 
-> Estado real del proyecto (2026) y dirección. Fuente: repo `gpb-codes/Proyecto-BLU-IA`.
+> Estado real del proyecto (2026) y dirección. Fuente: repo oficial `blutechrobotics/Proyecto-BLU-IA`.
 
 ## Decisión de producto
 

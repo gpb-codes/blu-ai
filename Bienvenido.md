@@ -14,7 +14,7 @@ aliases:
 # BLU IA — Contexto del proyecto
 
 > **Documento de contexto para el equipo** — desarrollo (Gabriel, Pablo), coordinación (Ignacio) y marketing.
-> Última actualización: **14-ago-2026** · Repositorio oficial: `gpb-codes/Proyecto-BLU-IA`
+> Última actualización: **14-ago-2026** · Repositorio oficial: `blutechrobotics/Proyecto-BLU-IA`
 
 ---
 
