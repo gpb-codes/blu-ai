@@ -41,7 +41,7 @@ No es solo memoria de conversaciones. Es una **memoria compartida** que permite:
 ## Implementación real
 
 - **Vault de notas del proyecto** estilo *second brain* (tipo Obsidian): wikilinks, tags, backlinks, grafo y **RAG**.
-- PostgreSQL (Neon) con **pgvector** para recuperación semántica.
+- PostgreSQL (Neon) con **pgvector** para recuperación semántica. ⚠️ En revisión: Cloudflare D1 + Vectorize (bitácora 28-jul, ver [[Blu AI - Stack tecnologico]]).
 - Memoria por usuario (`user_memory`) + memoria de proyecto compartida con permisos.
 - **Redis (Upstash)** para colas, límites y presencia.
 

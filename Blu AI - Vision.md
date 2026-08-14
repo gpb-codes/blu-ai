@@ -60,7 +60,7 @@ Claude tiene un ecosistema muy potente alrededor de sus propios modelos; **Blu s
 
 ## Estado (repo, 2026)
 
-- Tareas del equipo: [[Blu AI - Tareas]] (backlog desde Notion, 20 tareas)
+- Tareas del equipo: [[Blu AI - Tareas]] (backlog desde Notion, 20 tareas) + tablero [[Blu AI - Kanban]]
 - Migración de bot de WhatsApp a plataforma SaaS (WhatsApp **descontinuado** por política de Meta, 15-ene-2026).
 - Monorepo pnpm/turbo: `apps/{api, blu-code, extension, mobile, web}`, `packages/{ai-gateway, memory, shared}`.
 - AI gateway con adapters reales (OpenAI/Anthropic/Gemini/OpenRouter), BYOK, fallbacks por tier, 78/78 tests.

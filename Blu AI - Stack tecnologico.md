@@ -12,6 +12,8 @@ tags:
 
 - **NestJS** — REST + WebSocket (chat streaming, presencia)
 - **Prisma + PostgreSQL (Neon)** — datos + **pgvector** para memoria RAG
+
+> ⚠️ **En revisión (28-jul, Notion):** datos migran de Supabase/Postgres a **Cloudflare D1 (SQLite) + Vectorize**. Falta confirmar auth (D1 no la incluye) y hosting (Vercel vs Cloudflare Workers/Pages). Fuente: [[Blu AI - Bitacora]].
 - **Redis (Upstash)** — rate limits, colas (BullMQ), caché, presencia
 - **Stripe** — checkout, portal, webhooks (BYOK y Créditos)
 - **Zod + OpenAPI** — contrato con Flutter/web/ext

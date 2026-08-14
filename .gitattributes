@@ -1,0 +1,5 @@
+# Normaliza saltos de línea (Windows/macOS/móvil -> diffs limpios)
+*.md text eol=lf
+*.json text eol=lf
+*.css text eol=lf
+*.js text eol=lf

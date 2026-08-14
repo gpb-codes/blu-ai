@@ -1,16 +1,35 @@
 {
-  "version": 2,
-  "projects": [],
-  "archives": [],
-  "preferences": {
-    "projectSizeLimit": 1000,
-    "frontmatter": {
-      "quoteStrings": "PLAIN"
-    },
-    "locale": {
-      "firstDayOfWeek": "default"
-    },
-    "commands": [],
-    "linkBehavior": "open-editor"
+  "open": "BLU Roadmap",
+  "projects": {
+    "BLU Roadmap": {
+      "type": "basic",
+      "filters": [],
+      "properties": [
+        "estado",
+        "prioridad",
+        "responsable",
+        "fase"
+      ],
+      "views": [
+        {
+          "type": "board",
+          "id": "BLU Board",
+          "name": "Board",
+          "sortBy": [],
+          "filters": [],
+          "groupField": "estado",
+          "colorField": "prioridad",
+          "hiddenFields": []
+        },
+        {
+          "type": "table",
+          "id": "BLU Tabla",
+          "name": "Tabla",
+          "sortBy": [],
+          "filters": [],
+          "hiddenFields": []
+        }
+      ]
+    }
   }
 }
