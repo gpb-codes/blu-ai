@@ -1,0 +1,46 @@
+---
+tags:
+  - blu
+  - code
+  - cli
+---
+
+# Blu AI — Blu Code
+
+> Pilar de la plataforma: una evolución del concepto OpenCode + Claude Code dentro de Blu.
+
+## Dos modalidades
+
+**Blu Code (Web)** — editor en el navegador:
+- Editor Monaco + GitHub OAuth
+- Editar código y commitear desde la web con GitHub conectado
+
+**Blu Code Local (CLI/daemon)** — estilo Claude Code:
+- Instalable con `npx blu-code`
+- Herramientas locales en la máquina del usuario: Read / Write / Edit / Bash / Grep / Glob
+- Se conecta al backend en la nube (WS/HTTPS) → **misma memoria, mismos agentes, mismo gateway**
+- **Nunca sube el contenido de los archivos** al servidor salvo lo que el usuario pida compartir/commitear
+
+## Alcance
+
+```
+Blu Code
+│
+├── Terminal
+├── VS Code
+├── JetBrains
+├── GitHub
+├── Git
+├── Debugger
+├── Tests
+├── Docker
+├── CI/CD
+├── Deploy
+└── Browser
+```
+
+## Privacidad
+
+Diseño centrado en que el contenido local no sale de la máquina salvo permiso explícito. Es un diferenciador de confianza frente a soluciones que suben todo a la nube.
+
+Ver también: [[Blu AI - Agentes]], [[Blu AI - Gateway y Modelos]].
