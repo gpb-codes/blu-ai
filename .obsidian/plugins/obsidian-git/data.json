@@ -1,0 +1,15 @@
+{
+  "autoSaveInterval": 10,
+  "autoPushInterval": 30,
+  "autoPullInterval": 30,
+  "autoPullOnBoot": true,
+  "mergeOnPull": true,
+  "pushOnBackup": true,
+  "pullOnBackup": true,
+  "commitMessage": "vault backup: {{date}}",
+  "commitDateFormat": "YYYY-MM-DD HH:mm:ss",
+  "disableCompact": false,
+  "showVerboseLogs": false,
+  "disablePopups": false,
+  "currentBranch": "main"
+}
