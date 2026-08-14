@@ -1,4 +1,11 @@
-[
-  "obsidian-local-rest-api",
-  "obsidian-git"
+﻿[
+    "obsidian-local-rest-api",
+    "obsidian-git",
+    "obsidian-calendar-plugin",
+    "obsidian-kanban",
+    "obsidian-tasks",
+    "obsidian-projects",
+    "obsidian-periodic-notes",
+    "templater-obsidian",
+    "obsidian-dataview"
 ]
