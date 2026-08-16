@@ -57,7 +57,6 @@ tipo: roadmap
 - MCP: sistema con 9 herramientas estandarizadas (Node y Python)
 - Migración SaaS: monorepo pnpm/turbo, auth Fase 1 completo, 68 tests
 - **AI gateway** con adapters reales (OpenAI/Anthropic/Gemini/OpenRouter) + BYOK, fallbacks por tier, `503 PROVIDER_NOT_CONFIGURED`, **78/78 tests**
-- **Cumplimiento y seguridad (14-ago-2026):** arquitectura de cumplimiento legal para Chile, México y España documentada en [[Blu AI - Cumplimiento y Seguridad]] — tratamiento de datos, residencia/transferencias internacionales, retención, DPAs por proveedor, riesgos de proveedores de IA y matriz de riesgos. Quedan huecos y decisiones pendientes (entidad legal, decisión final de stack de datos, DPAs por firmar, postura sobre proveedores de IA en China) reflejados como nuevas tarjetas en [[Blu AI - Kanban]].
 
 ## Referencias
 
@@ -72,4 +71,3 @@ tipo: roadmap
 3. Modo Auto refinado del gateway ([[Blu AI - Gateway y Modelos]])
 4. Blu Code local + web ([[Blu AI - Blu Code]])
 5. Mini-apps / sistema de Skills ([[Blu AI - Skills y mini-apps]])
-6. Cerrar DPAs con proveedores críticos y decisión final de residencia de datos ([[Blu AI - Cumplimiento y Seguridad]])

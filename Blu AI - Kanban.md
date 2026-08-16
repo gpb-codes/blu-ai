@@ -15,21 +15,9 @@ tipo: tareas
 
 ## Sin empezar
 
-- [ ] **Firmar DPAs con proveedores críticos (Neon, Cloudflare/Upstash, Stripe, Anthropic, OpenAI, Google)** `📅 2026-08-31`
+- [ ] **Documentar cumplimiento legal de la arquitectura (residencia, transferencias, certificaciones, retención, DPA)** `📅 2026-08-04`
   - Responsable: Gabriel · Prioridad: Alta · Area: Legal · Fase: Mes 1 - Base
-  - Nota: Surge de [[Blu AI - Cumplimiento y Seguridad]] (sección 4): hoy ningún DPA está firmado, solo identificados como disponibles.
-
-- [ ] **Decidir postura sobre Kimi/Moonshot AI y otros proveedores de IA en China para datos personales** `📅 2026-08-31`
-  - Responsable: Gabriel · Prioridad: Alta · Area: Legal · Fase: Mes 1 - Base
-  - Nota: Sin residencia de datos pública ni DPA verificado; riesgo de acceso estatal bajo ley china. Ver [[Blu AI - Cumplimiento y Seguridad]] (secciones 2 y 5).
-
-- [ ] **Designar responsable de privacidad / DPO y contacto ante AEPD, futura Agencia (Chile) y nueva autoridad (México)** `📅 2026-08-31`
-  - Responsable: Ignacio · Prioridad: Alta · Area: Legal · Fase: Mes 1 - Base
-  - Nota: Hoy no hay nadie designado. Ver [[Blu AI - Cumplimiento y Seguridad]] (sección 9).
-
-- [ ] **Confirmar región de datos definitiva (Neon vs. Cloudflare D1 + Vectorize) antes de recibir usuarios UE** `📅 2026-08-31`
-  - Responsable: Gabriel · Prioridad: Alta · Area: Backend · Fase: Mes 1 - Base
-  - Nota: La decisión de stack (en revisión desde bitácora 28-jul) tiene implicancias directas de residencia de datos para GDPR y Ley 21.719 (Chile). Ver [[Blu AI - Cumplimiento y Seguridad]] (sección 2).
+  - Nota: Puntos a documentar: residencia de datos, transferencias internacionales, certificaciones de seguridad (ISO 27001, SOC 2, EU Cloud CoC), política de retención, y DPA. Importante para futuras auditorías técnicas/legales si se trabaja con clientes corporativos. Propuesto por Gabriel.
 
 - [ ] **Cerrar conversación con el de seguridad** `📅 2026-08-03`
   - Responsable: Ignacio · Prioridad: Alta · Area: Legal · Fase: Mes 1 - Base
@@ -89,10 +77,6 @@ tipo: tareas
   - Nota: Claude + Gemini + GPT, con selección de modelo según tipo de tarea.
 
 ## Listo
-
-- [ ] **Documentar cumplimiento legal de la arquitectura (residencia, transferencias, certificaciones, retención, DPA)** `📅 2026-08-04`
-  - Responsable: Gabriel · Prioridad: Alta · Area: Legal · Fase: Mes 1 - Base
-  - Nota: Cerrado 14-ago-2026. Documento completo en [[Blu AI - Cumplimiento y Seguridad]]: tratamiento de datos por país, residencia/transferencias (GDPR, Ley 19.628/21.719 Chile, LFPDPPP reformada México), retención y eliminación, DPAs por proveedor, riesgos de proveedores de IA (Claude/Kimi/OpenRouter/etc.), matriz de riesgos y requisitos por mercado (CL/MX/ES). Quedan decisiones pendientes del equipo — ver sección 9 del documento y las 4 tarjetas nuevas en "Sin empezar".
 
 - [ ] **Crear repositorio y entornos dev/producción** `📅 2026-06-27`
   - Responsable: Gabriel · Prioridad: Alta · Area: Infraestructura · Fase: Mes 1 - Base
