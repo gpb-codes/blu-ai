@@ -13,6 +13,25 @@ responsable: equipo
 > Registro de decisiones y cambios importantes. Lo más reciente arriba.
 > Fuente: Notion (subpágina "Bitácora de actualizaciones" de BLU IA) · Sincronizado 14-ago-2026.
 
+## 17 de agosto de 2026 (5)
+
+- **Ronda de decisiones cerrando huecos de [[Blu AI - Cumplimiento y Seguridad]] (sección 9).** Gabriel respondió una tanda de preguntas sobre las decisiones pendientes del equipo:
+  - **Ollama:** descartado — no se implementa en el gateway (pendiente actualizar el diagrama de [[Blu AI - Vision]]).
+  - **Kimi/Moonshot AI y proveedores de IA en China:** se limitan a tareas sin datos personales, nunca prompts con datos identificables de usuarios; sigue pendiente firmar DPA antes de implementar cualquier uso.
+  - **Responsable/DPO de privacidad:** Ignacio, como punto de contacto ante AEPD (España), la futura Agencia chilena y la Secretaría Anticorrupción y Buen Gobierno (México).
+  - **Datos del bot de WhatsApp descontinuado:** eliminación completa, sin migrar ni anonimizar — falta solo definir el plazo de ejecución.
+  - **Proveedor de storage de archivos:** Cloudflare R2.
+  - **Proveedor de email transaccional:** Postmark.
+  - **Zero Data Retention / Bedrock EU con Anthropic:** se evalúa más adelante, fuera del alcance de V1.
+  - Todo esto se refleja en el documento (secciones 0, 2, 3, 4, 5, 6 y 9); los DPAs de los proveedores recién decididos (R2, Postmark) siguen pendientes de firmar.
+
+## 17 de agosto de 2026 (4)
+
+- **Entidad legal definida.** Confirmado por Gabriel: Blu operará como **una única entidad, constituida en México** — no habrá entidades separadas por mercado (Chile/México/España). Se actualiza [[Blu AI - Cumplimiento y Seguridad]] (secciones 0, 8 y 9), cerrando parcialmente ese gap (falta aún razón social y fecha de constitución). Consecuencias que se documentan como acciones a ejecutar, no evaluaciones abiertas:
+  - **España/UE:** al no haber establecimiento en la UE, Blu necesita designar un **representante en la UE (Art. 27 GDPR)**.
+  - **Chile:** al no constituirse entidad ahí, no aplican las obligaciones de facturación electrónica ante el SII; Blu opera como responsable extranjero bajo el alcance extraterritorial de la Ley 21.719. Queda como gap sin resolver si esa ley exige representante local en Chile — no se pudo confirmar con las fuentes disponibles.
+  - **México** pasa a ser la jurisdicción de origen de Blu — el mercado donde el cumplimiento es más directo.
+
 ## 17 de agosto de 2026 (3)
 
 - **Auditoría de consistencia de [[Blu AI - Cumplimiento y Seguridad]].** Revisión completa del documento contra el resto del vault y verificación externa de las fechas legales citadas.
