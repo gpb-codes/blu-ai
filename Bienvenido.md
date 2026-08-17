@@ -130,6 +130,7 @@ Stack: **NestJS** (backend) · **Flutter** (móvil/desktop) · **Next.js 15** (w
 | [[Blu AI - Blu Chat]] · [[Blu AI - Blu Code]] · [[Blu AI - Gateway y Modelos]] · [[Blu AI - Memoria compartida]] · [[Blu AI - Agentes]] · [[Blu AI - Skills y mini-apps]] | Módulos del producto |
 | [[Blu AI - Stack tecnologico]] | Arquitectura y stack |
 | [[Blu AI - Cumplimiento y Seguridad]] | Cumplimiento legal (Chile/México/España), seguridad, DPAs, huecos y decisiones |
+| [[Blu AI - Datasets y Personalizacion]] | Sistema de datasets (JSONL) para personalización y fine-tuning |
 | [[Blu AI - Planes y monetizacion]] | Gratis / BYOK $10 / Créditos $30 |
 | [[Blu AI - Roadmap y estado]] | Decisiones, historial y hitos |
 | [[Blu AI - Tareas]] · [[Blu AI - Kanban]] | Backlog (Notion) y tablero del sprint |

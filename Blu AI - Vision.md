@@ -50,6 +50,7 @@ No es un "chatbot con varios modelos". Es una **plataforma de IA con agentes, pr
 | [[Blu AI - Memoria compartida]] | Memoria unificada + RAG | Memory |
 | [[Blu AI - Agentes]] | Plan, Build, Cowork, Research, QA, Automation, Knowledge | Agents |
 | [[Blu AI - Skills y mini-apps]] | Mini-apps generadas + sistema de Skills | Skills |
+| [[Blu AI - Datasets y Personalizacion]] | Datasets JSONL para personalización y fine-tuning de los tiers propios | Data |
 
 **Módulos futuros (a detallar):** Browser (extensión Chrome / agente de navegador), Desktop (agente de escritorio y archivos), Design (UI/UX y presentaciones), Workspace (Office / Google Workspace), Automations (workflows en lenguaje natural), Mobile (control remoto del ecosistema).
 

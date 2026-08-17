@@ -13,6 +13,10 @@ responsable: equipo
 > Registro de decisiones y cambios importantes. Lo más reciente arriba.
 > Fuente: Notion (subpágina "Bitácora de actualizaciones" de BLU IA) · Sincronizado 14-ago-2026.
 
+## 17 de agosto de 2026 (6)
+
+- **Nueva nota: [[Blu AI - Datasets y Personalizacion]].** Documenta el sistema para juntar señales de personalización (preferencias, feedback, memoria) y ejemplos para el fine-tuning de los tiers propios (Blu Light/Flash/Ultra). Decisión de formato: **JSONL, no JSON** (append-only, streaming, corrupción acotada a una línea, formato nativo de las APIs de fine-tuning de OpenAI/Anthropic/Together/Fireworks). Incluye ejemplos de los cuatro tipos de evento (`preference_update`, `feedback`, `memory_entry`, `finetune_example`), estructura de carpetas propuesta (`packages/memory/datasets/events/` vs `finetune/`), y cruce con [[Blu AI - Cumplimiento y Seguridad]] (anonimización y retención, ambas pendientes de definir en detalle). Enlazada desde [[Blu AI - Vision]] y el mapa de notas de [[Bienvenido]].
+
 ## 17 de agosto de 2026 (5)
 
 - **Ronda de decisiones cerrando huecos de [[Blu AI - Cumplimiento y Seguridad]] (sección 9).** Gabriel respondió una tanda de preguntas sobre las decisiones pendientes del equipo:
