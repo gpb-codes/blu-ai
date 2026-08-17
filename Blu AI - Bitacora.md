@@ -13,6 +13,15 @@ responsable: equipo
 > Registro de decisiones y cambios importantes. Lo más reciente arriba.
 > Fuente: Notion (subpágina "Bitácora de actualizaciones" de BLU IA) · Sincronizado 14-ago-2026.
 
+## 17 de agosto de 2026 (7)
+
+- **Revisión de coherencia de todo el vault** (a pedido de Gabriel, tras agregar [[Blu AI - Datasets y Personalizacion]]). Se leyeron todas las notas y se corrigieron:
+  - **[[Blu AI - Roadmap y estado]]:** sección "Roadmap a 3 meses" estaba duplicada íntegra (copiada dos veces) — se dejó una sola copia. La fila "Datos" seguía marcando la migración a Cloudflare D1 como "⚠️ en revisión", desactualizada desde que se confirmó el 17-ago — corregida.
+  - **[[Blu AI - Vision]]:** enlace a [[Blu AI - Kanban]] duplicado en la sección de Estado — se dejó uno. El diagrama de arquitectura seguía listando **Ollama** pese a la decisión de descartarlo (ver entrada (6) más abajo, que ya lo señalaba como pendiente) — se quitó del diagrama y se agregó nota aclarando que Kimi es visión de producto, no un adapter implementado.
+  - **[[Blu AI - Blu Chat]]:** la tabla del Model Router recomendaba "Ollama → modelo local" para ejecución local, contradiciendo la decisión de descartarlo, y presentaba a Kimi como si ya estuviera activo — corregida con una nota aclaratoria.
+  - **[[Bienvenido]] (sección "Cómo usar esta bóveda"):** tenía un error de una revisión anterior — decía que la bóveda se sincroniza con `gpb-codes/Proyecto-BLU-IA`, pero ese es el repo del **código del producto** (donde se hizo la auditoría técnica). El repo real de esta bóveda de notas es `gpb-codes/blu-ai`, tal como ya decían correctamente [[README]] y [[Setup del equipo - dispositivos]] desde el principio. Corregido para distinguir ambos repos explícitamente.
+  - Sin cambios necesarios en [[Blu AI - Cumplimiento y Seguridad]] (ya auditado el 17-ago, sigue consistente), [[Blu AI - Agentes]], [[Blu AI - Blu Code]], [[Blu AI - Clientes ideales]], [[Blu AI - Metricas semanales]], [[Blu AI - Planes y monetizacion]], [[Blu AI - Skills y mini-apps]], [[README]] ni [[Setup del equipo - dispositivos]].
+
 ## 17 de agosto de 2026 (6)
 
 - **Nueva nota: [[Blu AI - Datasets y Personalizacion]].** Documenta el sistema para juntar señales de personalización (preferencias, feedback, memoria) y ejemplos para el fine-tuning de los tiers propios (Blu Light/Flash/Ultra). Decisión de formato: **JSONL, no JSON** (append-only, streaming, corrupción acotada a una línea, formato nativo de las APIs de fine-tuning de OpenAI/Anthropic/Together/Fireworks). Incluye ejemplos de los cuatro tipos de evento (`preference_update`, `feedback`, `memory_entry`, `finetune_example`), estructura de carpetas propuesta (`packages/memory/datasets/events/` vs `finetune/`), y cruce con [[Blu AI - Cumplimiento y Seguridad]] (anonimización y retención, ambas pendientes de definir en detalle). Enlazada desde [[Blu AI - Vision]] y el mapa de notas de [[Bienvenido]].

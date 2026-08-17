@@ -169,7 +169,8 @@ WHERE tipo = "modulo"
 SORT fase ASC
 ```
 
-- Las notas de Blu tienen prefijo `Blu AI -` y viven en la raíz; todo se sincroniza con GitHub (`gpb-codes/Proyecto-BLU-IA`, privado — copia de trabajo del repo oficial `blutechrobotics/Proyecto-BLU-IA`).
+- Las notas de Blu tienen prefijo `Blu AI -` y viven en la raíz; **esta bóveda** se sincroniza sola con GitHub (`gpb-codes/blu-ai`, privado — ver [[Setup del equipo - dispositivos]]).
+- Ojo, no confundir dos repos distintos: **`gpb-codes/blu-ai`** es el repo de esta bóveda de notas; **`gpb-codes/Proyecto-BLU-IA`** (copia de trabajo del repo oficial `blutechrobotics/Proyecto-BLU-IA`) es el repo del código del producto, donde se hizo la auditoría técnica del 17-ago-2026.
 
 ---
 

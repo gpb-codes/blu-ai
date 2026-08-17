@@ -36,9 +36,10 @@ No es un "chatbot con varios modelos". Es una **plataforma de IA con agentes, pr
    Model Router    Agent System     Memory
         │              │              │
   Claude Gemini   Code Browser     RAG Graph
-  Kimi  OpenAI    Desktop Agent     │
-  Ollama          └── Shared Context
+  OpenAI Kimi*    Desktop Agent     │
+                  └── Shared Context
 ```
+\* Kimi es parte de la visión de producto, no un adapter implementado hoy — ver [[Blu AI - Gateway y Modelos]] y [[Blu AI - Cumplimiento y Seguridad]]. Ollama fue descartado del gateway (decisión 17-ago-2026, ver [[Blu AI - Bitacora]]) y se quita de este diagrama.
 
 ## Módulos de Blu
 
@@ -64,7 +65,7 @@ Claude tiene un ecosistema muy potente alrededor de sus propios modelos; **Blu s
 
 ## Estado (repo, 2026)
 
-- Tareas del equipo: [[Blu AI - Tareas]] (backlog desde Notion, 20 tareas) + tablero [[Blu AI - Kanban]] + tablero [[Blu AI - Kanban]]
+- Tareas del equipo: [[Blu AI - Tareas]] (backlog desde Notion, 20 tareas) + tablero [[Blu AI - Kanban]]
 - Migración de bot de WhatsApp a plataforma SaaS (WhatsApp **descontinuado** por política de Meta, 15-ene-2026).
 - Monorepo pnpm/turbo: `apps/{api, blu-code, extension, mobile, web}`, `packages/{ai-gateway, memory, shared}`.
 - AI gateway con adapters reales (OpenAI/Anthropic/Gemini/OpenRouter), BYOK, fallbacks por tier, 78/78 tests.
