@@ -17,6 +17,11 @@ responsable: equipo
 
 - **Confirmado: migración de base de datos.** Se cierra la revisión abierta el 28-jul — la base de datos pasa de Supabase/PostgreSQL (Neon, pgvector) a **Cloudflare D1 (SQLite) + Vectorize**. Nota: D1 no es PostgreSQL, no trae pgvector nativo (por eso Vectorize para los vectores). Queda pendiente definir: solución de auth (D1 no la incluye), ORM/capa de acceso a datos (Prisma no soporta D1 nativamente), y si el hosting se mueve de Vercel a Cloudflare Workers/Pages.
 - Marcadas como Listo: "Documentar cumplimiento legal de la arquitectura" y "Enrutamiento multi-modelo básico" (Gabriel).
+- **Auditoría de código del fork `gpb-codes/Proyecto-BLU-IA`.** El repo oficial (`blutechrobotics/Proyecto-BLU-IA`) y el otro nombre citado en el vault (`gpb-codes/blu-ai`) no son accesibles desde esta sesión; se revisó en su lugar el fork clonado localmente. Hallazgos vs. el Kanban:
+  - **Esquema de base de datos** y **Login y registro funcionando**: ya implementados (`schema.prisma` con 2 migraciones, AuthController completo con JWT+refresh, hash Argon2, test e2e) → pasan a Listo.
+  - **Sistema BYOK**: el modelo `UserApiKey` ya prevé cifrado AES-256-GCM, pero falta el servicio/controlador real → pasa a En progreso.
+  - **Diseño del frontend (Pablo)**: avanzado en mobile/Flutter (tema + widgets), pero `apps/web` sigue siendo el boilerplate de `create-next-app` → pasa a En progreso.
+  - **Configurar Cloudflare D1** y **Desplegar Next.js en Vercel**: confirmado que siguen sin empezar (el código todavía usa Prisma/PostgreSQL, y `apps/web` no tiene contenido propio).
 
 ## 1 de agosto de 2026
 

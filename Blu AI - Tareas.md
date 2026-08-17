@@ -17,8 +17,9 @@ actualizacion: 14-ago-2026
 
 | Estado | Conteo |
 |---|---|
-| Listo | 5 |
-| Sin empezar | 15 |
+| Listo | 7 |
+| En progreso | 2 |
+| Sin empezar | 11 |
 
 ### Por área
 
@@ -61,10 +62,10 @@ actualizacion: 14-ago-2026
 | Tarea | Estado | Prioridad | Fecha | Responsable | Notas |
 |---|---|---|---|---|---|
 | Configurar Cloudflare D1 (SQLite) + Vectorize + auth | Sin empezar | Alta | 2026-08-05 | Gabriel | Reemplaza a Supabase/Postgres+pgvector (decisión confirmada 17-ago). Falta definir solución de auth (D1 no la incluye) y ORM/capa de datos. |
-| Esquema de base de datos | Sin empezar | Alta | 2026-08-08 | Gabriel | Usuarios, proyectos, mensajes, memoria vectorial. |
-| Login y registro funcionando | Sin empezar | Alta | 2026-08-12 | Gabriel | — |
-| Enrutamiento multi-modelo básico | Listo | Alta | 2026-08-18 | Gabriel | Claude + Gemini + GPT, con selección de modelo según tipo de tarea. |
-| Sistema BYOK con API keys encriptadas | Sin empezar | Alta | 2026-08-25 | Gabriel | El usuario mete su propia API key, guardada encriptada. |
+| Esquema de base de datos | Listo | Alta | 2026-08-08 | Gabriel | Verificado en el fork (gpb-codes/Proyecto-BLU-IA, 17-ago): `schema.prisma` completo (User, RefreshToken, UserApiKey, ConnectedRepo, etc.) con 2 migraciones aplicadas. |
+| Login y registro funcionando | Listo | Alta | 2026-08-12 | Gabriel | Verificado en el fork (17-ago): AuthController completo (register/login/refresh/logout/me), JWT+refresh, hash Argon2, guard y test e2e. |
+| Enrutamiento multi-modelo básico | Listo | Alta | 2026-08-18 | Gabriel | Claude + Gemini + GPT, con selección de modelo según tipo de tarea. Verificado en el fork: TierRouter con fallback entre proveedores (anthropic/gemini/openai/openrouter). |
+| Sistema BYOK con API keys encriptadas | En progreso | Alta | 2026-08-25 | Gabriel | Verificado en el fork (17-ago): el modelo `UserApiKey` ya tiene los campos para AES-256-GCM (encryptedKey, maskedKey), pero falta el controlador/servicio que realmente cifre y guarde las keys. |
 
 ### Contenido
 
@@ -98,7 +99,7 @@ actualizacion: 14-ago-2026
 
 | Tarea | Estado | Prioridad | Fecha | Responsable | Notas |
 |---|---|---|---|---|---|
-| Definir sistema de diseño del frontend (componentes base) | Sin empezar | Alta | 2026-08-05 | Pablo | Coordinado con Gabriel para no chocar con el backend. |
+| Definir sistema de diseño del frontend (componentes base) | En progreso | Alta | 2026-08-05 | Pablo | Coordinado con Gabriel para no chocar con el backend. Verificado en el fork (17-ago): avanzado en mobile/Flutter (tema + librería de widgets reutilizables), pero `apps/web` (Next.js) sigue siendo el boilerplate default — sin diseño propio todavía. |
 
 ---
 
@@ -107,4 +108,6 @@ actualizacion: 14-ago-2026
 - **Origen único:** Notion (base "Tareas BLU IA") — si cambias algo en Notion, pedir re-sincronización para volcarlo aquí.
 - **Visualización:** arrastrar tarjetas se hace en [[Blu AI - Kanban]]; esta nota refleja el estado de Notion.
 - Última sincronización: **14-ago-2026**.
-- **Actualización manual 17-ago-2026:** marcadas como Listo "Documentar cumplimiento legal de la arquitectura" y "Enrutamiento multi-modelo básico" (confirmado por Gabriel). Además se confirmó el cambio de Supabase/Postgres a Cloudflare D1 + Vectorize (renombrada la tarea de Backend). Pendiente reflejar todo en Notion.
+- **Actualización manual 17-ago-2026:** marcadas como Listo "Documentar cumplimiento legal de la arquitectura" y "Enrutamiento multi-modelo básico" (confirmado por Gabriel). Además se confirmó el cambio de Supabase/Postgres a Cloudflare D1 + Vectorize (renombrada la tarea de Backend).
+- **Auditoría de código 17-ago-2026** (fork `gpb-codes/Proyecto-BLU-IA`): "Esquema de base de datos" y "Login y registro funcionando" pasan a Listo (ya implementados). "Sistema BYOK" y "Definir sistema de diseño del frontend" pasan a En progreso (avance parcial, ver notas en la tabla). "Configurar Cloudflare D1..." y "Desplegar Next.js en Vercel" se confirman Sin empezar. Pendiente reflejar todo en Notion.
+- **Reorganización 17-ago-2026:** [[Blu AI - Kanban]] pasa de columnas por estado a columnas por responsable (Gabriel, Pablo, Ignacio, Ignacio + Marketing); el estado ahora se marca con casilla (✅ listo), 🔄 (en progreso) o ⚠️ (atrasada) dentro de cada tarjeta.
