@@ -13,15 +13,15 @@ tipo: index
 estado: activo
 prioridad: alta
 responsable: equipo
-actualizacion: 14-ago-2026
+actualizacion: 17-ago-2026
 ---
 
 # BLU IA — Contexto del proyecto
 
 > **Documento de contexto para el equipo** — desarrollo (Gabriel, Pablo), coordinación (Ignacio) y marketing.
-> Última actualización: **14-ago-2026** · Repositorio oficial: `blutechrobotics/Proyecto-BLU-IA`
+> Última actualización: **17-ago-2026** · Repositorio oficial: `blutechrobotics/Proyecto-BLU-IA` (copia de trabajo en `gpb-codes/Proyecto-BLU-IA`) · Entidad legal: **una única sociedad, constituida en México** ([[Blu AI - Cumplimiento y Seguridad]])
 
-**Estado del sprint (Mes 1 - Base, agosto):** 3/20 tareas listas · 17 pendientes · Tablero: [[Blu AI - Kanban]] · Backlog: [[Blu AI - Tareas]]
+**Estado del sprint (Mes 1 - Base, agosto):** 7/20 tareas listas · 2 en progreso · 11 pendientes (varias ya atrasadas) · Tablero por responsable: [[Blu AI - Kanban]] · Backlog: [[Blu AI - Tareas]]
 
 ---
 
@@ -68,26 +68,33 @@ actualizacion: 14-ago-2026
 - BLU nació como un **bot de WhatsApp**, que quedó **descontinuado** (prohibición de Meta a asistentes de propósito general vía WA Business API, 15-ene-2026).
 - Migración en curso hacia **plataforma SaaS** multi-dispositivo. Historia completa: [[Blu AI - Bitacora]].
 
-### Lo que ya está construido (repo, 14-ago-2026)
+### Lo que ya está construido (verificado en el fork, 17-ago-2026)
 
 | Componente | Estado |
 |---|---|
 | Monorepo pnpm/turbo (`apps/` + `packages/`) | ✅ Funcional |
-| **AI Gateway** multi-proveedor (OpenAI, Anthropic, Gemini, OpenRouter) + BYOK | ✅ **78/78 tests pasando** |
-| Autenticación Fase 1 (auth local + social) | ✅ 68 tests |
+| **AI Gateway** multi-proveedor (OpenAI, Anthropic, Gemini, OpenRouter) + BYOK (routing) | ✅ **78/78 tests pasando** |
+| **Esquema de base de datos** (`schema.prisma`: User, RefreshToken, UserApiKey, ConnectedRepo...) | ✅ 2 migraciones aplicadas |
+| **Login y registro** (AuthController, JWT+refresh, hash Argon2, test e2e) | ✅ Funcional |
+| Sistema BYOK con API keys **encriptadas** | 🔄 En progreso — el modelo de datos ya está listo (AES-256-GCM), falta el servicio/controlador que cifre y guarde las keys |
 | Base del sistema MCP (9 herramientas) | ✅ |
+| `apps/web` (Next.js, landing/waitlist) | ⬜ Sigue siendo el boilerplate default — sin diseño ni contenido propio |
+| Diseño de frontend (Pablo) | 🔄 Avanzado en mobile/Flutter, cero en web |
 | Documento de plan completo (`docs/PLAN-MIGRACION-APP.md`) | ✅ DRAFT v2 |
+| Arquitectura de cumplimiento legal y seguridad | ✅ [[Blu AI - Cumplimiento y Seguridad]] — cierra la tarea del Kanban, con huecos ya en su mayoría decididos |
 
-> ⚠️ **Decisión pendiente de confirmar (28-jul):** la Bitácora movió datos de Supabase/Postgres a **Cloudflare D1 + Vectorize**; el repo y la base de Tareas aún referencian Supabase/pgvector. Ver [[Blu AI - Stack tecnologico]].
+> **Migración de base de datos — confirmada (17-ago-2026):** de Supabase/Postgres a **Cloudflare D1 + Vectorize**. Es una decisión cerrada, pero el código auditado ese mismo día seguía corriendo sobre Prisma/PostgreSQL — falta implementarla, y falta definir la política de residencia de datos antes de hacerlo (ver [[Blu AI - Cumplimiento y Seguridad]]). Ver también [[Blu AI - Stack tecnologico]].
 
 ### Próximos hitos (agosto)
 
 | Fecha | Hito | Responsable |
 |---|---|---|
 | 20-ago | Landing page con waitlist | Ignacio + Marketing |
-| 25-ago | Sistema BYOK con API keys encriptadas | Gabriel |
+| 25-ago | Sistema BYOK con API keys encriptadas (en progreso) | Gabriel |
 | 26-ago | Aviso de privacidad publicado en la web | Ignacio |
 | 31-ago | 100 personas en waitlist · Cierre de mes 1 y ajuste de roadmap | Ignacio + Marketing |
+
+> ⚠️ Varios hitos anteriores del sprint ya están atrasados (ej. despliegue en Vercel, configuración de Cloudflare D1, acuerdo con Pablo, conversación con seguridad) — ver el detalle por responsable en [[Blu AI - Kanban]].
 
 ### Pendiente / próximos frentes
 
@@ -106,9 +113,10 @@ Clients (Flutter · Next.js · Chrome ext · Blu Code CLI)
         │
 API Gateway (NestJS) — auth · proyectos · chat · agentes · memoria · billing
         │
-PostgreSQL + pgvector (RAG) * · Redis · AI Gateway (tiers + Auto + BYOK) · Stripe
+PostgreSQL + pgvector (RAG) * · Redis · AI Gateway (tiers + Auto + BYOK) · Stripe · Cloudflare R2 (storage) †
 ```
-\* Postgres/pgvector en revisión → Cloudflare D1 + Vectorize (ver alerta arriba).
+\* Postgres/pgvector → migración confirmada a Cloudflare D1 + Vectorize (17-ago-2026), aún no implementada en código (ver alerta arriba).
+† Storage de archivos definido el 17-ago-2026 ([[Blu AI - Cumplimiento y Seguridad]]); DPA pendiente de firmar.
 
 Stack: **NestJS** (backend) · **Flutter** (móvil/desktop) · **Next.js 15** (web/landing/admin) · **TypeScript** en todo el monorepo.
 
@@ -121,6 +129,7 @@ Stack: **NestJS** (backend) · **Flutter** (móvil/desktop) · **Next.js 15** (w
 | [[Blu AI - Vision]] | **Índice general** — visión, módulos, estado |
 | [[Blu AI - Blu Chat]] · [[Blu AI - Blu Code]] · [[Blu AI - Gateway y Modelos]] · [[Blu AI - Memoria compartida]] · [[Blu AI - Agentes]] · [[Blu AI - Skills y mini-apps]] | Módulos del producto |
 | [[Blu AI - Stack tecnologico]] | Arquitectura y stack |
+| [[Blu AI - Cumplimiento y Seguridad]] | Cumplimiento legal (Chile/México/España), seguridad, DPAs, huecos y decisiones |
 | [[Blu AI - Planes y monetizacion]] | Gratis / BYOK $10 / Créditos $30 |
 | [[Blu AI - Roadmap y estado]] | Decisiones, historial y hitos |
 | [[Blu AI - Tareas]] · [[Blu AI - Kanban]] | Backlog (Notion) y tablero del sprint |
@@ -132,7 +141,7 @@ Stack: **NestJS** (backend) · **Flutter** (móvil/desktop) · **Next.js 15** (w
 
 | Rol | Persona | Equity | Ámbito |
 |-----|---------|--------|--------|
-| Fundador / coordinación | **Ignacio** | 83% | Decisiones, contenido, legal, waitlist, métricas |
+| Fundador / coordinación | **Ignacio** | 83% | Decisiones, contenido, legal, waitlist, métricas · **Responsable de privacidad/DPO** (designado 17-ago-2026, ver [[Blu AI - Cumplimiento y Seguridad]]) |
 | Desarrollador principal | **Gabriel** | 10% (vesting 4a, cliff 1a) | Backend, gateway, memoria, Blu Code, Stripe, infra |
 | Frontend | **Pablo** | 2% (vesting 4a, cliff 1a) | Frontend web+app, identidad visual |
 | Marketing (contenido) | Hernández · Guionista · Grabador · Editor | Comisión 5–10% por venta | Contenido en las dos cuentas |
@@ -159,7 +168,7 @@ WHERE tipo = "modulo"
 SORT fase ASC
 ```
 
-- Las notas de Blu tienen prefijo `Blu AI -` y viven en la raíz; todo se sincroniza con GitHub (`gpb-codes/blu-ai`, privado).
+- Las notas de Blu tienen prefijo `Blu AI -` y viven en la raíz; todo se sincroniza con GitHub (`gpb-codes/Proyecto-BLU-IA`, privado — copia de trabajo del repo oficial `blutechrobotics/Proyecto-BLU-IA`).
 
 ---
 
@@ -168,7 +177,7 @@ SORT fase ASC
 | Rol | Punto de entrada | Ritmo |
 |-----|------------------|-------|
 | **Desarrollo** (Gabriel, Pablo) | [[Blu AI - Roadmap y estado]] + [[Blu AI - Tareas]] + plan del repo (`docs/PLAN-MIGRACION-APP.md`) | Diario: Kanban → tus tareas con fecha |
-| **Coordinación** (Ignacio) | [[Blu AI - Roadmap y estado]] (decisiones) + [[Blu AI - Bitacora]] (historial) + [[Blu AI - Metricas semanales]] | Semanal (lunes): métricas + mover roadmap |
+| **Coordinación** (Ignacio) | [[Blu AI - Roadmap y estado]] (decisiones) + [[Blu AI - Bitacora]] (historial) + [[Blu AI - Metricas semanales]] + [[Blu AI - Cumplimiento y Seguridad]] (rol de DPO/privacidad) | Semanal (lunes): métricas + mover roadmap |
 | **Marketing** | [[Blu AI - Clientes ideales]] (a quién hablamos) + [[Blu AI - Planes y monetizacion]] (oferta) + [[Blu AI - Metricas semanales]] (views) | Semanal: llenar métricas; contenido 10 piezas/semana |
 
 Preguntas de contexto: Gabriel o Pablo. Cualquier cambio relevante se refleja en [[Blu AI - Roadmap y estado]] y [[Blu AI - Bitacora]].
