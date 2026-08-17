@@ -15,10 +15,6 @@ tipo: tareas
 
 ## Sin empezar
 
-- [ ] **Documentar cumplimiento legal de la arquitectura (residencia, transferencias, certificaciones, retención, DPA)** `📅 2026-08-04`
-  - Responsable: Gabriel · Prioridad: Alta · Area: Legal · Fase: Mes 1 - Base
-  - Nota: Puntos a documentar: residencia de datos, transferencias internacionales, certificaciones de seguridad (ISO 27001, SOC 2, EU Cloud CoC), política de retención, y DPA. Importante para futuras auditorías técnicas/legales si se trabaja con clientes corporativos. Propuesto por Gabriel.
-
 - [ ] **Cerrar conversación con el de seguridad** `📅 2026-08-03`
   - Responsable: Ignacio · Prioridad: Alta · Area: Legal · Fase: Mes 1 - Base
   - Nota: Definir alcance, frecuencia, compensación e incompatibilidades por su empleo actual antes de comprometer equity.
@@ -27,8 +23,9 @@ tipo: tareas
   - Responsable: Pablo · Prioridad: Alta · Area: Frontend · Fase: Mes 1 - Base
   - Nota: Coordinado con Gabriel para no chocar con el backend.
 
-- [ ] **Configurar Supabase: Postgres + pgvector + auth** `📅 2026-08-05`
+- [ ] **Configurar Cloudflare D1 (SQLite) + Vectorize + auth** `📅 2026-08-05`
   - Responsable: Gabriel · Prioridad: Alta · Area: Backend · Fase: Mes 1 - Base
+  - Nota: Reemplaza a Supabase/Postgres+pgvector (decisión confirmada 17-ago). Falta definir solución de auth (D1 no la incluye) y ORM/capa de datos.
 
 - [ ] **Arrancar contenido: 10 publicaciones por semana** `📅 2026-08-01`
   - Responsable: Ignacio + Marketing · Prioridad: Alta · Area: Contenido · Fase: Mes 1 - Base
@@ -72,10 +69,6 @@ tipo: tareas
   - Responsable: Ignacio + Marketing · Prioridad: Alta · Area: Marketing · Fase: Mes 1 - Base
   - Nota: La hacen Ignacio y el de marketing juntos, no Gabriel.
 
-- [ ] **Enrutamiento multi-modelo básico** `📅 2026-08-18`
-  - Responsable: Gabriel · Prioridad: Alta · Area: Backend · Fase: Mes 1 - Base
-  - Nota: Claude + Gemini + GPT, con selección de modelo según tipo de tarea.
-
 ## Listo
 
 - [ ] **Crear repositorio y entornos dev/producción** `📅 2026-06-27`
@@ -88,5 +81,11 @@ tipo: tareas
 - [ ] **Firmar acuerdo con Gabriel** `📅 2026-07-28`
   - Responsable: Ignacio · Prioridad: Alta · Area: Legal · Fase: Mes 1 - Base
 
+- [ ] **Documentar cumplimiento legal de la arquitectura (residencia, transferencias, certificaciones, retención, DPA)** `📅 2026-08-04`
+  - Responsable: Gabriel · Prioridad: Alta · Area: Legal · Fase: Mes 1 - Base
+  - Nota: Puntos a documentar: residencia de datos, transferencias internacionales, certificaciones de seguridad (ISO 27001, SOC 2, EU Cloud CoC), política de retención, y DPA. Importante para futuras auditorías técnicas/legales si se trabaja con clientes corporativos. Propuesto por Gabriel.
 
+- [ ] **Enrutamiento multi-modelo básico** `📅 2026-08-18`
+  - Responsable: Gabriel · Prioridad: Alta · Area: Backend · Fase: Mes 1 - Base
+  - Nota: Claude + Gemini + GPT, con selección de modelo según tipo de tarea.
 

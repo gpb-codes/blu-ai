@@ -17,8 +17,8 @@ actualizacion: 14-ago-2026
 
 | Estado | Conteo |
 |---|---|
-| Listo | 3 |
-| Sin empezar | 17 |
+| Listo | 5 |
+| Sin empezar | 15 |
 
 ### Por área
 
@@ -53,17 +53,17 @@ actualizacion: 14-ago-2026
 | Firmar acuerdo con Gabriel | Listo | Alta | 2026-07-28 | Ignacio | — |
 | Firmar acuerdo con Pablo (frontend) | Sin empezar | Alta | 2026-08-01 | Ignacio | Mismas condiciones que Gabriel en vesting: 4 años, cliff de 1 año. |
 | Cerrar conversación con el de seguridad | Sin empezar | Alta | 2026-08-03 | Ignacio | Definir alcance, frecuencia, compensación e incompatibilidades por su empleo actual antes de comprometer equity. |
-| Documentar cumplimiento legal de la arquitectura (residencia, transferencias, certificaciones, retención, DPA) | Sin empezar | Alta | 2026-08-04 | Gabriel | Puntos a documentar: residencia de datos, transferencias internacionales, certificaciones de seguridad (ISO 27001, SOC 2, EU Cloud CoC), política de retención, y DPA. Importante para futuras auditorías técnicas/legales si se trabaja con clientes corporativos. Propuesto por Gabriel. |
+| Documentar cumplimiento legal de la arquitectura (residencia, transferencias, certificaciones, retención, DPA) | Listo | Alta | 2026-08-04 | Gabriel | Puntos a documentar: residencia de datos, transferencias internacionales, certificaciones de seguridad (ISO 27001, SOC 2, EU Cloud CoC), política de retención, y DPA. Importante para futuras auditorías técnicas/legales si se trabaja con clientes corporativos. Propuesto por Gabriel. |
 | Publicar aviso de privacidad en la web | Sin empezar | Media | 2026-08-26 | Ignacio | — |
 
 ### Backend
 
 | Tarea | Estado | Prioridad | Fecha | Responsable | Notas |
 |---|---|---|---|---|---|
-| Configurar Supabase: Postgres + pgvector + auth | Sin empezar | Alta | 2026-08-05 | Gabriel | — |
+| Configurar Cloudflare D1 (SQLite) + Vectorize + auth | Sin empezar | Alta | 2026-08-05 | Gabriel | Reemplaza a Supabase/Postgres+pgvector (decisión confirmada 17-ago). Falta definir solución de auth (D1 no la incluye) y ORM/capa de datos. |
 | Esquema de base de datos | Sin empezar | Alta | 2026-08-08 | Gabriel | Usuarios, proyectos, mensajes, memoria vectorial. |
 | Login y registro funcionando | Sin empezar | Alta | 2026-08-12 | Gabriel | — |
-| Enrutamiento multi-modelo básico | Sin empezar | Alta | 2026-08-18 | Gabriel | Claude + Gemini + GPT, con selección de modelo según tipo de tarea. |
+| Enrutamiento multi-modelo básico | Listo | Alta | 2026-08-18 | Gabriel | Claude + Gemini + GPT, con selección de modelo según tipo de tarea. |
 | Sistema BYOK con API keys encriptadas | Sin empezar | Alta | 2026-08-25 | Gabriel | El usuario mete su propia API key, guardada encriptada. |
 
 ### Contenido
@@ -107,3 +107,4 @@ actualizacion: 14-ago-2026
 - **Origen único:** Notion (base "Tareas BLU IA") — si cambias algo en Notion, pedir re-sincronización para volcarlo aquí.
 - **Visualización:** arrastrar tarjetas se hace en [[Blu AI - Kanban]]; esta nota refleja el estado de Notion.
 - Última sincronización: **14-ago-2026**.
+- **Actualización manual 17-ago-2026:** marcadas como Listo "Documentar cumplimiento legal de la arquitectura" y "Enrutamiento multi-modelo básico" (confirmado por Gabriel). Además se confirmó el cambio de Supabase/Postgres a Cloudflare D1 + Vectorize (renombrada la tarea de Backend). Pendiente reflejar todo en Notion.
