@@ -36,7 +36,7 @@ tipo: legal
 | Datos de pago | Token de Stripe, últimos 4 dígitos, marca de tarjeta (Blu **no** almacena el PAN completo) | Cobro de suscripción | Art. 6.1.b | Ejecución de contrato | Consentimiento tácito + normativa financiera aplicable |
 | Comunicaciones de soporte | Tickets, correos de soporte | Atención al cliente | Art. 6.1.b / 6.1.f | Ejecución de contrato | Consentimiento tácito |
 | Datos de marketing | Waitlist, suscripción a newsletter/contenido | Marketing directo | Art. 6.1.a — consentimiento explícito | Consentimiento | Consentimiento expreso |
-| Menores de edad | N/A — Blu no está dirigido a menores | Exclusión de servicio | Edad digital mínima 14-16 años según Estado miembro (LOPDGDD fija 14 en España) sin representante | 18 años sin representante legal | 18 años sin representante legal |
+| Menores de edad | Fecha de nacimiento / edad declarada en el registro | Acceso completo desde los 13 años; con control parental para 12 años o menos (política de producto, actualizada 17-ago-2026 — ver ⚠️ conflicto con bases legales por país en la sección 7) | Art. 8 GDPR + LOPDGDD fija 14 años como edad mínima sin representante en España — **acceso "completo" a los 13 sin representante entraría en conflicto** | Hoy documentado como 18 años sin representante legal — **política de producto a 13 requeriría consentimiento de representante legal para 13-17** | Hoy documentado como 18 años sin representante legal — LFPDPPP exige consentimiento de quien ejerce la patria potestad para menores — **política de producto a 13 requeriría ese consentimiento para 13-17** |
 
 **Nota de diseño:** como Blu combina chat conversacional libre con memoria compartida entre proyectos, es razonablemente previsible que usuarios introduzcan datos sensibles (salud, afiliación sindical, orientación, datos biométricos si suben fotos, etc.) sin que el sistema los distinga de contenido normal. Esto se documenta como riesgo en la sección 6 y debería resolverse con una política de uso aceptable clara más que con detección automática en V1.
 
@@ -165,6 +165,18 @@ Recomendación: antes de dar de alta cualquier proveedor nuevo (o de cerrar la m
 - Rate limiting en intentos de login y en el flujo de OTP (SMS/WhatsApp), bloqueo temporal tras intentos fallidos repetidos.
 - Flujo de reseteo de contraseña con token de un solo uso y expiración corta.
 
+### Menores de edad
+
+> **Actualización de política de producto (17-ago-2026):** Blu deja de excluir a menores del servicio. Nueva política: **acceso completo desde los 13 años**; **usuarios de 12 años o menos requieren control parental** (cuenta vinculada/supervisada por un adulto responsable). Sustituye a la política anterior ("Blu no está dirigido a menores").
+
+- ⚠️ **Conflicto legal a resolver antes de lanzar esta política:** tal como está redactada hoy ("acceso completo desde los 13"), no calza con las bases legales documentadas en la sección 1 para ninguno de los tres mercados:
+  - **España/UE:** la LOPDGDD fija en **14 años** la edad mínima para que un menor preste consentimiento por sí mismo a servicios de la sociedad de la información (Art. 8 GDPR delega el umbral 13-16 en cada Estado miembro; España eligió 14). Un usuario de 13 años con "acceso completo" sin intervención de un representante legal **no tendría base legal válida en España**.
+  - **Chile y México:** ambos estaban documentados con el supuesto de 18 años sin representante. Bajo la LFPDPPP (México) y la normativa chilena de protección de datos, tratar datos de un menor de 13-17 años exige consentimiento de quien ejerce la patria potestad o tutela — no basta con la autodeclaración de edad del usuario.
+  - En la práctica esto significa que el rango **13-17 años necesita un flujo de consentimiento parental/representante legal**, no solo "acceso completo" — y el corte de "control parental" debería empezar en 17 (o el umbral local más alto), no en 12, si se quiere estar alineado con estas leyes tal como existen hoy. Confirmar con abogado local antes de habilitar el registro de menores.
+- **Verificación de edad:** hoy no hay mecanismo de verificación, solo declaración del usuario en el registro (autodeclarada, no verificada) — riesgo estándar de cualquier plataforma online, pero más sensible aún si el producto va a permitir explícitamente el registro de menores. Sección 9 amplía este gap.
+- **Control parental (12 años o menos):** no existe todavía ninguna especificación de producto sobre qué significa "control parental" en Blu (¿cuenta vinculada a la de un adulto? ¿permisos limitados? ¿supervisión de conversaciones? ¿restricción de funciones como Blu Code o memoria compartida?). Es un gap de producto, no solo legal — bloquea poder documentar la base legal aplicable (ej. consentimiento verificable del titular de la patria potestad bajo COPPA-like frameworks).
+- **Recomendación:** no habilitar el registro de menores de 18 en producción hasta (1) definir y documentar el mecanismo de verificación de edad, (2) definir el flujo de consentimiento parental/representante para 13-17 (y no solo control parental para ≤12), y (3) validar todo lo anterior con un abogado local en cada uno de los tres mercados.
+
 ### Medios de pago
 
 - Blu **no debe almacenar ni procesar directamente** números de tarjeta (PAN), CVV ni fecha de expiración: usar Stripe Checkout/Elements para que la captura ocurra en el frontend de Stripe o en campos tokenizados, de forma que Blu nunca "toque" el dato de tarjeta en su propio servidor.
@@ -210,7 +222,7 @@ Recomendación: antes de dar de alta cualquier proveedor nuevo (o de cerrar la m
 - **Presupuesto/calendario para revisión legal local** en Chile, México y España — este documento es una arquitectura técnico-legal de referencia, no reemplaza la revisión de un abogado local en cada jurisdicción antes de publicar términos y avisos definitivos.
 - **Cierre de la conversación con la persona de seguridad** ya listada en el Kanban (alcance, frecuencia, compensación) — condiciona buena parte de la ejecución de la sección 6 (auditoría, pentest, roadmap de certificaciones).
 - **Decisión sobre Zero Data Retention / Bedrock EU con Anthropic** para usuarios sensibles o europeos, y su costo/impacto en latencia.
-- **Verificación de edad mínima real** (hoy solo se documenta como política, sin mecanismo de verificación).
+- **Política de menores de edad (actualizada 17-ago-2026):** Blu ahora planea permitir acceso completo desde los 13 años y control parental para 12 o menos, pero esto entra en conflicto con las bases legales documentadas hoy en las tres jurisdicciones (14 años sin representante en España/LOPDGDD; consentimiento de representante legal para menores de 18 en Chile y México — ver sección 7). Falta: (1) mecanismo de verificación de edad, (2) flujo de consentimiento parental/representante para 13-17 años, (3) definición de qué es "control parental" en producto, (4) validación con abogado local en cada mercado.
 
 ## Referencias
 

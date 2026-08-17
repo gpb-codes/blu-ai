@@ -13,6 +13,10 @@ responsable: equipo
 > Registro de decisiones y cambios importantes. Lo más reciente arriba.
 > Fuente: Notion (subpágina "Bitácora de actualizaciones" de BLU IA) · Sincronizado 14-ago-2026.
 
+## 17 de agosto de 2026 (2)
+
+- **Nueva política de menores de edad.** Se actualiza [[Blu AI - Cumplimiento y Seguridad]] (sección 7): Blu pasa de "no dirigido a menores" a **acceso completo desde los 13 años, con control parental para 12 años o menos**. ⚠️ Queda documentado como conflicto abierto: esta política no calza con las bases legales actuales del documento (14 años sin representante en España/LOPDGDD, 18 años sin representante en Chile y México) — el rango 13-17 necesitaría un flujo de consentimiento parental/representante legal, no solo "acceso completo". Pendiente: mecanismo de verificación de edad, definición de qué es "control parental" en producto, y validación legal local en los tres mercados antes de habilitar el registro de menores.
+
 ## 17 de agosto de 2026
 
 - **Confirmado: migración de base de datos.** Se cierra la revisión abierta el 28-jul — la base de datos pasa de Supabase/PostgreSQL (Neon, pgvector) a **Cloudflare D1 (SQLite) + Vectorize**. Nota: D1 no es PostgreSQL, no trae pgvector nativo (por eso Vectorize para los vectores). Queda pendiente definir: solución de auth (D1 no la incluye), ORM/capa de acceso a datos (Prisma no soporta D1 nativamente), y si el hosting se mueve de Vercel a Cloudflare Workers/Pages.
