@@ -22,8 +22,10 @@ Blu combina múltiples proveedores de IA bajo un solo gateway, con **tiers propi
   - **Blu Light** → base **DeepSeek** (versión estándar)
   - **Blu Flash** → base **DeepSeek Pro**
   - **Blu Ultra** → base **Kimi K3** (Moonshot AI) — *sujeto a la advertencia de seguridad en [[Blu AI - Cumplimiento y Seguridad]]*
+    - **Aviso al usuario:** al intentar usar este tier, Blu muestra una advertencia que indica que **no se compartirán los datos de usuario con el modelo** y que, si el usuario decide enviar datos sensibles por su cuenta, **la responsabilidad es exclusiva del propio usuario**.
 - **Proveedores externos:** Claude (Anthropic), Gemini, GPT (OpenAI), OpenRouter, y otros vía adapters
 - **BYOK:** el usuario puede conectar sus propias keys (encriptadas, AES-256-GCM)
+- **Orquestación multiagente:** inspirado en proyectos tipo `opencodex` (proxy universal de proveedores), Blu permitirá sub-agentes en cualquier modelo/tier, control de superficie v1/v2 y *combos* (id virtual con failover/round-robin) para delegar tareas entre agentes — ver [[Blu AI - Agentes]].
 
 ## Adapters por proveedor
 

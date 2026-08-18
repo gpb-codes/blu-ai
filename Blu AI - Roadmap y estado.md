@@ -27,7 +27,7 @@ tipo: roadmap
 | Backend | NestJS + TypeScript, monorepo pnpm + turborepo |
 | Datos | Cloudflare D1 (SQLite) + Vectorize — migración **confirmada** (bitácora 17-ago-2026), reemplaza a PostgreSQL (Neon)/pgvector; aún no implementada en el fork auditado el 17-ago-2026 · Redis (Upstash) |
 | IA | Gateway multi-proveedor; tiers Blu Light/Flash/Ultra + Claude/Gemini/GPT + Auto |
-| Modelos propios | Fine-tuning de open-source (Qwen/Llama), no desde cero |
+| Modelos propios | Fine-tuning sobre DeepSeek (Light/Flash) y Kimi K3 (Ultra), no desde cero |
 | Autenticación | Email+contraseña, Google, teléfono (SMS/WhatsApp OTP) |
 | Monetización | Freemium: Gratis / BYOK $10 / Créditos $30 (Stripe) |
 | Colaboración | Proyectos con permisos, memoria compartida, cobro por usuario |

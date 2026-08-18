@@ -13,6 +13,16 @@ responsable: equipo
 > Registro de decisiones y cambios importantes. Lo más reciente arriba.
 > Fuente: Notion (subpágina "Bitácora de actualizaciones" de BLU IA) · Sincronizado 14-ago-2026.
 
+## 18 de agosto de 2026 (8)
+
+- **Definición de las bases de los tiers propios** (a pedido de Gabriel). Se actualizó [[Blu AI - Gateway y Modelos]] y todas las notas cruzadas:
+  - **Blu Light** → base **DeepSeek** (versión estándar).
+  - **Blu Flash** → base **DeepSeek Pro**.
+  - **Blu Ultra** → base **Kimi K3** (Moonshot AI), con la advertencia de seguridad vigente de [[Blu AI - Cumplimiento y Seguridad]] (solo tareas sin datos personales, excluido del modo Auto por defecto, DPA pendiente).
+  - **Aviso en producto para Blu Ultra:** al intentar usarlo, Blu mostrará una advertencia de que no se comparten los datos de usuario con el modelo y que, si el usuario envía datos sensibles, la responsabilidad es exclusiva del propio usuario.
+- **Adopción de patrones de multiagente tipo `opencodex`** (18-ago-2026): se revisó [lidge-jun/opencodex](https://github.com/lidge-jun/opencodex) y se decidió usar funcionalidades similares para el orquestamiento multiagente y el llamado a otros agentes — sub-agentes en cualquier modelo/tier, control de superficie v1/v2, *combos* con failover/round-robin y routing `proveedor/modelo`. Documentado en [[Blu AI - Agentes]] y enlazado desde [[Blu AI - Gateway y Modelos]].
+  - Se reemplazó la referencia anterior a "fine-tuning de Qwen/Llama" por DeepSeek (Light/Flash) y Kimi K3 (Ultra) en Gateway, Cumplimiento, Blu Chat, Vision y Roadmap. La postura de seguridad sobre Kimi no cambia.
+
 ## 17 de agosto de 2026 (7)
 
 - **Revisión de coherencia de todo el vault** (a pedido de Gabriel, tras agregar [[Blu AI - Datasets y Personalizacion]]). Se leyeron todas las notas y se corrigieron:

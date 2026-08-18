@@ -44,3 +44,14 @@ Eso ya es un **agente de desarrollo**, no un chatbot.
 ## Contexto
 
 Cada agente comparte la misma memoria y el mismo gateway ([[Blu AI - Memoria compartida]], [[Blu AI - Gateway y Modelos]]). Los proyectos pueden tener varios usuarios, cada uno con su agente/sesión.
+
+## Multiagente y llamado a otros agentes
+
+Inspirado en proyectos tipo [`opencodex`](https://github.com/lidge-jun/opencodex) (proxy universal de proveedores para Codex/Claude Code), Blu adoptará funcionalidades similares para orquestar varios agentes y delegar trabajo entre ellos:
+
+- **Sub-agentes en cualquier modelo:** un agente principal (p. ej. Plan o Build) puede invocar sub-agentes especializados que corren sobre distintos modelos/tiers del [[Blu AI - Gateway y Modelos]] (Blu Light/Flash/Ultra o proveedores externos), exponiéndolos en el selector de sub-agentes.
+- **Control de superficie multiagente (v1/v2):** gestión de qué agentes/sub-agentes quedan visibles y enrutables en cada sesión, con cadenas de fallback si el modelo objetivo falla.
+- **Combos de agentes/modelo:** un id virtual de agente con failover o round-robin ponderado entre proveedores (similar a los *combos* de opencodex), para no depender de un solo modelo.
+- **Routing `proveedor/modelo`:** direccionar una subtarea a `deepseek/pro` o `kimi-k3/ultra` según su naturaleza, reutilizando el gateway existente.
+
+Esto mantiene la arquitectura actual (memoria compartida + gateway) y añade una capa de orquestación agente-a-agente por encima del modo Auto. Ver también [[Blu AI - Gateway y Modelos]] (routing y combos) y [[Blu AI - Skills y mini-apps]].
