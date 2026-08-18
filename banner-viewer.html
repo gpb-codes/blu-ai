@@ -41,6 +41,11 @@
     padding: 6px 12px; font-size: 12px; cursor: pointer;
   }
   button.ghost { background: transparent; border: 1px solid var(--line); color: var(--text); }
+  label.upload {
+    font-size: 12px; color: var(--text); background: transparent;
+    border: 1px solid var(--line); border-radius: 6px; padding: 6px 12px; cursor: pointer;
+  }
+  label.upload input { display: none; }
   main { display: grid; grid-template-columns: 1fr 1fr; min-height: 0; }
   .pane { min-height: 0; display: flex; flex-direction: column; border-right: 1px solid var(--line); }
   .pane:last-child { border-right: 0; }
@@ -63,10 +68,10 @@
     line-height: 1.4; outline: none;
   }
   .hint { font-size: 11px; color: var(--muted); padding: 8px 14px; border-top: 1px solid var(--line); }
-  .c-white { color: #dfe2f2; }
-  .c-blue, .c-icon { color: #3d6bff; }
-  #preview.light .c-white { color: #2a2e40; }
-  #preview.light .c-blue, #preview.light .c-icon { color: #2f55d4; }
+  .c-white { color: var(--c-white, #dfe2f2); }
+  .c-blue, .c-icon { color: var(--c-blue, #3d6bff); }
+  #preview.light .c-white { color: var(--c-white-light, #2a2e40); }
+  #preview.light .c-blue, #preview.light .c-icon { color: var(--c-blue-light, #2f55d4); }
 </style>
 </head>
 <body>
@@ -76,6 +81,7 @@
     <label><input type="checkbox" id="colorToggle" checked /> Color</label>
     <label><input type="checkbox" id="bgToggle" /> Fondo claro</label>
     <label>Tamaño <input type="range" id="size" min="6" max="28" value="14" /> <span id="sizeVal">14</span>px</label>
+    <label class="upload">Subir .ts <input type="file" id="fileInput" accept=".ts,.js,.txt" /></label>
     <button id="copyBtn" class="ghost">Copiar texto</button>
     <button id="resetBtn" class="ghost">Restaurar</button>
   </div>
@@ -156,6 +162,67 @@
   document.getElementById("resetBtn").addEventListener("click", () => {
     src.value = JSON.stringify(DEFAULT_BANNER, null, 0);
     syncControls();
+  });
+
+  function matchBrackets(text, openIdx) {
+    const open = text[openIdx];
+    const close = open === "[" ? "]" : "}";
+    let depth = 0;
+    for (let i = openIdx; i < text.length; i++) {
+      if (text[i] === open) depth++;
+      else if (text[i] === close) { depth--; if (depth === 0) return text.slice(openIdx, i + 1); }
+    }
+    return null;
+  }
+
+  function extractFromTs(code) {
+    const bannerIdx = code.indexOf("const BANNER");
+    const colorsIdx = code.indexOf("const COLORS");
+    let banner = null, colors = null;
+
+    if (bannerIdx !== -1) {
+      const bOpen = code.indexOf("[", bannerIdx);
+      if (bOpen !== -1) {
+        const lit = matchBrackets(code, bOpen);
+        if (lit) banner = new Function("return " + lit + ";")();
+      }
+    }
+    if (colorsIdx !== -1) {
+      const cOpen = code.indexOf("{", colorsIdx);
+      if (cOpen !== -1) {
+        const lit = matchBrackets(code, cOpen);
+        if (lit) colors = new Function("return " + lit + ";")();
+      }
+    }
+    return { banner, colors };
+  }
+
+  function applyColors(colors) {
+    const root = document.documentElement.style;
+    if (colors && colors.white) root.setProperty("--c-white", `rgb(${colors.white.join(",")})`);
+    if (colors && colors.blue) root.setProperty("--c-blue", `rgb(${colors.blue.join(",")})`);
+    if (colors && colors.icon) root.setProperty("--c-blue", `rgb(${colors.icon.join(",")})`);
+  }
+
+  document.getElementById("fileInput").addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const { banner, colors } = extractFromTs(String(reader.result));
+        if (!banner) {
+          out.innerHTML = `<span style="color:#ff6b6b">No se encontró un \`const BANNER\` válido en el archivo.</span>`;
+          return;
+        }
+        if (colors) applyColors(colors);
+        src.value = JSON.stringify(banner);
+        syncControls();
+      } catch (err) {
+        out.innerHTML = `<span style="color:#ff6b6b">Error al procesar el .ts: ${escapeHtml(err.message)}</span>`;
+      }
+    };
+    reader.readAsText(file);
   });
 
   document.getElementById("copyBtn").addEventListener("click", () => {
