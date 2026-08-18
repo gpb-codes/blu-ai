@@ -36,6 +36,10 @@
   .controls { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
   label { font-size: 12px; color: var(--muted); display: inline-flex; gap: 6px; align-items: center; }
   input[type="range"] { accent-color: var(--accent); }
+  select {
+    background: var(--panel); color: var(--text); border: 1px solid var(--line);
+    border-radius: 6px; padding: 5px 8px; font-size: 12px;
+  }
   button {
     background: var(--accent); color: #fff; border: 0; border-radius: 6px;
     padding: 6px 12px; font-size: 12px; cursor: pointer;
@@ -68,20 +72,19 @@
     line-height: 1.4; outline: none;
   }
   .hint { font-size: 11px; color: var(--muted); padding: 8px 14px; border-top: 1px solid var(--line); }
-  .c-white { color: var(--c-white, #dfe2f2); }
-  .c-blue, .c-icon { color: var(--c-blue, #3d6bff); }
-  #preview.light .c-white { color: var(--c-white-light, #2a2e40); }
-  #preview.light .c-blue, #preview.light .c-icon { color: var(--c-blue-light, #2f55d4); }
 </style>
 </head>
 <body>
 <header>
   <h1>Visor de <span>Banners</span> · Blu Code</h1>
   <div class="controls">
+    <label class="upload">Subir .ts <input type="file" id="fileInput" accept=".ts,.js,.txt" /></label>
+    <label>Tema
+      <select id="themeSelect"></select>
+    </label>
     <label><input type="checkbox" id="colorToggle" checked /> Color</label>
     <label><input type="checkbox" id="bgToggle" /> Fondo claro</label>
     <label>Tamaño <input type="range" id="size" min="6" max="28" value="14" /> <span id="sizeVal">14</span>px</label>
-    <label class="upload">Subir .ts <input type="file" id="fileInput" accept=".ts,.js,.txt" /></label>
     <button id="copyBtn" class="ghost">Copiar texto</button>
     <button id="resetBtn" class="ghost">Restaurar</button>
   </div>
@@ -90,24 +93,30 @@
   <div class="pane">
     <h2>Vista previa</h2>
     <div id="preview"><pre id="out"></pre></div>
-    <div class="hint">Pega un BANNER (Run[][]) en el editor de la derecha y se actualiza en vivo.</div>
+    <div class="hint">Sube un <code>.ts</code> o pega un <code>ROWS</code> (Run[][]) en el editor. Soporta formato nuevo (zona, longitud + THEMES) y antiguo (clave, texto + COLORS).</div>
   </div>
   <div class="pane">
-    <h2>Editor (BANNER como JSON)</h2>
+    <h2>Editor (ROWS como JSON)</h2>
     <textarea id="src" spellcheck="false"></textarea>
   </div>
 </main>
 
 <script>
-  // Banner por defecto: extraído de banner_2.ts (SOYBLUIA, 71×7).
-  const DEFAULT_BANNER = [
-    [["icon","██"],["","       "],["icon","██"],["","      "],["white","████"],["","   "],["white","████"],["","  "],["white","█"],["","    "],["white","█"],[""," "],["white","█████"],["","  "],["white","█"],["","      "],["white","█"],["","    "],["white","█"],["","  "],["blue","███"],["","    "],["blue","███"],["","  "]],
-    [[""," "],["icon","██"],["","     "],["icon","████"],["","    "],["white","█"],["","    "],["white","█"],[""," "],["white","█"],["","    "],["white","█"],[""," "],["white","█"],["","    "],["white","█"],[""," "],["white","█"],["","    "],["white","█"],[""," "],["white","█"],["","      "],["white","█"],["","    "],["white","█"],["","   "],["blue","█"],["","    "],["blue","█"],["","   "],["blue","█"],[""," "]],
-    [["","  "],["icon","██"],["","   "],["icon","██████"],["","   "],["white","█"],["","      "],["white","█"],["","    "],["white","█"],["","  "],["white","█"],["","  "],["white","█"],["","  "],["white","█"],["","    "],["white","█"],[""," "],["white","█"],["","      "],["white","█"],["","    "],["white","█"],["","   "],["blue","█"],["","    "],["blue","█"],["","   "],["blue","█"],[""," "]],
-    [["","   "],["icon","██"],[""," "],["icon","████████"],["","   "],["white","████"],["","  "],["white","█"],["","    "],["white","█"],["","   "],["white","██"],["","   "],["white","█████"],["","  "],["white","█"],["","      "],["white","█"],["","    "],["white","█"],["","   "],["blue","█"],["","    "],["blue","█████"],[""," "]],
-    [["","  "],["icon","██"],["","   "],["icon","██████"],["","        "],["white","█"],[""," "],["white","█"],["","    "],["white","█"],["","   "],["white","██"],["","   "],["white","█"],["","    "],["white","█"],[""," "],["white","█"],["","      "],["white","█"],["","    "],["white","█"],["","   "],["blue","█"],["","    "],["blue","█"],["","   "],["blue","█"],[""," "]],
-    [[""," "],["icon","██"],["","     "],["icon","████"],["","    "],["white","█"],["","    "],["white","█"],[""," "],["white","█"],["","    "],["white","█"],["","   "],["white","██"],["","   "],["white","█"],["","    "],["white","█"],[""," "],["white","█"],["","      "],["white","█"],["","    "],["white","█"],["","   "],["blue","█"],["","    "],["blue","█"],["","   "],["blue","█"],[""," "]],
-    [["icon","██"],["","       "],["icon","██"],["","      "],["white","████"],["","   "],["white","████"],["","    "],["white","██"],["","   "],["white","█████"],["","  "],["white","██████"],["","  "],["white","████"],["","   "],["blue","███"],["","   "],["blue","█"],["","   "],["blue","█"],[""," "]]
+  // Banner por defecto (formato nuevo): SOYBLUIA — 73×7 — del manual de marca 29-jul-2026.
+  const DEFAULT_BLOCK = "\u2588"; // █
+  const DEFAULT_THEMES = {
+    auto:  { icon: [61, 107, 255], ia: [61, 107, 255], word: null },
+    dark:  { icon: [61, 107, 255], ia: [61, 107, 255], word: [255, 255, 255] },
+    light: { icon: [10, 52, 245],  ia: [10, 52, 245],  word: [11, 15, 26] },
+  };
+  const DEFAULT_ROWS = [
+    [["icon", 3], [null, 16], ["word", 4], [null, 3], ["word", 4], [null, 2], ["word", 1], [null, 4], ["word", 1], [null, 1], ["word", 5], [null, 2], ["word", 1], [null, 6], ["word", 1], [null, 4], ["word", 1], [null, 2], ["ia", 3], [null, 4], ["ia", 3], [null, 2]],
+    [[null, 3], ["icon", 3], [null, 6], ["icon", 1], [null, 5], ["word", 1], [null, 4], ["word", 1], [null, 1], ["word", 1], [null, 4], ["word", 1], [null, 1], ["word", 1], [null, 4], ["word", 1], [null, 1], ["word", 1], [null, 4], ["word", 1], [null, 1], ["word", 1], [null, 6], ["word", 1], [null, 4], ["word", 1], [null, 3], ["ia", 1], [null, 4], ["ia", 1], [null, 3], ["ia", 1], [null, 1]],
+    [[null, 6], ["icon", 3], [null, 2], ["icon", 3], [null, 4], ["word", 1], [null, 6], ["word", 1], [null, 4], ["word", 1], [null, 2], ["word", 1], [null, 2], ["word", 1], [null, 2], ["word", 1], [null, 4], ["word", 1], [null, 1], ["word", 1], [null, 6], ["word", 1], [null, 4], ["word", 1], [null, 3], ["ia", 1], [null, 4], ["ia", 1], [null, 3], ["ia", 1], [null, 1]],
+    [["icon", 15], [null, 4], ["word", 4], [null, 2], ["word", 1], [null, 4], ["word", 1], [null, 3], ["word", 2], [null, 3], ["word", 5], [null, 2], ["word", 1], [null, 6], ["word", 1], [null, 4], ["word", 1], [null, 3], ["ia", 1], [null, 4], ["ia", 5], [null, 1]],
+    [[null, 6], ["icon", 3], [null, 2], ["icon", 3], [null, 9], ["word", 1], [null, 1], ["word", 1], [null, 4], ["word", 1], [null, 3], ["word", 2], [null, 3], ["word", 1], [null, 4], ["word", 1], [null, 1], ["word", 1], [null, 6], ["word", 1], [null, 4], ["word", 1], [null, 3], ["ia", 1], [null, 4], ["ia", 1], [null, 3], ["ia", 1], [null, 1]],
+    [[null, 3], ["icon", 3], [null, 6], ["icon", 1], [null, 5], ["word", 1], [null, 4], ["word", 1], [null, 1], ["word", 1], [null, 4], ["word", 1], [null, 3], ["word", 2], [null, 3], ["word", 1], [null, 4], ["word", 1], [null, 1], ["word", 1], [null, 6], ["word", 1], [null, 4], ["word", 1], [null, 3], ["ia", 1], [null, 4], ["ia", 1], [null, 3], ["ia", 1], [null, 1]],
+    [["icon", 3], [null, 16], ["word", 4], [null, 3], ["word", 4], [null, 4], ["word", 2], [null, 3], ["word", 5], [null, 2], ["word", 6], [null, 2], ["word", 4], [null, 3], ["ia", 3], [null, 3], ["ia", 1], [null, 3], ["ia", 1], [null, 1]]
   ];
 
   const out = document.getElementById("out");
@@ -117,19 +126,49 @@
   const bgToggle = document.getElementById("bgToggle");
   const size = document.getElementById("size");
   const sizeVal = document.getElementById("sizeVal");
+  const themeSelect = document.getElementById("themeSelect");
+
+  // Estado actual del banner cargado.
+  let state = { rows: DEFAULT_ROWS, block: DEFAULT_BLOCK, themes: DEFAULT_THEMES, theme: "auto" };
 
   function escapeHtml(s) {
     return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
 
-  function render(banner, useColor) {
-    const rows = banner.map(runs =>
-      runs.map(([key, text]) => {
-        if (!useColor || !key) return escapeHtml(text);
-        return `<span class="c-${key}">${escapeHtml(text)}</span>`;
-      }).join("")
-    ).join("\n");
-    out.innerHTML = rows;
+  // Construye el mapa zona -> color CSS (o null = sin color, usa el texto por defecto).
+  function makePalette(themes, themeName, useColor) {
+    if (!useColor) return {};
+    const t = themes[themeName] || themes[Object.keys(themes)[0]];
+    if (!t) return {};
+    const p = {};
+    for (const zone in t) {
+      const rgb = t[zone];
+      p[zone] = rgb ? `rgb(${rgb[0]},${rgb[1]},${rgb[2]})` : null;
+    }
+    return p;
+  }
+
+  function render(rows, block, palette) {
+    const html = rows
+      .map((runs) =>
+        runs
+          .map(([zone, payload]) => {
+            const text = typeof payload === "number" ? block.repeat(payload) : String(payload);
+            if (!zone || palette[zone] == null) return escapeHtml(text);
+            return `<span style="color:${palette[zone]}">${escapeHtml(text)}</span>`;
+          })
+          .join("")
+      )
+      .join("\n");
+    out.innerHTML = html;
+  }
+
+  function syncControls() {
+    out.style.fontSize = size.value + "px";
+    sizeVal.textContent = size.value;
+    preview.classList.toggle("light", bgToggle.checked);
+    const palette = makePalette(state.themes, state.theme, colorToggle.checked);
+    render(state.rows, state.block, palette);
   }
 
   function loadFromEditor() {
@@ -141,28 +180,27 @@
       return;
     }
     if (!Array.isArray(data)) {
-      out.innerHTML = `<span style="color:#ff6b6b">El BANNER debe ser un array (Run[][]).</span>`;
+      out.innerHTML = `<span style="color:#ff6b6b">El banner debe ser un array de filas (Run[][]).</span>`;
       return;
     }
-    render(data, colorToggle.checked);
-  }
-
-  function syncControls() {
-    out.style.fontSize = size.value + "px";
-    sizeVal.textContent = size.value;
-    preview.classList.toggle("light", bgToggle.checked);
-    loadFromEditor();
-  }
-
-  size.addEventListener("input", syncControls);
-  colorToggle.addEventListener("change", syncControls);
-  bgToggle.addEventListener("change", syncControls);
-  src.addEventListener("input", loadFromEditor);
-
-  document.getElementById("resetBtn").addEventListener("click", () => {
-    src.value = JSON.stringify(DEFAULT_BANNER, null, 0);
+    state.rows = data;
     syncControls();
-  });
+  }
+
+  function setThemeOptions(themes, preferred) {
+    themeSelect.innerHTML = "";
+    const keys = Object.keys(themes);
+    keys.forEach((k) => {
+      const opt = document.createElement("option");
+      opt.value = k;
+      opt.textContent = k;
+      themeSelect.appendChild(opt);
+    });
+    const sel = preferred && themes[preferred] ? preferred : keys[0];
+    themeSelect.value = sel;
+    state.theme = sel;
+    themeSelect.style.display = keys.length > 1 ? "" : "none";
+  }
 
   function matchBrackets(text, openIdx) {
     const open = text[openIdx];
@@ -175,33 +213,54 @@
     return null;
   }
 
-  function extractFromTs(code) {
-    const bannerIdx = code.indexOf("const BANNER");
-    const colorsIdx = code.indexOf("const COLORS");
-    let banner = null, colors = null;
-
-    if (bannerIdx !== -1) {
-      const bOpen = code.indexOf("[", bannerIdx);
-      if (bOpen !== -1) {
-        const lit = matchBrackets(code, bOpen);
-        if (lit) banner = new Function("return " + lit + ";")();
-      }
+  function findMatchingQuote(text, start) {
+    const q = text[start];
+    for (let i = start + 1; i < text.length; i++) {
+      if (text[i] === "\\") { i++; continue; }
+      if (text[i] === q) return i;
     }
-    if (colorsIdx !== -1) {
-      const cOpen = code.indexOf("{", colorsIdx);
-      if (cOpen !== -1) {
-        const lit = matchBrackets(code, cOpen);
-        if (lit) colors = new Function("return " + lit + ";")();
-      }
-    }
-    return { banner, colors };
+    return -1;
   }
 
-  function applyColors(colors) {
-    const root = document.documentElement.style;
-    if (colors && colors.white) root.setProperty("--c-white", `rgb(${colors.white.join(",")})`);
-    if (colors && colors.blue) root.setProperty("--c-blue", `rgb(${colors.blue.join(",")})`);
-    if (colors && colors.icon) root.setProperty("--c-blue", `rgb(${colors.icon.join(",")})`);
+  function evalLit(lit) {
+    return new Function("return " + lit + ";")();
+  }
+
+  // Extrae `const NOMBRE = <literal>` sea array, objeto o string (salta anotaciones de tipo TS).
+  function findConst(code, name) {
+    const idx = code.indexOf("const " + name);
+    if (idx === -1) return null;
+    const eq = code.indexOf("=", idx);
+    if (eq === -1) return null;
+    let i = eq + 1;
+    while (i < code.length && !'[{"\'`'.includes(code[i])) i++;
+    if (i >= code.length) return null;
+    const ch = code[i];
+    if (ch === "[" || ch === "{") {
+      const lit = matchBrackets(code, i);
+      return lit ? evalLit(lit) : null;
+    }
+    if (ch === '"' || ch === "'" || ch === "`") {
+      const end = findMatchingQuote(code, i);
+      if (end === -1) return null;
+      return evalLit(code.slice(i, end + 1));
+    }
+    return null;
+  }
+
+  function extractFromTs(code) {
+    const rows = findConst(code, "ROWS") || findConst(code, "BANNER");
+    if (!rows) return null;
+    const themes = findConst(code, "THEMES");
+    const colors = findConst(code, "COLORS");
+    const block = findConst(code, "BLOCK") || DEFAULT_BLOCK;
+
+    let themesObj;
+    if (themes) themesObj = themes;
+    else if (colors) themesObj = { default: colors };
+    else themesObj = { default: {} };
+
+    return { rows, block, themes: themesObj };
   }
 
   document.getElementById("fileInput").addEventListener("change", (e) => {
@@ -210,19 +269,38 @@
     const reader = new FileReader();
     reader.onload = () => {
       try {
-        const { banner, colors } = extractFromTs(String(reader.result));
-        if (!banner) {
-          out.innerHTML = `<span style="color:#ff6b6b">No se encontró un \`const BANNER\` válido en el archivo.</span>`;
+        const parsed = extractFromTs(String(reader.result));
+        if (!parsed) {
+          out.innerHTML = `<span style="color:#ff6b6b">No se encontró un \`const ROWS\`/\`BANNER\` válido en el archivo.</span>`;
           return;
         }
-        if (colors) applyColors(colors);
-        src.value = JSON.stringify(banner);
+        state.rows = parsed.rows;
+        state.block = parsed.block;
+        state.themes = parsed.themes;
+        setThemeOptions(parsed.themes, parsed.themes.auto ? "auto" : null);
+        src.value = JSON.stringify(parsed.rows);
         syncControls();
       } catch (err) {
         out.innerHTML = `<span style="color:#ff6b6b">Error al procesar el .ts: ${escapeHtml(err.message)}</span>`;
       }
     };
     reader.readAsText(file);
+  });
+
+  themeSelect.addEventListener("change", () => {
+    state.theme = themeSelect.value;
+    syncControls();
+  });
+  size.addEventListener("input", syncControls);
+  colorToggle.addEventListener("change", syncControls);
+  bgToggle.addEventListener("change", syncControls);
+  src.addEventListener("input", loadFromEditor);
+
+  document.getElementById("resetBtn").addEventListener("click", () => {
+    state = { rows: DEFAULT_ROWS, block: DEFAULT_BLOCK, themes: DEFAULT_THEMES, theme: "auto" };
+    setThemeOptions(DEFAULT_THEMES, "auto");
+    src.value = JSON.stringify(DEFAULT_ROWS);
+    syncControls();
   });
 
   document.getElementById("copyBtn").addEventListener("click", () => {
@@ -234,7 +312,8 @@
     });
   });
 
-  src.value = JSON.stringify(DEFAULT_BANNER);
+  setThemeOptions(DEFAULT_THEMES, "auto");
+  src.value = JSON.stringify(DEFAULT_ROWS);
   syncControls();
 </script>
 </body>
