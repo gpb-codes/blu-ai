@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Visor de Banners — Blu Code</title>
+<style>
+  :root {
+    --bg: #0e1018;
+    --panel: #161a26;
+    --line: #262c3d;
+    --text: #dfe2f2;
+    --muted: #8a90a6;
+    --accent: #3d6bff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+  }
+  header {
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  header h1 { font-size: 15px; margin: 0; font-weight: 600; }
+  header h1 span { color: var(--accent); }
+  .controls { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  label { font-size: 12px; color: var(--muted); display: inline-flex; gap: 6px; align-items: center; }
+  input[type="range"] { accent-color: var(--accent); }
+  button {
+    background: var(--accent); color: #fff; border: 0; border-radius: 6px;
+    padding: 6px 12px; font-size: 12px; cursor: pointer;
+  }
+  button.ghost { background: transparent; border: 1px solid var(--line); color: var(--text); }
+  main { display: grid; grid-template-columns: 1fr 1fr; min-height: 0; }
+  .pane { min-height: 0; display: flex; flex-direction: column; border-right: 1px solid var(--line); }
+  .pane:last-child { border-right: 0; }
+  .pane h2 {
+    font-size: 11px; text-transform: uppercase; letter-spacing: .08em;
+    color: var(--muted); margin: 0; padding: 10px 14px; border-bottom: 1px solid var(--line);
+  }
+  #preview {
+    flex: 1; overflow: auto; padding: 24px; display: flex; align-items: center; justify-content: center;
+  }
+  #preview pre {
+    margin: 0; font-family: "Cascadia Code", "JetBrains Mono", Menlo, Consolas, monospace;
+    line-height: 1.05; letter-spacing: 0; white-space: pre; background: transparent;
+  }
+  #preview.light { background: #f4f5fb; }
+  #preview.light pre { color: #1a1d2b; }
+  textarea {
+    flex: 1; resize: none; border: 0; background: var(--panel); color: var(--text);
+    padding: 14px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px;
+    line-height: 1.4; outline: none;
+  }
+  .hint { font-size: 11px; color: var(--muted); padding: 8px 14px; border-top: 1px solid var(--line); }
+  .c-white { color: #dfe2f2; }
+  .c-blue, .c-icon { color: #3d6bff; }
+  #preview.light .c-white { color: #2a2e40; }
+  #preview.light .c-blue, #preview.light .c-icon { color: #2f55d4; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Visor de <span>Banners</span> · Blu Code</h1>
+  <div class="controls">
+    <label><input type="checkbox" id="colorToggle" checked /> Color</label>
+    <label><input type="checkbox" id="bgToggle" /> Fondo claro</label>
+    <label>Tamaño <input type="range" id="size" min="6" max="28" value="14" /> <span id="sizeVal">14</span>px</label>
+    <button id="copyBtn" class="ghost">Copiar texto</button>
+    <button id="resetBtn" class="ghost">Restaurar</button>
+  </div>
+</header>
+<main>
+  <div class="pane">
+    <h2>Vista previa</h2>
+    <div id="preview"><pre id="out"></pre></div>
+    <div class="hint">Pega un BANNER (Run[][]) en el editor de la derecha y se actualiza en vivo.</div>
+  </div>
+  <div class="pane">
+    <h2>Editor (BANNER como JSON)</h2>
+    <textarea id="src" spellcheck="false"></textarea>
+  </div>
+</main>
+
+<script>
+  // Banner por defecto: extraído de banner_2.ts (SOYBLUIA, 71×7).
+  const DEFAULT_BANNER = [
+    [["icon","██"],["","       "],["icon","██"],["","      "],["white","████"],["","   "],["white","████"],["","  "],["white","█"],["","    "],["white","█"],[""," "],["white","█████"],["","  "],["white","█"],["","      "],["white","█"],["","    "],["white","█"],["","  "],["blue","███"],["","    "],["blue","███"],["","  "]],
+    [[""," "],["icon","██"],["","     "],["icon","████"],["","    "],["white","█"],["","    "],["white","█"],[""," "],["white","█"],["","    "],["white","█"],[""," "],["white","█"],["","    "],["white","█"],[""," "],["white","█"],["","    "],["white","█"],[""," "],["white","█"],["","      "],["white","█"],["","    "],["white","█"],["","   "],["blue","█"],["","    "],["blue","█"],["","   "],["blue","█"],[""," "]],
+    [["","  "],["icon","██"],["","   "],["icon","██████"],["","   "],["white","█"],["","      "],["white","█"],["","    "],["white","█"],["","  "],["white","█"],["","  "],["white","█"],["","  "],["white","█"],["","    "],["white","█"],[""," "],["white","█"],["","      "],["white","█"],["","    "],["white","█"],["","   "],["blue","█"],["","    "],["blue","█"],["","   "],["blue","█"],[""," "]],
+    [["","   "],["icon","██"],[""," "],["icon","████████"],["","   "],["white","████"],["","  "],["white","█"],["","    "],["white","█"],["","   "],["white","██"],["","   "],["white","█████"],["","  "],["white","█"],["","      "],["white","█"],["","    "],["white","█"],["","   "],["blue","█"],["","    "],["blue","█████"],[""," "]],
+    [["","  "],["icon","██"],["","   "],["icon","██████"],["","        "],["white","█"],[""," "],["white","█"],["","    "],["white","█"],["","   "],["white","██"],["","   "],["white","█"],["","    "],["white","█"],[""," "],["white","█"],["","      "],["white","█"],["","    "],["white","█"],["","   "],["blue","█"],["","    "],["blue","█"],["","   "],["blue","█"],[""," "]],
+    [[""," "],["icon","██"],["","     "],["icon","████"],["","    "],["white","█"],["","    "],["white","█"],[""," "],["white","█"],["","    "],["white","█"],["","   "],["white","██"],["","   "],["white","█"],["","    "],["white","█"],[""," "],["white","█"],["","      "],["white","█"],["","    "],["white","█"],["","   "],["blue","█"],["","    "],["blue","█"],["","   "],["blue","█"],[""," "]],
+    [["icon","██"],["","       "],["icon","██"],["","      "],["white","████"],["","   "],["white","████"],["","    "],["white","██"],["","   "],["white","█████"],["","  "],["white","██████"],["","  "],["white","████"],["","   "],["blue","███"],["","   "],["blue","█"],["","   "],["blue","█"],[""," "]]
+  ];
+
+  const out = document.getElementById("out");
+  const src = document.getElementById("src");
+  const preview = document.getElementById("preview");
+  const colorToggle = document.getElementById("colorToggle");
+  const bgToggle = document.getElementById("bgToggle");
+  const size = document.getElementById("size");
+  const sizeVal = document.getElementById("sizeVal");
+
+  function escapeHtml(s) {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  function render(banner, useColor) {
+    const rows = banner.map(runs =>
+      runs.map(([key, text]) => {
+        if (!useColor || !key) return escapeHtml(text);
+        return `<span class="c-${key}">${escapeHtml(text)}</span>`;
+      }).join("")
+    ).join("\n");
+    out.innerHTML = rows;
+  }
+
+  function loadFromEditor() {
+    let data;
+    try {
+      data = JSON.parse(src.value);
+    } catch (e) {
+      out.innerHTML = `<span style="color:#ff6b6b">JSON inválido: ${escapeHtml(e.message)}</span>`;
+      return;
+    }
+    if (!Array.isArray(data)) {
+      out.innerHTML = `<span style="color:#ff6b6b">El BANNER debe ser un array (Run[][]).</span>`;
+      return;
+    }
+    render(data, colorToggle.checked);
+  }
+
+  function syncControls() {
+    out.style.fontSize = size.value + "px";
+    sizeVal.textContent = size.value;
+    preview.classList.toggle("light", bgToggle.checked);
+    loadFromEditor();
+  }
+
+  size.addEventListener("input", syncControls);
+  colorToggle.addEventListener("change", syncControls);
+  bgToggle.addEventListener("change", syncControls);
+  src.addEventListener("input", loadFromEditor);
+
+  document.getElementById("resetBtn").addEventListener("click", () => {
+    src.value = JSON.stringify(DEFAULT_BANNER, null, 0);
+    syncControls();
+  });
+
+  document.getElementById("copyBtn").addEventListener("click", () => {
+    const text = out.textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const b = document.getElementById("copyBtn");
+      b.textContent = "¡Copiado!";
+      setTimeout(() => (b.textContent = "Copiar texto"), 1200);
+    });
+  });
+
+  src.value = JSON.stringify(DEFAULT_BANNER);
+  syncControls();
+</script>
+</body>
+</html>
