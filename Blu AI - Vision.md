@@ -39,7 +39,7 @@ No es un "chatbot con varios modelos". Es una **plataforma de IA con agentes, pr
   OpenAI Kimi*    Desktop Agent     │
                   └── Shared Context
 ```
-\* Kimi es parte de la visión de producto, no un adapter implementado hoy — ver [[Blu AI - Gateway y Modelos]] y [[Blu AI - Cumplimiento y Seguridad]]. Ollama fue descartado del gateway (decisión 17-ago-2026, ver [[Blu AI - Bitacora]]) y se quita de este diagrama.
+   \* Kimi K3 (Moonshot AI) es la base del tier Blu Ultra desde el 18-ago-2026 — ver [[Blu AI - Gateway y Modelos]] y la postura de seguridad en [[Blu AI - Cumplimiento y Seguridad]] (limitado a tareas sin datos personales). Ollama fue descartado del gateway (decisión 17-ago-2026, ver [[Blu AI - Bitacora]]) y se quita de este diagrama.
 
 ## Módulos de Blu
 

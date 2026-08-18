@@ -18,7 +18,10 @@ tipo: modulo
 
 Blu combina múltiples proveedores de IA bajo un solo gateway, con **tiers propios** y **modo Auto**.
 
-- **Tiers propios (fine-tunes de open-source):** Blu Light / Blu Flash / Blu Ultra
+- **Tiers propios (fine-tunes sobre modelos open-source):** Blu Light / Blu Flash / Blu Ultra
+  - **Blu Light** → base **DeepSeek** (versión estándar)
+  - **Blu Flash** → base **DeepSeek Pro**
+  - **Blu Ultra** → base **Kimi K3** (Moonshot AI) — *sujeto a la advertencia de seguridad en [[Blu AI - Cumplimiento y Seguridad]]*
 - **Proveedores externos:** Claude (Anthropic), Gemini, GPT (OpenAI), OpenRouter, y otros vía adapters
 - **BYOK:** el usuario puede conectar sus propias keys (encriptadas, AES-256-GCM)
 
@@ -42,6 +45,6 @@ El usuario nunca elige modelo manualmente salvo que quiera.
 - Fallbacks por tier y error `503 PROVIDER_NOT_CONFIGURED` legible.
 - **78/78 tests pasando.**
 
-Modelos propios: **fine-tuning de Qwen/Llama** (no entrenamiento desde cero).
+Modelos propios: **fine-tuning de DeepSeek (Light/Flash) y Kimi K3 (Ultra)** sobre modelos open-source (no entrenamiento desde cero). El tier **Blu Ultra** (base Kimi K3) queda sujeto a la postura de seguridad de [[Blu AI - Cumplimiento y Seguridad]]: solo tareas sin datos personales y DPA pendiente de firma.
 
 Ver también: [[Blu AI - Blu Chat]] (Model Router), [[Blu AI - Memoria compartida]].
