@@ -1,0 +1,14 @@
+{"event": "preference_update", "user_id": "usr_8f2a1c", "field": "tono_respuesta", "value": "directo_sin_rodeos", "source": "chat", "timestamp": "2026-08-17T14:32:00Z"}
+{"event": "preference_update", "user_id": "usr_8f2a1c", "field": "idioma_respuesta", "value": "es_es", "source": "panel_web", "timestamp": "2026-08-17T14:33:00Z"}
+{"event": "preference_update", "user_id": "usr_3b9d77", "field": "formato_respuesta", "value": "listas_y_tablas", "source": "chat", "timestamp": "2026-08-17T16:05:00Z"}
+{"event": "preference_update", "user_id": "usr_3b9d77", "field": "longitud_respuesta", "value": "concisa", "source": "app_movil", "timestamp": "2026-08-17T16:06:00Z"}
+{"event": "preference_update", "user_id": "usr_8f2a1c", "field": "modo_auto", "value": "activado", "source": "panel_web", "timestamp": "2026-08-17T14:34:00Z"}
+{"event": "preference_update", "user_id": "usr_8f2a1c", "field": "citas_busqueda_web", "value": "siempre", "source": "chat", "timestamp": "2026-08-18T09:00:00Z"}
+{"event": "feedback", "user_id": "usr_8f2a1c", "conversation_id": "conv_5521", "message_id": "msg_990", "rating": "thumbs_up", "model_used": "claude-sonnet", "timestamp": "2026-08-17T14:35:12Z"}
+{"event": "feedback", "user_id": "usr_8f2a1c", "conversation_id": "conv_5521", "message_id": "msg_991", "rating": "regenerated", "model_used": "claude-sonnet", "reason": "respuesta_muy_larga", "timestamp": "2026-08-17T14:36:00Z"}
+{"event": "feedback", "user_id": "usr_8f2a1c", "conversation_id": "conv_5521", "message_id": "msg_992", "rating": "edited", "model_used": "blu-flash", "reason": "agrego_contexto_del_proyecto", "timestamp": "2026-08-17T14:37:00Z"}
+{"event": "feedback", "user_id": "usr_3b9d77", "conversation_id": "conv_6102", "message_id": "msg_101", "rating": "thumbs_down", "model_used": "blu-light", "reason": "respuesta_demasiado_generica", "timestamp": "2026-08-17T16:10:00Z"}
+{"event": "feedback", "user_id": "usr_3b9d77", "conversation_id": "conv_6102", "message_id": "msg_102", "rating": "thumbs_up", "model_used": "gemini-flash", "timestamp": "2026-08-17T16:11:00Z"}
+{"event": "feedback", "user_id": "usr_8f2a1c", "conversation_id": "conv_7120", "message_id": "msg_204", "rating": "thumbs_up", "model_used": "whisper-groq", "source": "voz", "timestamp": "2026-08-18T12:15:00Z"}
+{"event": "feedback", "user_id": "usr_3b9d77", "conversation_id": "conv_8330", "message_id": "msg_310", "rating": "thumbs_down", "model_used": "claude-opus", "reason": "no_uso_la_memoria_del_proyecto", "timestamp": "2026-08-18T14:22:00Z"}
+{"event": "feedback", "user_id": "usr_8f2a1c", "conversation_id": "conv_8801", "message_id": "msg_301", "rating": "thumbs_up", "model_used": "blu-light", "source": "chat", "timestamp": "2026-08-18T15:05:00Z"}
