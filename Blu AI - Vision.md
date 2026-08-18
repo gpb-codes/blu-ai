@@ -47,6 +47,7 @@ No es un "chatbot con varios modelos". Es una **plataforma de IA con agentes, pr
 |--------|-----|------|
 | [[Blu AI - Blu Chat]] | Núcleo conversacional + Model Router | Chat |
 | [[Blu AI - Blu Code]] | Edición de código web + CLI local | Code |
+| [[Blu AI - Web y Extension Chrome]] | Frontend web (Next.js) + side panel de Chrome | Web/Ext |
 | [[Blu AI - Gateway y Modelos]] | Gateway multi-proveedor, tiers y modo Auto | Models |
 | [[Blu AI - Memoria compartida]] | Memoria unificada + RAG | Memory |
 | [[Blu AI - Agentes]] | Plan, Build, Cowork, Research, QA, Automation, Knowledge | Agents |

@@ -127,7 +127,7 @@ Stack: **NestJS** (backend) · **Flutter** (móvil/desktop) · **Next.js 15** (w
 | Nota | Rol |
 |------|-----|
 | [[Blu AI - Vision]] | **Índice general** — visión, módulos, estado |
-| [[Blu AI - Blu Chat]] · [[Blu AI - Blu Code]] · [[Blu AI - Gateway y Modelos]] · [[Blu AI - Memoria compartida]] · [[Blu AI - Agentes]] · [[Blu AI - Skills y mini-apps]] | Módulos del producto |
+| [[Blu AI - Blu Chat]] · [[Blu AI - Blu Code]] · [[Blu AI - Web y Extension Chrome]] · [[Blu AI - Gateway y Modelos]] · [[Blu AI - Memoria compartida]] · [[Blu AI - Agentes]] · [[Blu AI - Skills y mini-apps]] | Módulos del producto |
 | [[Blu AI - Stack tecnologico]] | Arquitectura y stack |
 | [[Blu AI - Cumplimiento y Seguridad]] | Cumplimiento legal (Chile/México/España), seguridad, DPAs, huecos y decisiones |
 | [[Blu AI - Datasets y Personalizacion]] | Sistema de datasets (JSONL) para personalización y fine-tuning |
