@@ -1,6 +1,6 @@
 ---
 tags:
-  - blu
+  - soybluia
   - equipo
   - setup
   - guia
@@ -83,6 +83,6 @@ Regla práctica: si editas y **cierras rápido**, Obsidian guarda al cerrar si l
 ## Notas clave del proyecto
 
 - [[Bienvenido]] — contexto del proyecto para el equipo
-- [[Blu AI - Vision]] — índice de Blu AI
-- [[Blu AI - Roadmap y estado]] — decisiones y hitos
-- [[Blu AI - Gateway y Modelos]] — arquitectura de IA
+- [[SoyBluAI - Vision]] — índice de SoyBluAI
+- [[SoyBluAI - Roadmap y estado]] — decisiones y hitos
+- [[SoyBluAI - Gateway y Modelos]] — arquitectura de IA

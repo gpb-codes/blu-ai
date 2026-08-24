@@ -1,6 +1,6 @@
 ---
 tags:
-  - blu
+  - soybluia
   - index
   - equipo
   - contexto
@@ -16,20 +16,20 @@ responsable: equipo
 actualizacion: 17-ago-2026
 ---
 
-# BLU IA — Contexto del proyecto
+# SoyBluAI — Contexto del proyecto
 
 > **Documento de contexto para el equipo** — desarrollo (Gabriel, Pablo), coordinación (Ignacio) y marketing.
-> Última actualización: **17-ago-2026** · Repositorio oficial: `blutechrobotics/Proyecto-BLU-IA` (copia de trabajo en `gpb-codes/Proyecto-BLU-IA`) · Entidad legal: **una única sociedad, constituida en México** ([[Blu AI - Cumplimiento y Seguridad]])
+> Última actualización: **17-ago-2026** · Repositorio oficial: `blutechrobotics/Proyecto-BLU-IA` (copia de trabajo en `gpb-codes/Proyecto-BLU-IA`) · Entidad legal: **una única sociedad, constituida en México** ([[SoyBluAI - Cumplimiento y Seguridad]])
 
-**Estado del sprint (Mes 1 - Base, agosto):** 7/20 tareas listas · 2 en progreso · 11 pendientes (varias ya atrasadas) · Tablero por responsable: [[Blu AI - Kanban]] · Backlog: [[Blu AI - Tareas]]
+**Estado del sprint (Mes 1 - Base, agosto):** 7/20 tareas listas · 2 en progreso · 11 pendientes (varias ya atrasadas) · Tablero por responsable: [[SoyBluAI - Kanban]] · Backlog: [[SoyBluAI - Tareas]]
 
-> **Nota (24-ago-2026):** se integró al vault una visión de evolución de producto ("AI Work Operating System" — Studios, Agent Builder, Workflow Builder, Mission Mode, SOUP, etc.) como roadmap P0-P2, sin cambiar el plan de 3 meses ni el estado del sprint de arriba. Ver [[Blu AI - Roadmap y estado]] y [[Blu AI - Decisiones (ADRs)]].
+> **Nota (24-ago-2026):** se integró al vault una visión de evolución de producto ("AI Work Operating System" — Studios, Agent Builder, Workflow Builder, Mission Mode, SOUP, etc.) como roadmap P0-P2, sin cambiar el plan de 3 meses ni el estado del sprint de arriba. Ver [[SoyBluAI - Roadmap y estado]] y [[SoyBluAI - Decisiones (ADRs)]].
 
 ---
 
 ## Índice
 
-1. [[#1. Qué es BLU]]
+1. [[#1. Qué es SoyBluAI]]
 2. [[#2. Estado actual del proyecto]]
 3. [[#3. Arquitectura en una línea]]
 4. [[#4. Mapa de notas]]
@@ -39,15 +39,15 @@ actualizacion: 17-ago-2026
 
 ---
 
-## 1. Qué es BLU
+## 1. Qué es SoyBluAI
 
-**BLU es una plataforma de inteligencia artificial multi-dispositivo**: Web, Windows, macOS, Android, iOS y extensión de Chrome.
+**SoyBluAI es una plataforma de inteligencia artificial multi-dispositivo**: Web, Windows, macOS, Android, iOS y extensión de Chrome.
 
 > *"Una capa inteligente que conecta tus modelos de IA, aplicaciones, archivos, código, navegador y dispositivos en un solo ecosistema."*
 
 ### La diferencia estratégica
 
-| | Claude (Anthropic) | BLU |
+| | Claude (Anthropic) | SoyBluAI |
 |---|---|---|
 | Modelos | Ecosistema cerrado (solo Claude) | **Multi-modelo**: Claude + Gemini + GPT + modelos propios |
 | Posicionamiento | Solución de un proveedor | **Orquestador independiente**: el mejor modelo para cada tarea |
@@ -56,7 +56,7 @@ actualizacion: 17-ago-2026
 ### Qué resuelve
 
 - Un solo chat para todo: código, documentos, imágenes, proyectos.
-- **Blu Code**: editar código y commitear desde la web o desde un CLI local (`npx blu-code`), estilo Claude Code. Es el **diferenciador confirmado** (bitácora 28-jul).
+- **SoyBluAI Code**: editar código y commitear desde la web o desde un CLI local (`npx blu-code`), estilo Claude Code. Es el **diferenciador confirmado** (bitácora 28-jul).
 - **Agentes** (Plan, Build, Cowork, Research, QA, Automation, Knowledge) que ejecutan tareas de extremo a extremo.
 - **Memoria compartida** con recuperación RAG: empiezas con un modelo y continúas con otro sin perder contexto.
 - Proyectos colaborativos con permisos (cada persona con su agente y su propia facturación).
@@ -67,8 +67,8 @@ actualizacion: 17-ago-2026
 
 ### Origen
 
-- BLU nació como un **bot de WhatsApp**, que quedó **descontinuado** (prohibición de Meta a asistentes de propósito general vía WA Business API, 15-ene-2026).
-- Migración en curso hacia **plataforma SaaS** multi-dispositivo. Historia completa: [[Blu AI - Bitacora]].
+- SoyBluAI nació como un **bot de WhatsApp**, que quedó **descontinuado** (prohibición de Meta a asistentes de propósito general vía WA Business API, 15-ene-2026).
+- Migración en curso hacia **plataforma SaaS** multi-dispositivo. Historia completa: [[SoyBluAI - Bitacora]].
 
 ### Lo que ya está construido (verificado en el fork, 17-ago-2026)
 
@@ -83,9 +83,9 @@ actualizacion: 17-ago-2026
 | `apps/web` (Next.js, landing/waitlist) | ⬜ Sigue siendo el boilerplate default — sin diseño ni contenido propio |
 | Diseño de frontend (Pablo) | 🔄 Avanzado en mobile/Flutter, cero en web |
 | Documento de plan completo (`docs/PLAN-MIGRACION-APP.md`) | ✅ DRAFT v2 |
-| Arquitectura de cumplimiento legal y seguridad | ✅ [[Blu AI - Cumplimiento y Seguridad]] — cierra la tarea del Kanban, con huecos ya en su mayoría decididos |
+| Arquitectura de cumplimiento legal y seguridad | ✅ [[SoyBluAI - Cumplimiento y Seguridad]] — cierra la tarea del Kanban, con huecos ya en su mayoría decididos |
 
-> **Migración de base de datos — confirmada (17-ago-2026):** de Supabase/Postgres a **Cloudflare D1 + Vectorize**. Es una decisión cerrada, pero el código auditado ese mismo día seguía corriendo sobre Prisma/PostgreSQL — falta implementarla, y falta definir la política de residencia de datos antes de hacerlo (ver [[Blu AI - Cumplimiento y Seguridad]]). Ver también [[Blu AI - Stack tecnologico]].
+> **Migración de base de datos — confirmada (17-ago-2026):** de Supabase/Postgres a **Cloudflare D1 + Vectorize**. Es una decisión cerrada, pero el código auditado ese mismo día seguía corriendo sobre Prisma/PostgreSQL — falta implementarla, y falta definir la política de residencia de datos antes de hacerlo (ver [[SoyBluAI - Cumplimiento y Seguridad]]). Ver también [[SoyBluAI - Stack tecnologico]].
 
 ### Próximos hitos (agosto)
 
@@ -96,14 +96,14 @@ actualizacion: 17-ago-2026
 | 26-ago | Aviso de privacidad publicado en la web | Ignacio |
 | 31-ago | 100 personas en waitlist · Cierre de mes 1 y ajuste de roadmap | Ignacio + Marketing |
 
-> ⚠️ Varios hitos anteriores del sprint ya están atrasados (ej. despliegue en Vercel, configuración de Cloudflare D1, acuerdo con Pablo, conversación con seguridad) — ver el detalle por responsable en [[Blu AI - Kanban]].
+> ⚠️ Varios hitos anteriores del sprint ya están atrasados (ej. despliegue en Vercel, configuración de Cloudflare D1, acuerdo con Pablo, conversación con seguridad) — ver el detalle por responsable en [[SoyBluAI - Kanban]].
 
 ### Pendiente / próximos frentes
 
 1. Terminar onboarding multidispositivo (web + móvil + desktop).
 2. **Memoria compartida RAG** end-to-end.
 3. Refinar **modo Auto** del gateway (clasificador de tarea → mejor modelo).
-4. **Blu Code** local + web con GitHub conectado.
+4. **SoyBluAI Code** local + web con GitHub conectado.
 5. **Mini-apps / sistema de Skills**.
 
 ---
@@ -111,14 +111,14 @@ actualizacion: 17-ago-2026
 ## 3. Arquitectura en una línea
 
 ```
-Clients (Flutter · Next.js · Chrome ext · Blu Code CLI)
+Clients (Flutter · Next.js · Chrome ext · SoyBluAI Code CLI)
         │
 API Gateway (NestJS) — auth · proyectos · chat · agentes · memoria · billing
         │
 PostgreSQL + pgvector (RAG) * · Redis · AI Gateway (tiers + Auto + BYOK) · Stripe · Cloudflare R2 (storage) †
 ```
 \* Postgres/pgvector → migración confirmada a Cloudflare D1 + Vectorize (17-ago-2026), aún no implementada en código (ver alerta arriba).
-† Storage de archivos definido el 17-ago-2026 ([[Blu AI - Cumplimiento y Seguridad]]); DPA pendiente de firmar.
+† Storage de archivos definido el 17-ago-2026 ([[SoyBluAI - Cumplimiento y Seguridad]]); DPA pendiente de firmar.
 
 Stack: **NestJS** (backend) · **Flutter** (móvil/desktop) · **Next.js 15** (web/landing/admin) · **TypeScript** en todo el monorepo.
 
@@ -128,17 +128,17 @@ Stack: **NestJS** (backend) · **Flutter** (móvil/desktop) · **Next.js 15** (w
 
 | Nota | Rol |
 |------|-----|
-| [[Blu AI - Vision]] | **Índice general** — visión, módulos, estado |
-| [[Blu AI - Blu Chat]] · [[Blu AI - Blu Code]] · [[Blu AI - Web y Extension Chrome]] · [[Blu AI - Gateway y Modelos]] · [[Blu AI - Memoria compartida]] · [[Blu AI - Agentes]] · [[Blu AI - Skills y mini-apps]] | Módulos del producto |
-| [[Blu AI - Studios y Mission Mode]] · [[Blu AI - Agent Builder y Marketplace]] · [[Blu AI - Workflow Builder y Automatizacion]] · [[Blu AI - SOUP y AI Core]] · [[Blu AI - Conectores, MCP y Assets]] | AI Work Operating System — visión nueva (24-ago-2026), roadmap P0-P2 |
-| [[Blu AI - Decisiones (ADRs)]] | Decisiones de arquitectura (ADRs), incluye 2 contradicciones sin resolver |
-| [[Blu AI - Stack tecnologico]] | Arquitectura y stack |
-| [[Blu AI - Cumplimiento y Seguridad]] | Cumplimiento legal (Chile/México/España), seguridad, DPAs, huecos y decisiones |
-| [[Blu AI - Datasets y Personalizacion]] | Sistema de datasets (JSONL) para personalización y fine-tuning |
-| [[Blu AI - Planes y monetizacion]] | Gratis / BYOK $10 / Créditos $30 |
-| [[Blu AI - Roadmap y estado]] | Decisiones, historial y hitos |
-| [[Blu AI - Tareas]] · [[Blu AI - Kanban]] | Backlog (Notion) y tablero del sprint |
-| [[Blu AI - Clientes ideales]] · [[Blu AI - Metricas semanales]] · [[Blu AI - Bitacora]] | Negocio |
+| [[SoyBluAI - Vision]] | **Índice general** — visión, módulos, estado |
+| [[SoyBluAI - Chat]] · [[SoyBluAI - Code]] · [[SoyBluAI - Web y Extension Chrome]] · [[SoyBluAI - Gateway y Modelos]] · [[SoyBluAI - Memoria compartida]] · [[SoyBluAI - Agentes]] · [[SoyBluAI - Skills y mini-apps]] | Módulos del producto |
+| [[SoyBluAI - Studios y Mission Mode]] · [[SoyBluAI - Agent Builder y Marketplace]] · [[SoyBluAI - Workflow Builder y Automatizacion]] · [[SoyBluAI - SOUP y AI Core]] · [[SoyBluAI - Conectores, MCP y Assets]] | AI Work Operating System — visión nueva (24-ago-2026), roadmap P0-P2 |
+| [[SoyBluAI - Decisiones (ADRs)]] | Decisiones de arquitectura (ADRs), incluye 2 contradicciones sin resolver |
+| [[SoyBluAI - Stack tecnologico]] | Arquitectura y stack |
+| [[SoyBluAI - Cumplimiento y Seguridad]] | Cumplimiento legal (Chile/México/España), seguridad, DPAs, huecos y decisiones |
+| [[SoyBluAI - Datasets y Personalizacion]] | Sistema de datasets (JSONL) para personalización y fine-tuning |
+| [[SoyBluAI - Planes y monetizacion]] | Gratis / BYOK $10 / Créditos $30 |
+| [[SoyBluAI - Roadmap y estado]] | Decisiones, historial y hitos |
+| [[SoyBluAI - Tareas]] · [[SoyBluAI - Kanban]] | Backlog (Notion) y tablero del sprint |
+| [[SoyBluAI - Clientes ideales]] · [[SoyBluAI - Metricas semanales]] · [[SoyBluAI - Bitacora]] | Negocio |
 
 ---
 
@@ -146,8 +146,8 @@ Stack: **NestJS** (backend) · **Flutter** (móvil/desktop) · **Next.js 15** (w
 
 | Rol | Persona | Equity | Ámbito |
 |-----|---------|--------|--------|
-| Fundador / coordinación | **Ignacio** | 83% | Decisiones, contenido, legal, waitlist, métricas · **Responsable de privacidad/DPO** (designado 17-ago-2026, ver [[Blu AI - Cumplimiento y Seguridad]]) |
-| Desarrollador principal | **Gabriel** | 10% (vesting 4a, cliff 1a) | Backend, gateway, memoria, Blu Code, Stripe, infra |
+| Fundador / coordinación | **Ignacio** | 83% | Decisiones, contenido, legal, waitlist, métricas · **Responsable de privacidad/DPO** (designado 17-ago-2026, ver [[SoyBluAI - Cumplimiento y Seguridad]]) |
+| Desarrollador principal | **Gabriel** | 10% (vesting 4a, cliff 1a) | Backend, gateway, memoria, SoyBluAI Code, Stripe, infra |
 | Frontend | **Pablo** | 2% (vesting 4a, cliff 1a) | Frontend web+app, identidad visual |
 | Marketing (contenido) | Hernández · Guionista · Grabador · Editor | Comisión 5–10% por venta | Contenido en las dos cuentas |
 | Seguridad | Contacto en España | 5% (propuesto, sin cerrar) | Auditorías, credenciales, API keys |
@@ -159,9 +159,9 @@ Stack: **NestJS** (backend) · **Flutter** (móvil/desktop) · **Next.js 15** (w
 
 ## 6. Cómo usar esta bóveda
 
-- **Wikilinks**: escribe `[[` para enlazar notas (ej. `[[Blu AI - Gateway y Modelos]]`).
-- **Templates**: `Ctrl/Cmd + P` → *Templater: Insert template* → "BLU - Nota de proyecto" (o "BLU - Tarea").
-- **Tareas**: arrastra tarjetas en [[Blu AI - Kanban]]; el estado de Notion se vuelca en [[Blu AI - Tareas]].
+- **Wikilinks**: escribe `[[` para enlazar notas (ej. `[[SoyBluAI - Gateway y Modelos]]`).
+- **Templates**: `Ctrl/Cmd + P` → *Templater: Insert template* → "SoyBluAI - Nota de proyecto" (o "SoyBluAI - Tarea").
+- **Tareas**: arrastra tarjetas en [[SoyBluAI - Kanban]]; el estado de Notion se vuelca en [[SoyBluAI - Tareas]].
 - **Diaria**: `Ctrl/Cmd + P` → *Periodic Notes: Open today's daily note* (queda en `Diarias/`).
 - **Vista tipo Notion**: desde el icono **Projects** podes crear un proyecto con vistas board/tabla usando los campos del frontmatter (`estado`, `prioridad`, `responsable`, `fase`).
 - **Vista dinámica de módulos** (Dataview):
@@ -173,7 +173,7 @@ WHERE tipo = "modulo"
 SORT fase ASC
 ```
 
-- Las notas de Blu tienen prefijo `Blu AI -` y viven en la raíz; **esta bóveda** se sincroniza sola con GitHub (`gpb-codes/blu-ai`, privado — ver [[Setup del equipo - dispositivos]]).
+- Las notas de SoyBluAI tienen prefijo `SoyBluAI -` y viven en la raíz; **esta bóveda** se sincroniza sola con GitHub (`gpb-codes/blu-ai`, privado — ver [[Setup del equipo - dispositivos]]).
 - Ojo, no confundir dos repos distintos: **`gpb-codes/blu-ai`** es el repo de esta bóveda de notas; **`gpb-codes/Proyecto-BLU-IA`** (copia de trabajo del repo oficial `blutechrobotics/Proyecto-BLU-IA`) es el repo del código del producto, donde se hizo la auditoría técnica del 17-ago-2026.
 
 ---
@@ -182,8 +182,8 @@ SORT fase ASC
 
 | Rol | Punto de entrada | Ritmo |
 |-----|------------------|-------|
-| **Desarrollo** (Gabriel, Pablo) | [[Blu AI - Roadmap y estado]] + [[Blu AI - Tareas]] + plan del repo (`docs/PLAN-MIGRACION-APP.md`) | Diario: Kanban → tus tareas con fecha |
-| **Coordinación** (Ignacio) | [[Blu AI - Roadmap y estado]] (decisiones) + [[Blu AI - Bitacora]] (historial) + [[Blu AI - Metricas semanales]] + [[Blu AI - Cumplimiento y Seguridad]] (rol de DPO/privacidad) | Semanal (lunes): métricas + mover roadmap |
-| **Marketing** | [[Blu AI - Clientes ideales]] (a quién hablamos) + [[Blu AI - Planes y monetizacion]] (oferta) + [[Blu AI - Metricas semanales]] (views) | Semanal: llenar métricas; contenido 10 piezas/semana |
+| **Desarrollo** (Gabriel, Pablo) | [[SoyBluAI - Roadmap y estado]] + [[SoyBluAI - Tareas]] + plan del repo (`docs/PLAN-MIGRACION-APP.md`) | Diario: Kanban → tus tareas con fecha |
+| **Coordinación** (Ignacio) | [[SoyBluAI - Roadmap y estado]] (decisiones) + [[SoyBluAI - Bitacora]] (historial) + [[SoyBluAI - Metricas semanales]] + [[SoyBluAI - Cumplimiento y Seguridad]] (rol de DPO/privacidad) | Semanal (lunes): métricas + mover roadmap |
+| **Marketing** | [[SoyBluAI - Clientes ideales]] (a quién hablamos) + [[SoyBluAI - Planes y monetizacion]] (oferta) + [[SoyBluAI - Metricas semanales]] (views) | Semanal: llenar métricas; contenido 10 piezas/semana |
 
-Preguntas de contexto: Gabriel o Pablo. Cualquier cambio relevante se refleja en [[Blu AI - Roadmap y estado]] y [[Blu AI - Bitacora]].
+Preguntas de contexto: Gabriel o Pablo. Cualquier cambio relevante se refleja en [[SoyBluAI - Roadmap y estado]] y [[SoyBluAI - Bitacora]].

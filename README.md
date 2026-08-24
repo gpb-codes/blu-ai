@@ -1,6 +1,6 @@
-# Bóveda BLU IA (blu-ai)
+# Bóveda SoyBluAI (blu-ai)
 
-Bóveda de **Obsidian** del proyecto BLU IA para todo el equipo (desarrollo, coordinación, marketing).
+Bóveda de **Obsidian** del proyecto SoyBluAI para todo el equipo (desarrollo, coordinación, marketing).
 
 ## Cómo empezar
 
@@ -13,11 +13,11 @@ Guía paso a paso por dispositivo: [[Setup del equipo - dispositivos]].
 ## Contenido
 
 - [[Bienvenido]] — contexto del proyecto para el equipo (punto de entrada).
-- [[Blu AI - Vision]] — índice técnico: módulos, arquitectura, estado.
-- [[Blu AI - Tareas]] — backlog de 20 tareas (fuente: Notion).
-- [[Blu AI - Kanban]] — tablero del sprint.
-- [[Blu AI - Clientes ideales]] · [[Blu AI - Metricas semanales]] · [[Blu AI - Bitacora]] — negocio.
-- `Templates/` — plantillas con Templater (proyecto BLU, tarea, diaria).
+- [[SoyBluAI - Vision]] — índice técnico: módulos, arquitectura, estado.
+- [[SoyBluAI - Tareas]] — backlog de 20 tareas (fuente: Notion).
+- [[SoyBluAI - Kanban]] — tablero del sprint.
+- [[SoyBluAI - Clientes ideales]] · [[SoyBluAI - Metricas semanales]] · [[SoyBluAI - Bitacora]] — negocio.
+- `Templates/` — plantillas con Templater (proyecto SoyBluAI, tarea, diaria).
 
 ## Sincronización
 
