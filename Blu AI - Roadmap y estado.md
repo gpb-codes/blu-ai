@@ -6,11 +6,14 @@ tags:
 estado: activo
 responsable: Ignacio
 tipo: roadmap
+actualizacion: 24-ago-2026
 ---
 
 # Blu AI — Roadmap y estado
 
 > Estado real del proyecto (2026) y dirección. Fuente: repo oficial `blutechrobotics/Proyecto-BLU-IA`.
+>
+> **Actualización 24-ago-2026:** se integró la visión de evolución de Blu hacia un "AI Work Operating System" (Studios, Agent Builder, Workflow Builder, Mission Mode, SOUP Lab, Marketplaces, etc.). Ese roadmap ampliado vive en la sección nueva "Roadmap ampliado — AI Work Operating System" más abajo, **por encima** del roadmap a 3 meses que sigue siendo la prioridad activa (ver [[Blu AI - Decisiones (ADRs)|ADR-003]] sobre alcance vs. capacidad del equipo). No cambia ninguna fecha ni meta del roadmap a 3 meses.
 
 ## Decisión de producto
 
@@ -62,3 +65,33 @@ tipo: roadmap
 3. Modo Auto refinado del gateway ([[Blu AI - Gateway y Modelos]])
 4. Blu Code local + web ([[Blu AI - Blu Code]])
 5. Mini-apps / sistema de Skills ([[Blu AI - Skills y mini-apps]])
+
+## Roadmap ampliado — AI Work Operating System (24-ago-2026)
+
+> Clasificación de la nueva visión de producto, reconciliada con el roadmap de 3 meses de arriba (que no cambia). "P0" aquí no reemplaza los hitos de Mes 1-3 — son P0 **dentro del roadmap ampliado**, a trabajar en cuanto el roadmap de 3 meses lo permita, priorizando lo que es prerrequisito de seguridad. Detalle de cada funcionalidad en las notas enlazadas.
+
+### P0 — Core (prerrequisito de seguridad y base de todo lo demás)
+
+| Funcionalidad | Nota | Motivo P0 |
+|---|---|---|
+| Agent Builder (creación/configuración básica) | [[Blu AI - Agent Builder y Marketplace]] | Base de Mission Mode, Studios y Workflow Builder |
+| Permission System por agente | [[Blu AI - Workflow Builder y Automatizacion]] | Requisito de seguridad antes de dar a un agente capacidad de acción real |
+| Human-in-the-loop | [[Blu AI - Workflow Builder y Automatizacion]] | Mismo motivo — deploy, borrado, pagos, acciones externas |
+| Memory 2.0 (estructura Global/User/Org/Project) | [[Blu AI - Memoria compartida]] | Evolución de la memoria compartida ya en roadmap (Mes 2) |
+| SOUP (naming + reconciliación con fine-tuning ya decidido) | [[Blu AI - SOUP y AI Core]] | No bloquea nada técnico, pero requiere el ADR-001 confirmado antes de comunicarse externamente |
+
+### P1 — Expansión
+
+BLU Connect (ampliar Plugins existente) · Creative Studio · Design Agent · App Builder · Asset Library · Workflow Builder (producto visual) · Research Studio · Development Studio (extensión de Blu Code) — ver [[Blu AI - Studios y Mission Mode]], [[Blu AI - Conectores, MCP y Assets]].
+
+### P2 — Ecosistema
+
+MCP Marketplace · Agent Marketplace · AI Control Center · Templates · Model Router avanzado (criterios ampliados, ya iniciado en [[Blu AI - Gateway y Modelos]]) · BLU Local (🔴 bloqueado por [[Blu AI - Decisiones (ADRs)|ADR-002]], no avanza hasta que el equipo decida) · Mission Mode completo (depende de que P0 esté cerrado).
+
+### 🟣 Experimental (no tratar como oficial todavía)
+
+SOUP Lab como infraestructura de experimentación (evaluación, checkpoints) — ver [[Blu AI - SOUP y AI Core]].
+
+### 🔴 Conflicto — bloqueado, requiere decisión del equipo antes de avanzar
+
+BLU Local (Ollama/LM Studio/llama.cpp) — ver [[Blu AI - Decisiones (ADRs)|ADR-002]].

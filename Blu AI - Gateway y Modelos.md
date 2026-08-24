@@ -8,11 +8,14 @@ fase: Mes 1 - Base
 progreso: 90
 responsable: Gabriel
 tipo: modulo
+actualizacion: 24-ago-2026
 ---
 
 # Blu AI — Gateway y Modelos
 
 > Corazón del diferenciador de Blu: un gateway multi-proveedor en lugar de un ecosistema cerrado.
+>
+> **Actualización 24-ago-2026:** este gateway es, conceptualmente, el **AI Core** de la nueva visión de producto (SOUP + GPT + Claude + Gemini + Kimi + Local Models bajo un mismo núcleo). No cambia la arquitectura ya implementada — ver el encuadre completo, incluyendo dos contradicciones sin resolver (SOUP vs. homelab descartado, y modelos locales vs. Ollama descartado), en [[Blu AI - SOUP y AI Core]].
 
 ## Qué es
 
@@ -40,6 +43,8 @@ Clasificador de tarea (tipo Gemini Flash o reglas + embedding similarity) que de
 - calidad / velocidad / costo
 
 El usuario nunca elige modelo manualmente salvo que quiera.
+
+**Criterios ampliados (24-ago-2026, 🟡 actualización pendiente de implementar):** además de calidad/velocidad/costo, el Model Router debe considerar context window, capabilities (multimodal, tool use), tool support, disponibilidad, privacidad (ej. excluir Blu Ultra/Kimi de flujos con datos personales, ya vigente vía [[Blu AI - Cumplimiento y Seguridad]]) y cost limits por usuario/proyecto (reutiliza los soft caps ya definidos en [[Blu AI - Planes y monetizacion]]). No cambia el clasificador ya implementado, amplía sus señales de entrada.
 
 ## Estado real (2026)
 

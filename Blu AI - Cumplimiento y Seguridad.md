@@ -9,6 +9,7 @@ estado: borrador
 fase: Mes 1 - Base
 responsable: Gabriel
 tipo: legal
+actualizacion: 24-ago-2026
 ---
 
 # Blu AI — Cumplimiento y Seguridad
@@ -18,6 +19,8 @@ tipo: legal
 > **Revisión de consistencia 17-ago-2026:** auditoría completa contra el resto del vault (incluyendo el fork de código) y verificación externa de las fechas legales citadas. Cambios de esa revisión: (1) la migración de base de datos pasó de "en revisión" a confirmada — actualizado en todo el documento; (2) se aclara que Kimi y el hosting de fine-tunes vía Together AI/Fireworks son parte de la visión de producto, no adapters implementados hoy; (3) se agrega Ollama, ausente hasta ahora del registro de subencargados. Las fechas legales citadas (Chile Ley 21.719, disolución del INAI en México, EU AI Act Art. 50, fallo *Latombe*, PCI-DSS 4.0.1) se verificaron contra fuentes externas y no se encontraron errores.
 >
 > **Actualización 18-ago-2026:** se definió la base de los tiers propios ([[Blu AI - Gateway y Modelos]]): Blu Light → DeepSeek (estándar), Blu Flash → DeepSeek Pro, Blu Ultra → **Kimi K3** (Moonshot AI). La postura de seguridad sobre Kimi (punto 3 de la sección 2 y sección 4/5) se mantiene intacta y ahora aplica directamente al tier Ultra: solo tareas sin datos personales, excluido del modo Auto por defecto, DPA pendiente.
+>
+> **Actualización 24-ago-2026:** al integrar la visión de Agent Builder/Workflow Builder, se formaliza un **Permission System por agente** (permisos granulares por herramienta: files/GitHub/database, independiente de los roles owner/admin/editor/viewer de esta sección) y **Human-in-the-loop** para acciones sensibles (deploy, borrado, pagos, acciones externas) — ambos descritos en [[Blu AI - Workflow Builder y Automatizacion]], que reutiliza el estándar de MFA/auditoría ya exigido en la sección 6 de este documento, sin reemplazarlo. Además, la nueva visión propone "BLU Local" (Ollama/LM Studio/llama.cpp), lo que **contradice directamente** la decisión de esta misma sección (5) de descartar Ollama del gateway (17-ago-2026) — el conflicto se documenta sin resolver en [[Blu AI - SOUP y AI Core]] y [[Blu AI - Decisiones (ADRs)|ADR-002]]; esta sección y la 5 **no cambian** hasta que el equipo decida.
 
 ## 0. Alcance y supuestos
 
@@ -246,6 +249,8 @@ Recomendación: antes de dar de alta cualquier proveedor nuevo (o de cerrar la m
 - **Cierre de la conversación con la persona de seguridad** ya listada en el Kanban (alcance, frecuencia, compensación) — condiciona buena parte de la ejecución de la sección 6 (auditoría, pentest, roadmap de certificaciones).
 - **Zero Data Retention / Bedrock EU con Anthropic — decidido (17-ago-2026): evaluarlo más adelante, fuera del alcance de V1.** No se implementa ahora; revisar cuando haya más usuarios europeos o presupuesto para el costo/latencia adicional.
 - **Política de menores de edad (cerrada 17-ago-2026, sin conflicto legal pendiente):** 18+ acceso pleno; 13-17 solo con cuenta supervisada por un adulto (consentimiento verificable, sin BYOK/Blu Code/memoria compartida, pago a nombre del adulto); menores de 13 no permitido. Ver detalle completo en sección 7. Falta todavía: (1) mecanismo real de verificación de edad (hoy solo autodeclaración), (2) especificación de producto del flujo de consentimiento y del nivel de visibilidad del adulto sobre la cuenta del menor, (3) validación con abogado local en cada uno de los tres mercados antes de habilitarlo en producción.
+- **BLU Local (Ollama/LM Studio/llama.cpp) — nuevo gap (24-ago-2026):** contradice la decisión de la sección 5 de descartar Ollama. No se resuelve aquí — ver [[Blu AI - Decisiones (ADRs)|ADR-002]]. Mientras no haya decisión, esta sección sigue vigente sin cambios: Ollama descartado, no requiere DPA.
+- **Permission System por agente y Human-in-the-loop — nuevo (24-ago-2026):** diseño conceptual en [[Blu AI - Workflow Builder y Automatizacion]], pendiente de implementación real (igual que el resto de esta sección 9). Debe pasar por la misma revisión de seguridad que el resto de accesos administrativos antes de dar a un agente capacidad de acción sobre datos de producción.
 
 ## Referencias
 

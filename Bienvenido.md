@@ -23,6 +23,8 @@ actualizacion: 17-ago-2026
 
 **Estado del sprint (Mes 1 - Base, agosto):** 7/20 tareas listas · 2 en progreso · 11 pendientes (varias ya atrasadas) · Tablero por responsable: [[Blu AI - Kanban]] · Backlog: [[Blu AI - Tareas]]
 
+> **Nota (24-ago-2026):** se integró al vault una visión de evolución de producto ("AI Work Operating System" — Studios, Agent Builder, Workflow Builder, Mission Mode, SOUP, etc.) como roadmap P0-P2, sin cambiar el plan de 3 meses ni el estado del sprint de arriba. Ver [[Blu AI - Roadmap y estado]] y [[Blu AI - Decisiones (ADRs)]].
+
 ---
 
 ## Índice
@@ -128,6 +130,8 @@ Stack: **NestJS** (backend) · **Flutter** (móvil/desktop) · **Next.js 15** (w
 |------|-----|
 | [[Blu AI - Vision]] | **Índice general** — visión, módulos, estado |
 | [[Blu AI - Blu Chat]] · [[Blu AI - Blu Code]] · [[Blu AI - Web y Extension Chrome]] · [[Blu AI - Gateway y Modelos]] · [[Blu AI - Memoria compartida]] · [[Blu AI - Agentes]] · [[Blu AI - Skills y mini-apps]] | Módulos del producto |
+| [[Blu AI - Studios y Mission Mode]] · [[Blu AI - Agent Builder y Marketplace]] · [[Blu AI - Workflow Builder y Automatizacion]] · [[Blu AI - SOUP y AI Core]] · [[Blu AI - Conectores, MCP y Assets]] | AI Work Operating System — visión nueva (24-ago-2026), roadmap P0-P2 |
+| [[Blu AI - Decisiones (ADRs)]] | Decisiones de arquitectura (ADRs), incluye 2 contradicciones sin resolver |
 | [[Blu AI - Stack tecnologico]] | Arquitectura y stack |
 | [[Blu AI - Cumplimiento y Seguridad]] | Cumplimiento legal (Chile/México/España), seguridad, DPAs, huecos y decisiones |
 | [[Blu AI - Datasets y Personalizacion]] | Sistema de datasets (JSONL) para personalización y fine-tuning |

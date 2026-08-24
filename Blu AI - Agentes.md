@@ -6,11 +6,14 @@ estado: planificacion
 fase: Meses 4-6
 responsable: equipo
 tipo: modulo
+actualizacion: 24-ago-2026
 ---
 
 # Blu AI — Agentes
 
 > Blu no es un simple chatbot: es una plataforma de agentes que ejecutan tareas de extremo a extremo.
+>
+> **Actualización 24-ago-2026:** los 7 agentes de abajo pasan a entenderse como **agentes de sistema preconfigurados** — el punto de partida por defecto. Para crear agentes propios (nombre, avatar, modelo, permisos, herramientas, etc.) ver la nota nueva [[Blu AI - Agent Builder y Marketplace]], que extiende esta nota sin reemplazarla.
 
 ## Agentes definidos
 
@@ -55,3 +58,7 @@ Inspirado en proyectos tipo [`opencodex`](https://github.com/lidge-jun/opencodex
 - **Routing `proveedor/modelo`:** direccionar una subtarea a `deepseek/pro` o `kimi-k3/ultra` según su naturaleza, reutilizando el gateway existente.
 
 Esto mantiene la arquitectura actual (memoria compartida + gateway) y añade una capa de orquestación agente-a-agente por encima del modo Auto. Ver también [[Blu AI - Gateway y Modelos]] (routing y combos) y [[Blu AI - Skills y mini-apps]].
+
+---
+
+Relacionado (nuevo, 24-ago-2026): [[Blu AI - Agent Builder y Marketplace]] · [[Blu AI - Workflow Builder y Automatizacion]] (Permission System por agente) · [[Blu AI - Studios y Mission Mode]] (Agent Studio, Mission Mode)

@@ -10,12 +10,15 @@ aliases:
 estado: activo
 responsable: equipo
 tipo: vision
+actualizacion: 24-ago-2026
 ---
 
 # Blu AI — Visión y plataforma
 
 > **Blu AI — Tu agente de inteligencia artificial que trabaja contigo en cualquier lugar.**
 > Una capa inteligente (AI Operating Layer) que conecta tus modelos de IA, aplicaciones, archivos, código, navegador y dispositivos en un solo ecosistema.
+>
+> **Actualización 24-ago-2026:** se integró la visión de evolución hacia un **AI Work Operating System** (Studios, Agent Builder, Workflow Builder, Mission Mode, SOUP, Marketplaces). El encuadre "AI Core" de esa visión ya describe lo que este documento llama Model Router + Gateway — ver [[Blu AI - SOUP y AI Core]]. El detalle de cada pieza nueva vive en notas propias enlazadas en "Módulos de Blu" más abajo; auditoría completa y contradicciones detectadas en [[Blu AI - Decisiones (ADRs)]].
 
 Repositorio oficial: `blutechrobotics/Proyecto-BLU-IA` (copia de trabajo en `gpb-codes/Proyecto-BLU-IA`)
 
@@ -53,8 +56,13 @@ No es un "chatbot con varios modelos". Es una **plataforma de IA con agentes, pr
 | [[Blu AI - Agentes]] | Plan, Build, Cowork, Research, QA, Automation, Knowledge | Agents |
 | [[Blu AI - Skills y mini-apps]] | Mini-apps generadas + sistema de Skills | Skills |
 | [[Blu AI - Datasets y Personalizacion]] | Datasets JSONL para personalización y fine-tuning de los tiers propios | Data |
+| [[Blu AI - Studios y Mission Mode]] | AI Workspace, Studios (Creative/Development/Research/Agent/Workflow), Mission Mode | Studios · nuevo 24-ago-2026 |
+| [[Blu AI - Agent Builder y Marketplace]] | Creación de agentes propios, Agent Marketplace (roadmap) | Agents · nuevo 24-ago-2026 |
+| [[Blu AI - Workflow Builder y Automatizacion]] | Editor de workflows, Automation Hub, Human-in-the-loop, Permission System por agente | Workflows · nuevo 24-ago-2026 |
+| [[Blu AI - SOUP y AI Core]] | AI Core, SOUP (I+D de fine-tuning), Model Router ampliado | Models · nuevo 24-ago-2026, contiene conflictos sin resolver |
+| [[Blu AI - Conectores, MCP y Assets]] | BLU Connect, MCP Marketplace, Asset Library | Integrations · nuevo 24-ago-2026 |
 
-**Módulos futuros (a detallar):** Browser (extensión Chrome / agente de navegador), Desktop (agente de escritorio y archivos), Design (UI/UX y presentaciones), Workspace (Office / Google Workspace), Automations (workflows en lenguaje natural), Mobile (control remoto del ecosistema).
+**Módulos futuros (a detallar):** Desktop (agente de escritorio y archivos), Workspace (Office / Google Workspace), Mobile (control remoto del ecosistema). El resto de los módulos futuros listados hasta la revisión anterior (Browser, Design, Automations) ya quedaron cubiertos por las notas nuevas de arriba — ver [[Blu AI - Roadmap y estado]] para la clasificación P0/P1/P2 completa.
 
 ## Visión estratégica
 

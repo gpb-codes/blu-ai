@@ -13,6 +13,16 @@ responsable: equipo
 > Registro de decisiones y cambios importantes. Lo más reciente arriba.
 > Fuente: Notion (subpágina "Bitácora de actualizaciones" de BLU IA) · Sincronizado 14-ago-2026.
 
+## 24 de agosto de 2026
+
+- **Auditoría completa del vault e integración de la visión "AI Work Operating System".** Se leyeron las 20 notas existentes y se compararon contra una propuesta de evolución de producto (AI Workspace, Studios, Agent Builder, Workflow Builder, Mission Mode, SOUP/SOUP Lab, BLU Connect, MCP Marketplace, Asset Library, Permission System, Human-in-the-loop, AI Control Center, Templates). No se borró ni se reemplazó ninguna nota existente.
+  - **6 notas nuevas creadas:** [[Blu AI - Studios y Mission Mode]], [[Blu AI - Agent Builder y Marketplace]], [[Blu AI - Workflow Builder y Automatizacion]], [[Blu AI - SOUP y AI Core]], [[Blu AI - Conectores, MCP y Assets]], [[Blu AI - Decisiones (ADRs)]].
+  - **9 notas actualizadas** (extensión, no reemplazo): [[Bienvenido]], [[Blu AI - Vision]], [[Blu AI - Agentes]], [[Blu AI - Gateway y Modelos]], [[Blu AI - Memoria compartida]], [[Blu AI - Skills y mini-apps]], [[Blu AI - Roadmap y estado]], [[Blu AI - Cumplimiento y Seguridad]] y esta misma bitácora.
+  - **2 contradicciones directas detectadas y registradas sin resolver en silencio:** (1) "SOUP Lab" (desarrollar experimentalmente un modelo propio) vs. la decisión del 18-ago-2026 de descartar el homelab/entrenamiento desde cero — se propone lectura de reconciliación (SOUP = programa de fine-tuning ya en marcha) en [[Blu AI - Decisiones (ADRs)|ADR-001]], pendiente de confirmar; (2) "BLU Local" (Ollama/LM Studio/llama.cpp) vs. la decisión del 17-ago-2026 de descartar Ollama del gateway — conflicto real, sin resolución propuesta, ver [[Blu AI - Decisiones (ADRs)|ADR-002]].
+  - **Decisión de alcance (ADR-003):** la nueva visión se incorpora como roadmap P0/P1/P2 (ver [[Blu AI - Roadmap y estado]]), no reemplaza el plan de 3 meses ya en curso (Mes 1 agosto → Mes 3 octubre, meta 500 usuarios de pago en 6 meses). Solo el Permission System por agente, Human-in-the-loop, Agent Builder básico y Memory 2.0 se marcan P0 dentro del roadmap ampliado, por ser prerrequisito de seguridad.
+  - **No se reorganizó la estructura del vault** (se evaluó la estructura de carpetas por área propuesta en la visión nueva y se descartó por ahora: la estructura plana actual, con prefijo `Blu AI -`, sigue siendo adecuada para el tamaño del vault).
+  - **Naming:** se registra que la visión nueva usa "SoyBluAI" y el vault usa "Blu AI" / "BLU IA" — se trata como el mismo proyecto sin renombrar nada, pendiente de confirmación de negocio ([[Blu AI - Decisiones (ADRs)|ADR-004]]).
+
 ## 18 de agosto de 2026 (8)
 
 - **Definición de las bases de los tiers propios** (a pedido de Gabriel). Se actualizó [[Blu AI - Gateway y Modelos]] y todas las notas cruzadas:

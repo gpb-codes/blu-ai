@@ -7,11 +7,31 @@ estado: pendiente
 fase: Mes 2 - Producto
 responsable: Gabriel
 tipo: modulo
+actualizacion: 24-ago-2026
 ---
 
 # Blu AI — Memoria compartida
 
 > El diferenciador estratégico: memoria unificada entre todos los modelos y dispositivos.
+>
+> **Actualización 24-ago-2026 — Memory 2.0:** se incorpora la estructura jerárquica pedida por la nueva visión de producto, como evolución de este mismo diseño (no un sistema aparte):
+>
+> ```
+> GLOBAL MEMORY
+> │
+> ├── USER
+> ├── ORGANIZATION
+> └── PROJECT
+>       │
+>       ├── Knowledge
+>       ├── Files
+>       ├── Agents
+>       ├── Conversations
+>       ├── Decisions
+>       └── Assets
+> ```
+>
+> Mapeo contra el diseño ya construido más abajo: "Proyectos" = nivel `PROJECT`; "Usuario" = nivel `USER`. `ORGANIZATION` es 🔵 nuevo — hoy la colaboración es por proyecto con roles owner/admin/editor/viewer ([[Blu AI - Planes y monetizacion]]), sin nivel de organización superior; evaluar si hace falta antes de construirlo, ya que hoy el equipo es una sola organización. Los sub-nodos de `PROJECT` formalizan lo que hoy vive disperso: Knowledge/Files = memoria de proyecto + storage ya decidido (Cloudflare R2); Agents = [[Blu AI - Agentes]]; Conversations = ya existente; Decisions = hoy solo vive en [[Blu AI - Bitacora]] sin ligarse a un proyecto específico; Assets = 🔵 nuevo, ver [[Blu AI - Conectores, MCP y Assets]]. El principio central de memoria compartida entre modelos y agentes no cambia.
 
 ## Idea
 
