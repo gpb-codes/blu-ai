@@ -6,6 +6,7 @@ tags:
 estado: activo
 responsable: Ignacio
 tipo: negocio
+actualizacion: 24-ago-2026
 ---
 
 # SoyBluAI — Planes y monetización

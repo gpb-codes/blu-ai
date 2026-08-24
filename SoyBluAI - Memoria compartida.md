@@ -5,6 +5,7 @@ tags:
   - rag
 estado: pendiente
 fase: Mes 2 - Producto
+fase_orden: 2
 responsable: Gabriel
 tipo: modulo
 actualizacion: 24-ago-2026

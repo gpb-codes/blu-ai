@@ -6,12 +6,21 @@ tipo: bitacora
 estado: activo
 prioridad: media
 responsable: equipo
+actualizacion: 24-ago-2026
 ---
 
 # SoyBluAI - Bitacora de actualizaciones
 
 > Registro de decisiones y cambios importantes. Lo más reciente arriba.
 > Fuente: Notion (subpágina "Bitácora de actualizaciones" de SoyBluAI) · Sincronizado 14-ago-2026.
+
+## 24 de agosto de 2026 (3) — README, template de marca y limpieza pendiente
+
+- **README mejorado.** Se reescribió `README.md`: agrega una descripción del proyecto, enlaces por área (producto, evolución AI Work OS, marca, negocio, tareas), lista actualizada de templates (incluye el nuevo `SoyBluAI - Activo de marca`), instrucciones para forzar sync de Git manualmente, y una nota fijando que el nombre oficial es **SoyBluAI**.
+- **Template de marca creado:** `Templates/SoyBluAI - Activo de marca.md`. Para documentar cualquier asset de marca nuevo (logo, banner, post, ícono) con un checklist de cumplimiento contra [[SoyBluAI - Marca]] (paleta, tipografía, símbolo, y una verificación explícita de que el wordmark usado dice "SoyBluAI" y no el "bluia"/"blu ia" antiguo).
+- **Nombre del proyecto:** se confirma que sigue siendo **SoyBluAI** — ya ejecutado el 24-ago-2026 (ver [[SoyBluAI - Decisiones (ADRs)|ADR-004]] y [[SoyBluAI - Decisiones (ADRs)|ADR-005]]); no hubo cambios adicionales de naming en esta entrada.
+- **Borrado de archivos huérfanos — pendiente, sin ejecutar.** Se pidió borrar los 28 archivos con nombre antiguo (`Blu AI - X.md` en la raíz, `Templates\BLU - X.md`). Esta sesión de trabajo remota no tiene una herramienta de borrado ni de ejecución de comandos en el dispositivo del usuario — solo puede leer y escribir archivos nuevos. Se generó `limpiar-archivos-viejos.ps1` (fuera de la bóveda, entregado como descarga) para que el equipo lo corra manualmente y borre esos 28 archivos.
+- **Push a GitHub — pendiente de acción manual o del auto-sync.** Esta sesión tampoco tiene acceso a `git` en el dispositivo del usuario. La bóveda ya sincroniza sola (plugin Git: commit cada 10 min, push cada 30 min) — los cambios de esta sesión y los borrados que se hagan con el script van a subirse solos, o se puede forzar con `Ctrl/Cmd+P` → *Git: Commit and push* en Obsidian.
 
 ## 24 de agosto de 2026
 
@@ -30,6 +39,22 @@ responsable: equipo
   - Tag `blu` → `soybluia` en el frontmatter de todas las notas.
   - **Sin tocar:** los slugs de repositorio reales (`gpb-codes/blu-ai`, `blutechrobotics/Proyecto-BLU-IA`) y el comando CLI `npx blu-code` — son identificadores de infraestructura, no prosa de marca; renombrarlos en la documentación sin renombrar el repo/paquete real generaría enlaces y comandos incorrectos. Tampoco se reescribió el contenido factual de entradas históricas de esta bitácora (solo la mención de marca dentro de ellas), ni el wordmark en minúsculas `"blu ia"` de los assets de marca ya generados (29-jul-2026) — esos archivos siguen diciendo "blu ia" hasta que se regeneren.
   - Detalle completo en [[SoyBluAI - Decisiones (ADRs)|ADR-004]] (actualizado a Accepted).
+
+## 24 de agosto de 2026 (2) — Auditoría de templates/notas + Brand Book
+
+- **Recepción y revisión de `BLU_IA_Brand_Book_1.pdf`** (V1 · 2026, subido por el equipo el mismo día). Contiene paleta de color, tipografía (Inter/Sora), símbolo "Convergencia" y reglas de uso, tono/manifiesto — y define el wordmark oficial como **"bluia"** (minúsculas, sin espacio).
+  - **Conflicto detectado:** el wordmark "bluia" del Brand Book contradice el rebranding a **SoyBluAI** ejecutado horas antes ese mismo día (ver entrada anterior, ADR-004). Se registró el conflicto y se preguntó al equipo en lugar de resolverlo en silencio.
+  - **Confirmación del equipo:** *"SoyBluAI sigue siendo el nombre"*. El Brand Book se trata como **activo desactualizado** (necesita regenerar el wordmark), no como motivo para revertir el rebranding. Detalle completo en la nueva nota [[SoyBluAI - Marca]].
+  - Color, tipografía, símbolo y reglas de uso del Brand Book **no dependen del nombre** y se adoptan sin cambios — ya coincidían con la paleta usada en `banner-viewer.html` y con una entrada previa de esta bitácora (29-jul-2026), así que no hay conflicto ahí.
+- **Auditoría de templates y notas existentes** (a pedido de Gabriel, "mejora los templates y todas las notas, antes haz una auditoría"). Hallazgos y correcciones aplicadas:
+  - **Nota de marca nueva:** [[SoyBluAI - Marca]] — no existía documentación central de identidad visual pese a que el Brand Book es directamente relevante.
+  - **Bug en `Templates/SoyBluAI - Prompt IA.md`:** la ruta de la bóveda de contexto para el prompt de OPENCODE apuntaba a `C:\Users\gabri\OneDrive\Desktop\trabajo\blu ai` (carpeta obsoleta) — corregida a `C:\Users\gabri\OneDrive\Desktop\blu-ai` (carpeta real conectada).
+  - **Inconsistencia en `fecha_limite`:** `Templates/SoyBluAI - Nota de proyecto.md` la dejaba vacía (`""`, completar a mano) mientras `Templates/SoyBluAI - Tarea.md` la autocompletaba a hoy+7 días — no siempre aplica. Se estandarizó a manual (`""`) en ambos templates, con nota explicando el cambio.
+  - **Bug en la Dataview query de [[Bienvenido]]:** filtraba por `FROM #blu` (tag anterior al rebranding) — no devolvía resultados desde que el tag pasó a `#soybluia`. Corregido a `FROM #soybluia`.
+  - **Frontmatter inconsistente:** 12 notas no tenían el campo `actualizacion` (`Setup del equipo - dispositivos`, esta bitácora, [[SoyBluAI - Chat]], [[SoyBluAI - Clientes ideales]], [[SoyBluAI - Code]], [[SoyBluAI - Datasets - Catalogo]], [[SoyBluAI - Datasets y Personalizacion]], [[SoyBluAI - Kanban]], [[SoyBluAI - Metricas semanales]], [[SoyBluAI - Planes y monetizacion]], [[SoyBluAI - Stack tecnologico]], [[SoyBluAI - Web y Extension Chrome]]) — se agregó `actualizacion: 24-ago-2026`. `README.md` se dejó sin frontmatter YAML a propósito: es un readme de repositorio, no una nota de tipo `modulo`/`negocio` consultada por Dataview.
+  - **`fase` no ordenable:** 16 notas con campo `fase` usaban texto libre (9 valores distintos), rompiendo el `SORT fase ASC` de [[Bienvenido]]. Se agregó `fase_orden` (numérico: Mes 1→1, Mes 2→2, Meses 4-6→4, por-definir→99) y se actualizó la query para ordenar por ese campo.
+  - **`estado` sin vocabulario controlado** (8 valores libres distintos encontrados: activo, pendiente, planificacion, etc.) — se documenta como pendiente de menor prioridad, no se migró a la fuerza para no romper vistas/Kanban existentes sin acuerdo del equipo.
+- **Nada se reorganizó ni se borró** fuera de lo listado arriba; los 28 archivos con nombre antiguo (`Blu AI - X.md`, `Templates\BLU - X.md`) siguen pendientes de borrado manual en el dispositivo (esta sesión no tiene permiso de borrado remoto).
 
 ## 18 de agosto de 2026 (8)
 

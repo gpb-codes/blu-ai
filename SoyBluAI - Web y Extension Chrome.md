@@ -6,8 +6,10 @@ tags:
   - frontend
 estado: planificacion
 fase: Mes 1 (Web) / Meses 4-6 (Extensión)
+fase_orden: 1
 responsable: Pablo (frontend) · Ignacio (landing/contenido)
 tipo: modulo
+actualizacion: 24-ago-2026
 ---
 
 # SoyBluAI — Web y Extensión Chrome

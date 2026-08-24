@@ -4,6 +4,7 @@ tags:
   - agentes
 estado: planificacion
 fase: Meses 4-6
+fase_orden: 4
 responsable: equipo
 tipo: modulo
 actualizacion: 24-ago-2026

@@ -7,6 +7,7 @@ tags:
 source: Notion - Base "Tareas SoyBluAI"
 estado: activo
 tipo: tareas
+actualizacion: 24-ago-2026
 ---
 
 # SoyBluAI - Kanban

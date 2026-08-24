@@ -5,8 +5,10 @@ tags:
   - router
 estado: activo
 fase: Mes 1 - Base
+fase_orden: 1
 responsable: Gabriel
 tipo: modulo
+actualizacion: 24-ago-2026
 ---
 
 # SoyBluAI — Chat

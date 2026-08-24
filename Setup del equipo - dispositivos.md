@@ -5,6 +5,7 @@ tags:
   - setup
   - guia
 tipo: guia
+actualizacion: 24-ago-2026
 ---
 
 # Setup del equipo — accesos y dispositivos

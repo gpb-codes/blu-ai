@@ -168,10 +168,12 @@ Stack: **NestJS** (backend) · **Flutter** (móvil/desktop) · **Next.js 15** (w
 
 ```dataview
 TABLE estado, prioridad, responsable, fase
-FROM #blu
+FROM #soybluia
 WHERE tipo = "modulo"
-SORT fase ASC
+SORT fase_orden ASC
 ```
+
+> Corrección 24-ago-2026: la query apuntaba a `#blu` (tag anterior al rebranding, ver [[SoyBluAI - Bitacora]]) — no devolvía resultados desde que el tag pasó a `#soybluia`. También ordenaba por `fase` (texto libre, 9 valores distintos, orden alfabético sin sentido cronológico) — ahora ordena por `fase_orden` (numérico, agregado a las notas de tipo `modulo`; ver [[SoyBluAI - Marca]] y auditoría en [[SoyBluAI - Decisiones (ADRs)]]).
 
 - Las notas de SoyBluAI tienen prefijo `SoyBluAI -` y viven en la raíz; **esta bóveda** se sincroniza sola con GitHub (`gpb-codes/blu-ai`, privado — ver [[Setup del equipo - dispositivos]]).
 - Ojo, no confundir dos repos distintos: **`gpb-codes/blu-ai`** es el repo de esta bóveda de notas; **`gpb-codes/Proyecto-BLU-IA`** (copia de trabajo del repo oficial `blutechrobotics/Proyecto-BLU-IA`) es el repo del código del producto, donde se hizo la auditoría técnica del 17-ago-2026.

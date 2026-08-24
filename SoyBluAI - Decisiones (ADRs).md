@@ -92,4 +92,25 @@ Se ejecuta el rebranding completo: "Blu AI" / "BLU IA" → **SoyBluAI** como nom
 
 ---
 
-Relacionado: [[SoyBluAI - SOUP y AI Core]] · [[SoyBluAI - Roadmap y estado]] · [[SoyBluAI - Bitacora]] · [[SoyBluAI - Vision]]
+## ADR-005 — Wordmark del Brand Book ("bluia") frente al nombre "SoyBluAI"
+
+### Context
+Horas después de ejecutarse ADR-004, el equipo subió `BLU_IA_Brand_Book_1.pdf` (V1 · 2026) para pedir una mejora de templates y notas. El Brand Book define el wordmark oficial como **"bluia"** (minúsculas, sin espacio) — contradiciendo directamente el rebranding a SoyBluAI recién aceptado. En vez de asumir cuál de los dos documentos prevalecía, se registró el conflicto y se preguntó explícitamente al equipo.
+
+### Decision
+El equipo confirmó: *"SoyBluAI sigue siendo el nombre"*. Se decide: (1) el rebranding de ADR-004 **no se revierte**; (2) el Brand Book se trata como **activo de diseño desactualizado** — válido para paleta de color, tipografía, símbolo "Convergencia" y reglas de uso (no dependen del nombre), pero su wordmark textual queda pendiente de rediseño bajo "SoyBluAI"; (3) se documenta lo reutilizable en la nueva nota [[SoyBluAI - Marca]], dejando explícito qué queda pendiente de diseño (no de documentación).
+
+### Alternatives
+(a) Revertir el rebranding de ADR-004 y adoptar "bluia" como nombre oficial, por venir de un documento de marca formal → descartada, el equipo confirmó explícitamente lo contrario. (b) Ignorar el Brand Book hasta que alguien lo actualice manualmente → descartada: el color/tipografía/símbolo sí son reutilizables hoy, no tiene sentido dejarlos sin documentar por el conflicto de un solo campo (el wordmark).
+
+### Consequences
+- Color (`#0A34F5`, `#3D6BFF`, `#0B0F1A`, `#8E8E93`, `#F2F4F8`), tipografía (Inter/Sora) y reglas de uso del símbolo quedan adoptados en [[SoyBluAI - Marca]] sin cambios respecto al Brand Book.
+- El wordmark visual de "SoyBluAI" (tratamiento tipográfico del nombre) queda como **tarea de diseño pendiente**, no resuelta en esta sesión de documentación.
+- Los assets ya generados (29-jul-2026: mark-azul, wordmark-claro/oscuro, favicons, etc.) siguen usando el texto "blu ia"/"bluia" hasta que se regeneren — mismo tratamiento que ya establecía ADR-004 para esos archivos.
+
+### Status
+**Accepted** — confirmado el 24-ago-2026. Queda un ítem operativo abierto (rediseño del wordmark), no un ítem de decisión.
+
+---
+
+Relacionado: [[SoyBluAI - SOUP y AI Core]] · [[SoyBluAI - Roadmap y estado]] · [[SoyBluAI - Bitacora]] · [[SoyBluAI - Vision]] · [[SoyBluAI - Marca]]

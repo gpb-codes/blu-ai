@@ -5,6 +5,7 @@ tags:
 estado: activo
 responsable: Gabriel
 tipo: stack
+actualizacion: 24-ago-2026
 ---
 
 # SoyBluAI — Stack tecnológico

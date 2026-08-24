@@ -7,6 +7,7 @@ tipo: negocio
 estado: activo
 prioridad: alta
 responsable: Marketing
+actualizacion: 24-ago-2026
 ---
 
 # SoyBluAI - Clientes ideales

@@ -6,8 +6,10 @@ tags:
   - fine-tuning
 estado: activo
 fase: Mes 2 - Producto
+fase_orden: 2
 responsable: Gabriel
 tipo: datos
+actualizacion: 24-ago-2026
 ---
 
 # SoyBluAI — Catálogo de Datasets

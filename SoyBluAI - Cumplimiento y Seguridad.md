@@ -7,6 +7,7 @@ tags:
   - privacidad
 estado: borrador
 fase: Mes 1 - Base
+fase_orden: 1
 responsable: Gabriel
 tipo: legal
 actualizacion: 24-ago-2026

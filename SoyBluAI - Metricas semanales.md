@@ -7,6 +7,7 @@ tipo: metricas
 estado: activo
 prioridad: alta
 responsable: Ignacio
+actualizacion: 24-ago-2026
 ---
 
 # SoyBluAI - Metricas semanales

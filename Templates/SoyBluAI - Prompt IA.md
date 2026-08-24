@@ -50,7 +50,7 @@ FORMATO:
 
 ```
 Proyecto: SoyBluAI — repo(s): [...]
-Bóveda de contexto (marcdown): C:\Users\gabri\OneDrive\Desktop\trabajo\blu ai
+Bóveda de contexto (markdown): C:\Users\gabri\OneDrive\Desktop\blu-ai
 
 Qué hacer:
 [...]

@@ -7,6 +7,7 @@ tags:
   - conflicto
 estado: conflicto-a-resolver
 fase: por-definir
+fase_orden: 99
 responsable: Gabriel
 tipo: modulo
 actualizacion: 24-ago-2026
