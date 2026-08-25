@@ -152,7 +152,7 @@ Stack: **NestJS** (backend) · **Flutter** (móvil/desktop) · **Next.js 15** (w
 | Marketing (contenido) | Hernández · Guionista · Grabador · Editor | Comisión 5–10% por venta | Contenido en las dos cuentas |
 | Seguridad | Contacto en España | 5% (propuesto, sin cerrar) | Auditorías, credenciales, API keys |
 
-- Efectivo desde **1,000 usuarios**: Gabriel $500/mes · Pablo $150/mes.
+- Efectivo desde **1,000 usuarios**: Gabriel $300/mes · Pablo $150/mes.
 - Compromisos: Gabriel 5 h diarias, 4 años.
 
 ---
