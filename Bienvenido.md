@@ -72,18 +72,18 @@ actualizacion: 17-ago-2026
 
 ### Lo que ya está construido (verificado en el fork, 17-ago-2026)
 
-| Componente | Estado |
-|---|---|
-| Monorepo pnpm/turbo (`apps/` + `packages/`) | ✅ Funcional |
-| **AI Gateway** multi-proveedor (OpenAI, Anthropic, Gemini, OpenRouter) + BYOK (routing) | ✅ **78/78 tests pasando** |
-| **Esquema de base de datos** (`schema.prisma`: User, RefreshToken, UserApiKey, ConnectedRepo...) | ✅ 2 migraciones aplicadas |
-| **Login y registro** (AuthController, JWT+refresh, hash Argon2, test e2e) | ✅ Funcional |
-| Sistema BYOK con API keys **encriptadas** | 🔄 En progreso — el modelo de datos ya está listo (AES-256-GCM), falta el servicio/controlador que cifre y guarde las keys |
-| Base del sistema MCP (9 herramientas) | ✅ |
-| `apps/web` (Next.js, landing/waitlist) | ⬜ Sigue siendo el boilerplate default — sin diseño ni contenido propio |
-| Diseño de frontend (Pablo) | 🔄 Avanzado en mobile/Flutter, cero en web |
-| Documento de plan completo (`docs/PLAN-MIGRACION-APP.md`) | ✅ DRAFT v2 |
-| Arquitectura de cumplimiento legal y seguridad | ✅ [[SoyBluAI - Cumplimiento y Seguridad]] — cierra la tarea del Kanban, con huecos ya en su mayoría decididos |
+| Componente                                                                                       | Estado                                                                                                                     |
+| ------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| Monorepo pnpm/turbo (`apps/` + `packages/`)                                                      | ✅ Funcional                                                                                                                |
+| **AI Gateway** multi-proveedor (OpenAI, Anthropic, Gemini, OpenRouter) + BYOK (routing)          | ✅ **78/78 tests pasando**                                                                                                  |
+| **Esquema de base de datos** (`schema.prisma`: User, RefreshToken, UserApiKey, ConnectedRepo...) | ✅ 2 migraciones aplicadas                                                                                                  |
+| **Login y registro** (AuthController, JWT+refresh, hash Argon2, test e2e)                        | ✅ Funcional                                                                                                                |
+| Sistema BYOK con API keys **encriptadas**                                                        | 🔄 En progreso — el modelo de datos ya está listo (AES-256-GCM), falta el servicio/controlador que cifre y guarde las keys |
+| Base del sistema MCP (9 herramientas)                                                            | ✅                                                                                                                          |
+| `apps/web` (Next.js, landing/waitlist)                                                           | ⬜ Sigue siendo el boilerplate default — sin diseño ni contenido propio                                                     |
+| Diseño de frontend (Pablo)                                                                       | 🔄 Avanzado en mobile/Flutter, cero en web                                                                                 |
+| Documento de plan completo (`docs/PLAN-MIGRACION-APP.md`)                                        | ✅ DRAFT v2                                                                                                                 |
+| Arquitectura de cumplimiento legal y seguridad                                                   | ✅ [[SoyBluAI - Cumplimiento y Seguridad]] — cierra la tarea del Kanban, con huecos ya en su mayoría decididos              |
 
 > **Migración de base de datos — confirmada (17-ago-2026):** de Supabase/Postgres a **Cloudflare D1 + Vectorize**. Es una decisión cerrada, pero el código auditado ese mismo día seguía corriendo sobre Prisma/PostgreSQL — falta implementarla, y falta definir la política de residencia de datos antes de hacerlo (ver [[SoyBluAI - Cumplimiento y Seguridad]]). Ver también [[SoyBluAI - Stack tecnologico]].
 
