@@ -34,7 +34,7 @@ func main() {
 
 	pool, err := database.NewPool(ctx, cfg.DatabaseURL)
 	if err != nil {
-		logger.Warn().Err(err).Msg("sin conexión a DB — modo degradado (health ok, auth/chat requieren DB)")
+		logger.Warn().Err(err).Msg("sin conexión a DB — modo degradado (health ok, otras rutas requieren DB)")
 		pool = nil
 	} else {
 		defer pool.Close()
@@ -46,29 +46,44 @@ func main() {
 
 	hasher := &auth.BcryptHasher{}
 	jwtSvc := auth.NewJWTService(cfg.JWTSecret, cfg.JWTExpiresIn, cfg.JWTRefreshExpiresIn)
+	cipher := auth.NewApiKeyCipher()
 
 	var userRepo repositories.UserRepository
 	var projectRepo repositories.ProjectRepository
 	var vaultRepo repositories.VaultRepository
 	var refreshRepo repositories.RefreshTokenRepository
+	var accountRepo repositories.UserAccountRepository
+	var sessionRepo repositories.ChatSessionRepository
 
 	if pool != nil {
 		userRepo = infraRepo.NewPGUserRepository(pool)
 		projectRepo = infraRepo.NewPGProjectRepository(pool)
 		vaultRepo = infraRepo.NewPGVaultRepository(pool)
 		refreshRepo = infraRepo.NewPGRefreshTokenRepository(pool)
+		accountRepo = infraRepo.NewPGUserAccountRepository(pool, cipher)
+		sessionRepo = infraRepo.NewPGChatSessionRepository(pool)
 	} else {
 		userRepo = infraRepo.NewInMemoryUserRepo()
 		projectRepo = infraRepo.NewInMemoryProjectRepo()
 		vaultRepo = infraRepo.NewInMemoryVaultRepo()
 		refreshRepo = infraRepo.NewInMemoryRefreshRepo()
+		accountRepo = infraRepo.NewInMemoryUserAccountRepo()
+		sessionRepo = infraRepo.NewInMemoryChatSessionRepo()
 	}
 
 	authUC := usecases.NewAuthUseCase(userRepo, refreshRepo, hasher, jwtSvc)
 	chatUC := usecases.NewChatUseCase(router, vaultRepo, projectRepo)
+	projectsUC := usecases.NewProjectsUseCase(projectRepo)
+	vaultUC := usecases.NewVaultUseCase(vaultRepo, projectRepo)
+	userUC := usecases.NewUserUseCase(userRepo, accountRepo)
+	sessionsUC := usecases.NewChatSessionsUseCase(sessionRepo, projectRepo)
 
 	authHandler := handlers.NewAuthHandler(authUC)
 	chatHandler := handlers.NewChatHandler(chatUC)
+	projectsHandler := handlers.NewProjectsHandler(projectsUC)
+	vaultHandler := handlers.NewVaultHandler(vaultUC)
+	userHandler := handlers.NewUserHandler(userUC)
+	_ = sessionsUC
 
 	r := chi.NewRouter()
 	r.Use(middleware.RequestID)
@@ -94,6 +109,36 @@ func main() {
 	r.Route("/chat", func(rc chi.Router) {
 		rc.Use(mw.JWTAuth(jwtSvc))
 		rc.Post("/", chatHandler.Send)
+	})
+	r.Route("/projects", func(rp chi.Router) {
+		rp.Use(mw.JWTAuth(jwtSvc))
+		rp.Get("/", projectsHandler.List)
+		rp.Post("/", projectsHandler.Create)
+		rp.Get("/{id}", projectsHandler.Get)
+		rp.Put("/{id}", projectsHandler.Update)
+		rp.Delete("/{id}", projectsHandler.Delete)
+		rp.Get("/{id}/members", projectsHandler.Members)
+		rp.Post("/{id}/members", projectsHandler.AddMember)
+		rp.Put("/{id}/members/{userId}", projectsHandler.UpdateMember)
+		rp.Delete("/{id}/members/{userId}", projectsHandler.RemoveMember)
+	})
+	r.Route("/vault", func(rv chi.Router) {
+		rv.Use(mw.JWTAuth(jwtSvc))
+		rv.Get("/notes", vaultHandler.Notes)
+		rv.Get("/search", vaultHandler.Search)
+		rv.Get("/notes/{id}", vaultHandler.Get)
+		rv.Post("/notes", vaultHandler.Create)
+		rv.Put("/notes/{id}", vaultHandler.Update)
+		rv.Delete("/notes/{id}", vaultHandler.Delete)
+	})
+	r.Route("/user", func(ru chi.Router) {
+		ru.Use(mw.JWTAuth(jwtSvc))
+		ru.Get("/profile", userHandler.Profile)
+		ru.Put("/profile", userHandler.UpdateProfile)
+		ru.Get("/api-keys", userHandler.ApiKeys)
+		ru.Post("/api-keys", userHandler.AddApiKey)
+		ru.Delete("/api-keys/{provider}", userHandler.RemoveApiKey)
+		ru.Get("/credits", userHandler.Credits)
 	})
 
 	addr := ":" + cfg.Port

@@ -1,6 +1,6 @@
-# BLU IA — API Go (port de NestJS)
+# BLU IA — API Go
 
-Port completo de `apps/api` (NestJS) + `packages/ai-gateway` + `packages/memory` + `packages/shared` a **Go** con Clean Architecture preservada.
+> **API oficial del proyecto.** Port completo de `legacy/api-nest` (NestJS) + `packages/ai-gateway` + `packages/memory` + `packages/shared` a **Go** con Clean Architecture preservada. La versión NestJS queda en `legacy/api-nest/` solo como referencia.
 
 ## Stack
 
@@ -37,12 +37,14 @@ sqlc generate
 ## Desarrollo
 
 ```sh
-cd apps/api-go
+cd apps/api
 go mod tidy
 cp ../../.env.example .env  # ajusta DATABASE_URL, JWT_SECRET
 go run ./cmd/server          # :3000
 # o
 make build && ./bin/server
+# o desde la raíz
+pnpm dev:api
 ```
 
 Endpoints (mismos que NestJS):
