@@ -1,10 +1,10 @@
-// Ajustes: perfil, API keys BYOK y créditos del plan.
+// Ajustes con el diseño de referencia: encabezado de página, tarjetas AppCard
+// (fondo surfaceContainerLow, radio 12) y secciones con icono.
 
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/Button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/Card";
 import { Input } from "@/components/Input";
 import { MainLayout } from "@/components/MainLayout";
 import { userApi } from "@/lib/api";
@@ -18,6 +18,10 @@ const PROVIDERS: Array<{ id: ProviderId; label: string }> = [
   { id: "gemini", label: "Google Gemini" },
   { id: "openrouter", label: "OpenRouter" },
 ];
+
+function SectionIcon({ children }: { children: React.ReactNode }) {
+  return <span className="text-blu-primary">{children}</span>;
+}
 
 export default function SettingsPage() {
   const { user, updateUser } = useAuth();
@@ -83,72 +87,76 @@ export default function SettingsPage() {
     <MainLayout>
       <div className="mx-auto max-w-2xl space-y-6">
         <header>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Ajustes</h1>
-          <p className="mt-1 text-slate-500 dark:text-slate-400">Tu perfil, tus llaves y tu plan.</p>
+          <h1 className="font-geist text-3xl font-semibold text-blu-on">Ajustes</h1>
+          <p className="mt-2 text-sm text-blu-on-variant">Tu perfil, tus llaves y tu plan.</p>
         </header>
 
         {error && (
-          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950/50 dark:text-red-300">{error}</p>
+          <p className="rounded-lg bg-blu-error/10 px-3 py-2 text-sm text-blu-error">{error}</p>
         )}
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Perfil</CardTitle>
-            <CardDescription>Información visible para tus colaboradores.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={saveProfile} className="space-y-4">
-              <div className="space-y-1">
-                <label htmlFor="displayName" className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                  Nombre
-                </label>
-                <Input
-                  id="displayName"
-                  value={displayName}
-                  onChange={(e) => setDisplayName(e.target.value)}
-                  minLength={2}
-                  maxLength={60}
-                  required
-                />
-              </div>
-              <div className="space-y-1">
-                <label htmlFor="timezone" className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                  Zona horaria
-                </label>
-                <Input
-                  id="timezone"
-                  value={timezone}
-                  onChange={(e) => setTimezone(e.target.value)}
-                  placeholder="America/Mexico_City"
-                  pattern="^[A-Za-z0-9_+\-]+$"
-                />
-              </div>
-              <div className="flex items-center gap-3">
-                <Button type="submit">Guardar</Button>
-                {saved && <span className="text-sm text-emerald-600 dark:text-emerald-400">Guardado ✓</span>}
-              </div>
-            </form>
-          </CardContent>
-        </Card>
+        <section className="rounded-xl border border-blu-outline/20 bg-blu-surface-low p-4">
+          <header className="mb-4">
+            <h2 className="flex items-center gap-2 text-xl font-medium text-blu-on">
+              <SectionIcon>👤</SectionIcon> Perfil
+            </h2>
+            <p className="mt-1 text-sm text-blu-on-variant">Información visible para tus colaboradores.</p>
+          </header>
+          <form onSubmit={saveProfile} className="space-y-4">
+            <div className="space-y-1">
+              <label htmlFor="displayName" className="text-sm text-blu-on-variant">
+                Nombre
+              </label>
+              <Input
+                id="displayName"
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+                minLength={2}
+                maxLength={60}
+                required
+                className="border-blu-outline/40 bg-blu-surface focus:border-blu-primary-solid dark:bg-blu-surface"
+              />
+            </div>
+            <div className="space-y-1">
+              <label htmlFor="timezone" className="text-sm text-blu-on-variant">
+                Zona horaria
+              </label>
+              <Input
+                id="timezone"
+                value={timezone}
+                onChange={(e) => setTimezone(e.target.value)}
+                placeholder="America/Mexico_City"
+                pattern="^[A-Za-z0-9_+\-]+$"
+                className="border-blu-outline/40 bg-blu-surface focus:border-blu-primary-solid dark:bg-blu-surface"
+              />
+            </div>
+            <div className="flex items-center gap-3">
+              <Button type="submit">Guardar</Button>
+              {saved && <span className="text-sm text-emerald-400">Guardado ✓</span>}
+            </div>
+          </form>
+        </section>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>API keys (BYOK)</CardTitle>
-            <CardDescription>
+        <section className="rounded-xl border border-blu-outline/20 bg-blu-surface-low p-4">
+          <header className="mb-4">
+            <h2 className="flex items-center gap-2 text-xl font-medium text-blu-on">
+              <SectionIcon>🔑</SectionIcon> API keys (BYOK)
+            </h2>
+            <p className="mt-1 text-sm text-blu-on-variant">
               Conecta tu propia llave de proveedor para pagar tu consumo directo. Se almacena cifrada.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
+            </p>
+          </header>
+          <div className="space-y-4">
             <form onSubmit={addKey} className="flex flex-wrap items-end gap-2">
               <div className="min-w-0 flex-1 space-y-1">
-                <label htmlFor="provider" className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                <label htmlFor="provider" className="text-sm text-blu-on-variant">
                   Proveedor
                 </label>
                 <select
                   id="provider"
                   value={provider}
                   onChange={(e) => setProvider(e.target.value as ProviderId)}
-                  className="h-10 w-full rounded-lg border border-slate-300 bg-white px-3 text-sm dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+                  className="h-10 w-full rounded-lg border border-blu-outline/40 bg-blu-surface px-3 text-sm text-blu-on focus:outline-none focus:ring-1 focus:ring-blu-primary/40"
                 >
                   {PROVIDERS.map((p) => (
                     <option key={p.id} value={p.id}>
@@ -158,7 +166,7 @@ export default function SettingsPage() {
                 </select>
               </div>
               <div className="min-w-0 flex-[2] space-y-1">
-                <label htmlFor="keyValue" className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                <label htmlFor="keyValue" className="text-sm text-blu-on-variant">
                   Llave
                 </label>
                 <Input
@@ -169,24 +177,28 @@ export default function SettingsPage() {
                   placeholder="sk-…"
                   required
                   minLength={8}
+                  className="border-blu-outline/40 bg-blu-surface focus:border-blu-primary-solid dark:bg-blu-surface"
                 />
               </div>
               <Button type="submit">Guardar</Button>
             </form>
 
             {keys === null ? (
-              <p className="text-sm text-slate-500 dark:text-slate-400">Cargando llaves…</p>
+              <p className="text-sm text-blu-on-variant">Cargando llaves…</p>
             ) : keys.length === 0 ? (
-              <p className="text-sm text-slate-500 dark:text-slate-400">Sin llaves configuradas.</p>
+              <p className="text-sm text-blu-on-variant">Sin llaves configuradas.</p>
             ) : (
               <ul className="space-y-2">
                 {keys.map((key) => (
-                  <li key={key.id} className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2 dark:bg-slate-800/50">
+                  <li
+                    key={key.id}
+                    className="flex items-center justify-between rounded-lg bg-blu-surface px-3 py-2"
+                  >
                     <div>
-                      <p className="text-sm font-medium text-slate-900 dark:text-slate-100">
+                      <p className="text-sm font-medium text-blu-on">
                         {PROVIDERS.find((p) => p.id === key.provider)?.label ?? key.provider}
                       </p>
-                      <p className="font-mono text-xs text-slate-500 dark:text-slate-400">{key.maskedKey}</p>
+                      <p className="font-mono text-xs text-blu-on-variant">{key.maskedKey}</p>
                     </div>
                     <Button variant="ghost" size="sm" onClick={() => void removeKey(key.provider)}>
                       Eliminar
@@ -195,48 +207,48 @@ export default function SettingsPage() {
                 ))}
               </ul>
             )}
-          </CardContent>
-        </Card>
+          </div>
+        </section>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Créditos</CardTitle>
-            <CardDescription>Tu saldo y límites según el plan.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            {credits === null ? (
-              <p className="text-sm text-slate-500 dark:text-slate-400">Cargando…</p>
-            ) : (
-              <div className="space-y-3 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-slate-600 dark:text-slate-300">Plan</span>
-                  <span className="font-medium text-slate-900 dark:text-slate-100">{credits.plan}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-600 dark:text-slate-300">Saldo</span>
-                  <span className="font-medium text-slate-900 dark:text-slate-100">{formatCredits(credits.credits)} créditos</span>
-                </div>
-                {credits.frozen ? (
-                  <p className="text-slate-500 dark:text-slate-400">
-                    Con el plan BYOK tu consumo se descuenta directo del proveedor.
-                  </p>
-                ) : (
-                  <>
-                    <div className="flex justify-between">
-                      <span className="text-slate-600 dark:text-slate-300">Grant diario</span>
-                      <span className="font-medium text-slate-900 dark:text-slate-100">{credits.grantsPerDay}</span>
-                    </div>
-                    {credits.resetsAt && (
-                      <p className="text-xs text-slate-500 dark:text-slate-400">
-                        Se renueva el {new Date(credits.resetsAt).toLocaleDateString("es-MX")}.
-                      </p>
-                    )}
-                  </>
-                )}
+        <section className="rounded-xl border border-blu-outline/20 bg-blu-surface-low p-4">
+          <header className="mb-4">
+            <h2 className="flex items-center gap-2 text-xl font-medium text-blu-on">
+              <SectionIcon>⚡</SectionIcon> Créditos
+            </h2>
+            <p className="mt-1 text-sm text-blu-on-variant">Tu saldo y límites según el plan.</p>
+          </header>
+          {credits === null ? (
+            <p className="text-sm text-blu-on-variant">Cargando…</p>
+          ) : (
+            <div className="space-y-3 text-sm">
+              <div className="flex justify-between">
+                <span className="text-blu-on-variant">Plan</span>
+                <span className="font-medium text-blu-on">{credits.plan}</span>
               </div>
-            )}
-          </CardContent>
-        </Card>
+              <div className="flex justify-between">
+                <span className="text-blu-on-variant">Saldo</span>
+                <span className="font-medium text-blu-on">{formatCredits(credits.credits)} créditos</span>
+              </div>
+              {credits.frozen ? (
+                <p className="text-blu-on-variant">
+                  Con el plan BYOK tu consumo se descuenta directo del proveedor.
+                </p>
+              ) : (
+                <>
+                  <div className="flex justify-between">
+                    <span className="text-blu-on-variant">Grant diario</span>
+                    <span className="font-medium text-blu-on">{credits.grantsPerDay}</span>
+                  </div>
+                  {credits.resetsAt && (
+                    <p className="text-xs text-blu-on-variant">
+                      Se renueva el {new Date(credits.resetsAt).toLocaleDateString("es-MX")}.
+                    </p>
+                  )}
+                </>
+              )}
+            </div>
+          )}
+        </section>
       </div>
     </MainLayout>
   );
