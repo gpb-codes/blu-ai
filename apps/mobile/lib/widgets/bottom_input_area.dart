@@ -114,11 +114,10 @@ class _BottomInputAreaState extends State<BottomInputArea> {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: c.surfaceContainerLow,
+            color: c.elevatedOverlay,
             borderRadius: BorderRadius.circular(24),
-            border:
-                Border.all(color: c.outlineVariant.withValues(alpha: 0.25)),
-            boxShadow: AppShadows.m,
+            border: Border.all(color: c.outlineVariant.withValues(alpha: 0.7)),
+            boxShadow: AppShadows.s,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,

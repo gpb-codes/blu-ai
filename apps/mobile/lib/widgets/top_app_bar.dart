@@ -33,13 +33,12 @@ class TopAppBar extends StatelessWidget {
     final c = ThemeScope.of(context);
     final isWide = title != null || onCollapseTap != null;
     return Container(
-      height: 56,
-      padding: const EdgeInsets.symmetric(horizontal: 12),
+      height: 48,
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
         color: c.background,
         border: Border(
-            bottom:
-                BorderSide(color: c.outlineVariant.withValues(alpha: 0.2))),
+            bottom: BorderSide(color: c.outlineVariant.withValues(alpha: 0.5))),
       ),
       child: isWide ? _buildWide(context) : _buildMobile(context),
     );

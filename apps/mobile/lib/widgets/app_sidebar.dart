@@ -45,14 +45,14 @@ class AppSidebar extends StatelessWidget {
         return AnimatedContainer(
           duration: const Duration(milliseconds: 220),
           curve: Curves.easeOutCubic,
-          width: collapsed ? 72 : 280,
+          width: collapsed ? 72 : 260,
           decoration: BoxDecoration(
             color: ThemeScope.of(context).surfaceContainerLow,
             border: Border(
                 right: BorderSide(
                     color: ThemeScope.of(context)
                         .outlineVariant
-                        .withValues(alpha: 0.2))),
+                        .withValues(alpha: 0.45))),
           ),
           child: SafeArea(
             child: Padding(
@@ -331,23 +331,39 @@ class _NewChatButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final c = ThemeScope.of(context);
     return Material(
-      color: ThemeScope.of(context).surfaceContainerHigh,
-      borderRadius: BorderRadius.circular(8),
+      color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(8),
-        hoverColor: ThemeScope.of(context).surfaceContainerHighest,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        hoverColor: c.surfaceContainerHigh,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+          decoration: BoxDecoration(
+            color: c.elevatedOverlay,
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: c.outlineVariant.withValues(alpha: 0.7)),
+            boxShadow: const [
+              BoxShadow(color: Color(0x08000000), blurRadius: 2, offset: Offset(0, 1)),
+            ],
+          ),
           child: Row(
             children: [
-              Icon(Icons.add,
-                  size: 18, color: ThemeScope.of(context).onSurface),
-              const SizedBox(width: 8),
+              Container(
+                width: 20,
+                height: 20,
+                decoration: BoxDecoration(
+                  color: BrandColors.cobalt,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: const Icon(Icons.edit, size: 12, color: Colors.white),
+              ),
+              const SizedBox(width: 10),
               Text('Nuevo chat',
-                  style: kLabelMd.copyWith(
-                      color: ThemeScope.of(context).onSurface)),
+                  style: kBodyMd.copyWith(fontSize: 14, color: c.onSurface, fontWeight: FontWeight.w500)),
+              const Spacer(),
+              Icon(Icons.edit_square, size: 14, color: c.onSurfaceVariant.withValues(alpha: 0.6)),
             ],
           ),
         ),

@@ -56,12 +56,14 @@ class AiBubble extends StatelessWidget {
           width: 28,
           height: 28,
           decoration: BoxDecoration(
-            color: BrandColors.cobalt,
+            color: Colors.white,
             borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: ThemeScope.of(context).outlineVariant.withValues(alpha: 0.5)),
           ),
-          alignment: Alignment.center,
-          child: Icon(agentIcon ?? Icons.auto_awesome,
-              size: 15, color: Colors.white),
+          padding: const EdgeInsets.all(4),
+          child: Image.asset('assets/logos/mark-azul.png',
+              width: 20, height: 20, fit: BoxFit.contain, filterQuality: FilterQuality.high,
+              errorBuilder: (_, __, ___) => Icon(agentIcon ?? Icons.auto_awesome, size: 14, color: BrandColors.cobalt)),
         ),
         const SizedBox(width: 12),
         Expanded(

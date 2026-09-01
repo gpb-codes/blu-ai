@@ -172,15 +172,11 @@ class ModelDropdown extends StatelessWidget {
     return Container(
       width: 288,
       decoration: BoxDecoration(
-        color: ThemeScope.of(context).surfaceContainerLow,
+        color: ThemeScope.of(context).elevatedOverlay,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-            color:
-                ThemeScope.of(context).outlineVariant.withValues(alpha: 0.3)),
-        boxShadow: const [
-          BoxShadow(
-              color: Colors.black54, blurRadius: 24, offset: Offset(0, 8)),
-        ],
+            color: ThemeScope.of(context).outlineVariant.withValues(alpha: 0.5)),
+        boxShadow: AppShadows.l,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,

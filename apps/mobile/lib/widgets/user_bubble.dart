@@ -10,21 +10,24 @@ class UserBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 640),
+    final c = ThemeScope.of(context);
+    return Align(
+      alignment: Alignment.centerRight,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 640),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          decoration: BoxDecoration(
+            color: c.surfaceContainerLow,
+            borderRadius: BorderRadius.circular(18),
+            border: Border.all(color: c.outlineVariant.withValues(alpha: 0.4)),
+          ),
           child: Text(
             text,
-            textAlign: TextAlign.end,
-            style: kBodyLg.copyWith(
-              color: ThemeScope.of(context).onSurface,
-              height: 1.6,
-            ),
+            style: kBodyLg.copyWith(color: c.onSurface, height: 1.6),
           ),
         ),
-      ],
+      ),
     );
   }
 }

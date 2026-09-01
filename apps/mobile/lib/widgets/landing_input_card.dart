@@ -105,22 +105,16 @@ class _LandingInputCardState extends State<LandingInputCard> {
                 : 'Hola.';
             return Column(
               children: [
-                const Icon(Icons.auto_awesome,
-                    size: 22, color: BrandColors.terracota),
-                const SizedBox(height: 12),
                 Text(greeting,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontFamily: 'Georgia',
-                        fontSize: 36,
-                        height: 1.15,
-                        letterSpacing: -0.5,
+                    style: kHeadlineLg.copyWith(
+                        fontSize: 28,
                         color: ThemeScope.of(context).onSurface)),
                 const SizedBox(height: 6),
                 Text('¿En qué trabajamos hoy?',
                     textAlign: TextAlign.center,
                     style: kBodyMd.copyWith(
-                        color: ThemeScope.of(context).onSurfaceVariant)),
+                        fontSize: 16, color: ThemeScope.of(context).onSurfaceVariant)),
               ],
             );
           },
@@ -140,12 +134,12 @@ class _LandingInputCardState extends State<LandingInputCard> {
                         borderRadius: BorderRadius.circular(24),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: ThemeScope.of(context).surface,
-                            borderRadius: BorderRadius.circular(16),
+                            color: ThemeScope.of(context).elevatedOverlay,
+                            borderRadius: BorderRadius.circular(24),
                             border: Border.all(
                                 color: ThemeScope.of(context)
                                     .outlineVariant
-                                    .withValues(alpha: 0.45)),
+                                    .withValues(alpha: 0.6)),
                             boxShadow: AppShadows.s,
                           ),
                           child: Column(
