@@ -4,8 +4,6 @@ export default defineConfig({
   test: {
     include: [
       "packages/*/src/**/*.test.ts",
-      "apps/api/src/**/*.test.ts",
-      "apps/api/test/**/*.e2e.spec.ts",
     ],
     testTimeout: 20000,
     env: {

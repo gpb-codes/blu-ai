@@ -12,7 +12,7 @@
     <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" />
   </a>
   <a href="#">
-    <img src="https://img.shields.io/badge/NestJS-0B1D33?style=for-the-badge&logo=nestjs&logoColor=5FA8D3" />
+    <img src="https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white" />
   </a>
   <a href="#">
     <img src="https://img.shields.io/badge/Next.js-14497A?style=for-the-badge&logo=nextdotjs&logoColor=white" />
@@ -46,13 +46,13 @@ BLU combina múltiples proveedores de IA (Claude, Gemini) bajo un solo gateway, 
 
 <div align="center">
 
-|                                                                           |                                                                            |                                                                             |                                                                           |                                                                           |                                                                                   |                                                                       |                                                                     |
-| ------------------------------------------------------------------------- | -------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| <img src="https://skillicons.dev/icons?i=nestjs" width="48" /><br/>NestJS | <img src="https://skillicons.dev/icons?i=nextjs" width="48" /><br/>Next.js | <img src="https://skillicons.dev/icons?i=flutter" width="48" /><br/>Flutter | <img src="https://skillicons.dev/icons?i=ts" width="48" /><br/>TypeScript | <img src="https://skillicons.dev/icons?i=docker" width="48" /><br/>Docker | <img src="https://skillicons.dev/icons?i=githubactions" width="48" /><br/>Actions | <img src="https://skillicons.dev/icons?i=pnpm" width="48" /><br/>pnpm | <img src="https://skillicons.dev/icons?i=git" width="48" /><br/>Git |
+|                                                                        |                                                                            |                                                                             |                                                                      |                                                                           |                                                                                   |                                                                       |                                                                     |
+| ---------------------------------------------------------------------- | -------------------------------------------------------------------------- | --------------------------------------------------------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| <img src="https://skillicons.dev/icons?i=go" width="48" /><br/>Go | <img src="https://skillicons.dev/icons?i=nextjs" width="48" /><br/>Next.js | <img src="https://skillicons.dev/icons?i=flutter" width="48" /><br/>Flutter | <img src="https://skillicons.dev/icons?i=postgres" width="48" /><br/>PostgreSQL | <img src="https://skillicons.dev/icons?i=docker" width="48" /><br/>Docker | <img src="https://skillicons.dev/icons?i=githubactions" width="48" /><br/>Actions | <img src="https://skillicons.dev/icons?i=pnpm" width="48" /><br/>pnpm | <img src="https://skillicons.dev/icons?i=git" width="48" /><br/>Git |
 
 </div>
 
-> Monorepo pnpm — API Gateway en NestJS, Web en Next.js, App en Flutter, CLI local estilo Claude Code.
+> Monorepo híbrido — API Gateway en **Go** (chi + pgx), Web en Next.js, App en Flutter, CLI local estilo Claude Code. La API NestJS original vive en `legacy/api-nest/` como referencia.
 
 <br/>
 
@@ -103,10 +103,10 @@ BLU combina múltiples proveedores de IA (Claude, Gemini) bajo un solo gateway, 
     </td>
     <td width="50%" style="background: linear-gradient(135deg, #0B1D33 0%, #1B4965 100%); border-radius: 16px; padding: 24px; border: 2px solid #5FA8D3;">
       <div align="center">
-        <img src="https://img.shields.io/badge/CLEAN_ARCHITECTURE-5FA8D3?style=for-the-badge&logo=nestjs&logoColor=white" />
+        <img src="https://img.shields.io/badge/CLEAN_ARCHITECTURE-5FA8D3?style=for-the-badge&logo=go&logoColor=white" />
         <br/><br/>
-        <img src="https://img.shields.io/badge/Presentation_%E2%86%92_Application-E8F4FD?style=flat&logo=nestjs&logoColor=white" />
-        <img src="https://img.shields.io/badge/Domain_sin_dependencias-2E86AB?style=flat&logo=typescript&logoColor=white" />
+        <img src="https://img.shields.io/badge/Presentation_%E2%86%92_Application-E8F4FD?style=flat&logo=go&logoColor=white" />
+        <img src="https://img.shields.io/badge/Domain_sin_dependencias-2E86AB?style=flat&logo=go&logoColor=white" />
       </div>
       <br/>
       <p align="center">
@@ -130,8 +130,8 @@ BLU combina múltiples proveedores de IA (Claude, Gemini) bajo un solo gateway, 
   <tr>
     <td width="10%" align="center"><img src="https://img.shields.io/badge/01-0B1D33?style=for-the-badge" /></td>
     <td width="20%"><b>apps/api</b></td>
-    <td width="60%">NestJS — API Gateway: auth, proyectos, chat, agentes, billing, memoria.</td>
-    <td width="10%"><img src="https://img.shields.io/badge/--0B1D33?style=flat&logo=nestjs&logoColor=white" /></td>
+    <td width="60%">Go — API Gateway: auth, proyectos, chat, agentes, billing, memoria. (antes NestJS, ahora en <code>legacy/api-nest</code>)</td>
+    <td width="10%"><img src="https://img.shields.io/badge/--0B1D33?style=flat&logo=go&logoColor=white" /></td>
   </tr>
   <tr>
     <td align="center"><img src="https://img.shields.io/badge/02-14497A?style=for-the-badge" /></td>
@@ -199,10 +199,18 @@ BLU combina múltiples proveedores de IA (Claude, Gemini) bajo un solo gateway, 
 ## Empezar
 
 ```sh
-pnpm install        # instala todo el workspace
-pnpm dev             # corre api + web en modo desarrollo
-pnpm build           # compila todo
-pnpm typecheck       # chequeo de tipos en todo el monorepo
+# Web + packages (Node)
+pnpm install           # instala workspace pnpm
+pnpm dev               # corre web en modo desarrollo (turbo)
+pnpm build             # compila web/packages
+pnpm typecheck         # chequeo de tipos TS
+
+# API Go
+go run ./apps/api/cmd/server        # :3000 (requiere DATABASE_URL, JWT_SECRET)
+# o
+pnpm dev:api           # alias hacia go run
+pnpm build:api         # go build -o bin/api
+pnpm test:api          # go test ./apps/api/...
 ```
 
 <br/>
@@ -214,15 +222,17 @@ pnpm typecheck       # chequeo de tipos en todo el monorepo
 La regla de dependencia apunta hacia adentro (nada de `infrastructure` importa de `presentation`):
 
 ```
-presentation/  (controllers, dto, guards)   → application/
-application/   (use-cases, ports)           → domain/
-domain/        (entities, value objects, interfaces de repositorio)  ← sin dependencias externas
-infrastructure/ (prisma, proveedores externos, auth)                 → domain/
+apps/api/internal/
+  presentation/  (handlers, dto, middleware)  → application/
+  application/   (use-cases, ports)           → domain/
+  domain/        (entities, interfaces)       ← sin dependencias externas
+  infrastructure/ (pgx, jwt, adapters)        → domain/
 ```
 
-- Los casos de uso NO conocen NestJS, Prisma ni proveedores de IA.
-- `domain` no importa nada de Node/npm — solo tipos locales.
-- Los adapters de IA (`packages/ai-gateway`) son intercambiables: 1 archivo por proveedor.
+- Los casos de uso NO conocen chi, pgx ni proveedores de IA — solo interfaces del dominio.
+- `domain` no importa nada de Go externo — solo tipos locales (`internal/shared`, `internal/memory`).
+- Los adapters de IA (`internal/gateway/adapters`) son intercambiables: 1 archivo por proveedor.
+- La API NestJS original (`legacy/api-nest/`) seguía el mismo esquema con Prisma/NestJS.
 
 <br/>
 
