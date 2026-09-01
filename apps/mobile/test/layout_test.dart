@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:intelligence_chat/screens/chat_screen.dart';
+import 'package:intelligence_chat/screens/login_screen.dart';
 import 'package:intelligence_chat/screens/profile_screen.dart';
 import 'package:intelligence_chat/screens/settings_screen.dart';
 
@@ -16,13 +17,23 @@ void main() {
   ];
 
   for (final size in sizes) {
+    testWidgets('Login render at ${size.width.toInt()}x${size.height.toInt()}',
+        (tester) async {
+      tester.view.physicalSize = size;
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(tester.view.reset);
+
+      await pumpThemed(tester, const LoginScreen());
+
+      expect(tester.takeException(), isNull);
+    });
     testWidgets('Chat landing render at ${size.width.toInt()}x${size.height.toInt()}',
         (tester) async {
       tester.view.physicalSize = size;
       tester.view.devicePixelRatio = 1.0;
       addTearDown(tester.view.reset);
 
-      await pumpApp(tester, const MaterialApp(home: ChatScreen()));
+      await pumpThemed(tester, const ChatScreen());
 
       expect(tester.takeException(), isNull);
     });
@@ -33,10 +44,7 @@ void main() {
       tester.view.devicePixelRatio = 1.0;
       addTearDown(tester.view.reset);
 
-      await pumpApp(
-        tester,
-        const MaterialApp(home: SettingsScreen()),
-      );
+      await pumpThemed(tester, const SettingsScreen());
 
       expect(tester.takeException(), isNull);
     });
@@ -47,10 +55,7 @@ void main() {
       tester.view.devicePixelRatio = 1.0;
       addTearDown(tester.view.reset);
 
-      await pumpApp(
-        tester,
-        const MaterialApp(home: ProfileScreen()),
-      );
+      await pumpThemed(tester, const ProfileScreen());
 
       expect(tester.takeException(), isNull);
     });

@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import 'package:intelligence_chat/theme/app_colors.dart';
 
 /// Carga las fuentes reales (Inter/Geist) para que los tests usen métricas
 /// reales de texto en lugar de la fuente Ahem (que exagera el ancho de cada
@@ -24,4 +26,15 @@ Future<void> loadTestFonts() async {
 Future<void> pumpApp(WidgetTester tester, Widget child) async {
   await loadTestFonts();
   await tester.pumpWidget(child);
+}
+
+/// Pinta una pantalla suelta con ThemeScope + MaterialApp (para tests de layout).
+Future<void> pumpThemed(WidgetTester tester, Widget home) async {
+  await pumpApp(
+    tester,
+    ThemeScope(
+      palette: AppPalette.dark,
+      child: MaterialApp(home: home),
+    ),
+  );
 }

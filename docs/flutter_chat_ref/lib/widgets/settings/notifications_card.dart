@@ -15,9 +15,10 @@ class NotificationsSection extends StatelessWidget {
   });
 
   static const _descriptions = {
-    'Product Updates': 'Receive news about new features and models.',
-    'Usage Alerts': 'Get notified when you approach API limits.',
-    'Marketing': 'Promotional emails and offers.',
+    'Novedades de producto':
+        'Recibe noticias sobre nuevas funciones y modelos.',
+    'Alertas de uso': 'Notifícate cuando te acerques a los límites de API.',
+    'Marketing': 'Correos y ofertas promocionales.',
   };
 
   @override
@@ -28,8 +29,8 @@ class NotificationsSection extends StatelessWidget {
         children: [
           const SectionHeader(
               icon: Icons.notifications_outlined,
-              title: 'Notifications',
-              description: 'Choose what updates you want to receive.'),
+              title: 'Notificaciones',
+              description: 'Elige qué actualizaciones quieres recibir.'),
           const SizedBox(height: 8),
           ...notifications.keys.map((key) {
             final isFirst = key == notifications.keys.first;
@@ -40,8 +41,9 @@ class NotificationsSection extends StatelessWidget {
                     ? null
                     : Border(
                         top: BorderSide(
-                            color:
-                                AppColorsDark.outlineVariant.withValues(alpha: 0.2))),
+                            color: ThemeScope.of(context)
+                                .outlineVariant
+                                .withValues(alpha: 0.2))),
               ),
               child: Row(
                 children: [
@@ -51,13 +53,13 @@ class NotificationsSection extends StatelessWidget {
                       children: [
                         Text(key,
                             style: kBodyMd.copyWith(
-                                color: AppColorsDark.onSurface,
+                                color: ThemeScope.of(context).onSurface,
                                 fontWeight: FontWeight.w500)),
                         const SizedBox(height: 2),
                         Text(
                           _descriptions[key] ?? '',
-                          style:
-                              kBodyMd.copyWith(color: AppColorsDark.onSurfaceVariant),
+                          style: kBodyMd.copyWith(
+                              color: ThemeScope.of(context).onSurfaceVariant),
                         ),
                       ],
                     ),
@@ -65,9 +67,9 @@ class NotificationsSection extends StatelessWidget {
                   Switch(
                     value: notifications[key]!,
                     onChanged: (v) => onChanged(key, v),
-                    activeTrackColor: AppColorsDark.primaryContainer,
-                    trackColor: const WidgetStatePropertyAll(
-                        AppColorsDark.surfaceVariant),
+                    activeTrackColor: ThemeScope.of(context).primaryContainer,
+                    trackColor: WidgetStatePropertyAll(
+                        ThemeScope.of(context).surfaceVariant),
                     thumbColor: const WidgetStatePropertyAll(Colors.white),
                     inactiveThumbColor: Colors.white,
                   ),

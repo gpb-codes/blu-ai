@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
+import '../theme/app_text_styles.dart';
 
+/// Mensaje del usuario sin burbuja (estilo ChatGPT): texto plano alineado a
+/// la derecha dentro de la columna centrada de conversación.
 class UserBubble extends StatelessWidget {
   final String text;
   const UserBubble({super.key, required this.text});
@@ -10,30 +13,16 @@ class UserBubble extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        LayoutBuilder(
-          builder: (context, constraints) => ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: constraints.maxWidth * 0.7),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-              decoration: BoxDecoration(
-                color: AppColorsDark.primaryContainer,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: const [
-                  BoxShadow(color: Colors.black26, blurRadius: 6, offset: Offset(0, 2))
-                ],
-              ),
-              child: Text(text,
-                  style:
-                      const TextStyle(color: Colors.white, fontSize: 16, height: 1.6)),
+        ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 640),
+          child: Text(
+            text,
+            textAlign: TextAlign.end,
+            style: kBodyLg.copyWith(
+              color: ThemeScope.of(context).onSurface,
+              height: 1.6,
             ),
           ),
-        ),
-        const SizedBox(height: 4),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8),
-          child: Text('SENT',
-              style: TextStyle(
-                  fontSize: 10, color: AppColorsDark.onSurfaceVariant, letterSpacing: 1)),
         ),
       ],
     );

@@ -4,7 +4,7 @@ import '../../theme/app_text_styles.dart';
 import '../shared/app_card.dart';
 import 'preferences_card.dart';
 
-/// Sección "Security" (Perfil).
+/// Sección "Seguridad" (Perfil): contraseña, 2FA y sesiones activas.
 class SecuritySection extends StatelessWidget {
   final bool twoFactorEnabled;
   final ValueChanged<bool> onTwoFactorChanged;
@@ -15,58 +15,136 @@ class SecuritySection extends StatelessWidget {
     required this.onTwoFactorChanged,
   });
 
+  void _notReady(BuildContext context) {
+    final c = ThemeScope.of(context);
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(
+        backgroundColor: c.surfaceContainerHigh,
+        content: Text('Esta opción estará disponible pronto.',
+            style: kBodyMd.copyWith(color: c.onSurface)),
+      ));
+  }
+
+  Future<void> _showDevices(BuildContext context) async {
+    final c = ThemeScope.of(context);
+    await showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: c.surfaceContainerLow,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (sheetContext) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Text('Sesiones activas',
+                  style: kHeadlineMd.copyWith(
+                      color: c.onSurface, fontWeight: FontWeight.w600)),
+            ),
+            const _DeviceRow(device: 'Chrome · Buenos Aires', last: 'Ahora'),
+            const _DeviceRow(device: 'MacBook · Buenos Aires', last: 'Hace 2 h'),            const SizedBox(height: 8),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final c = ThemeScope.of(context);
     return AppCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SectionHeader(
-              icon: Icons.security_outlined, title: 'Security'),
+              icon: Icons.security_outlined, title: 'Seguridad'),
           const SizedBox(height: 8),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            decoration: BoxDecoration(
-              color: AppColorsDark.surfaceVariant.withValues(alpha: 0.3),
+          Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: () => _notReady(context),
               borderRadius: BorderRadius.circular(8),
-              border: Border.all(
-                  color: AppColorsDark.outlineVariant.withValues(alpha: 0.3)),
+              child: Container(
+                width: double.infinity,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                decoration: BoxDecoration(
+                  color: c.surfaceVariant.withValues(alpha: 0.3),
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                      color: c.outlineVariant.withValues(alpha: 0.3)),
+                ),
+                child: Text('Cambiar contraseña',
+                    style: kLabelMd.copyWith(color: c.onSurface)),
+              ),
             ),
-            child: Text('Change Password',
-                style: kLabelMd.copyWith(color: AppColorsDark.onSurface)),
           ),
           const SizedBox(height: 12),
           Row(
             children: [
-              const Icon(Icons.verified_user_outlined,
-                  size: 20, color: AppColorsDark.onSurfaceVariant),
+              Icon(Icons.verified_user_outlined,
+                  size: 20, color: c.onSurfaceVariant),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Two-factor authentication',
-                        style: kBodyMd.copyWith(color: AppColorsDark.onSurface)),
+                    Text('Autenticación de dos factores',
+                        style: kBodyMd.copyWith(color: c.onSurface)),
                     const SizedBox(height: 2),
-                    Text('Extra layer of security for your account',
-                        style: kBodyMd.copyWith(color: AppColorsDark.onSurfaceVariant)),
+                    Text('Capa extra de seguridad para tu cuenta',
+                        style: kBodyMd.copyWith(color: c.onSurfaceVariant)),
                   ],
                 ),
               ),
               Switch(
                 value: twoFactorEnabled,
                 onChanged: onTwoFactorChanged,
-                activeTrackColor: AppColorsDark.primaryContainer,
-                trackColor: const WidgetStatePropertyAll(AppColorsDark.surfaceVariant),
+                activeTrackColor: c.primaryContainer,
+                trackColor:
+                    WidgetStatePropertyAll(c.surfaceVariant),
                 thumbColor: const WidgetStatePropertyAll(Colors.white),
                 inactiveThumbColor: Colors.white,
               ),
             ],
           ),
           const SizedBox(height: 12),
-          const PreferenceRow(
-              icon: Icons.devices_outlined, label: 'Active sessions', value: '2 devices'),
+          PreferenceRow(
+            icon: Icons.devices_outlined,
+            label: 'Sesiones activas',
+            value: '2 dispositivos',
+            onTap: () => _showDevices(context),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _DeviceRow extends StatelessWidget {
+  final String device;
+  final String last;
+
+  const _DeviceRow({required this.device, required this.last});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = ThemeScope.of(context);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      child: Row(
+        children: [
+          Icon(Icons.devices, size: 20, color: c.onSurfaceVariant),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(device,
+                style: kBodyMd.copyWith(color: c.onSurface)),
+          ),
+          Text(last, style: kLabelMd.copyWith(color: c.onSurfaceVariant)),
         ],
       ),
     );

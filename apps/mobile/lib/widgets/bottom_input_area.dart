@@ -1,20 +1,34 @@
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_text_styles.dart';
+import 'landing_input_card.dart';
 import 'model_selector.dart';
+import 'shared/attachment_sheet.dart';
+import 'voice_button.dart';
 
+/// Área de entrada flotante (estilo ChatGPT): caja redondeada con sombra,
+/// botón de enviar que aparece al escribir y se vuelve detener durante el
+/// streaming, pills de modelo debajo del campo y nota legal.
 class BottomInputArea extends StatefulWidget {
   final TextEditingController controller;
   final VoidCallback onSend;
+  final VoidCallback? onStop;
+  final bool isStreaming;
   final String model;
   final ValueChanged<String> onModelChanged;
+  final String agent;
+  final ValueChanged<String> onAgentChanged;
 
   const BottomInputArea({
     super.key,
     required this.controller,
     required this.onSend,
+    this.onStop,
+    this.isStreaming = false,
     required this.model,
     required this.onModelChanged,
+    required this.agent,
+    required this.onAgentChanged,
   });
 
   @override
@@ -23,6 +37,24 @@ class BottomInputArea extends StatefulWidget {
 
 class _BottomInputAreaState extends State<BottomInputArea> {
   bool _dropdownOpen = false;
+
+  bool get _hasText => widget.controller.text.trim().isNotEmpty;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.controller.addListener(_onChanged);
+  }
+
+  @override
+  void dispose() {
+    widget.controller.removeListener(_onChanged);
+    super.dispose();
+  }
+
+  void _onChanged() {
+    setState(() {});
+  }
 
   void _send() {
     setState(() => _dropdownOpen = false);
@@ -34,91 +66,146 @@ class _BottomInputAreaState extends State<BottomInputArea> {
     widget.onModelChanged(model);
   }
 
+  void _selectAgent(String agent) {
+    setState(() => _dropdownOpen = false);
+    widget.onAgentChanged(agent);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
       decoration: BoxDecoration(
-        color: AppColorsDark.background,
+        color: ThemeScope.of(context).background,
         border: Border(
             top: BorderSide(
-                color: AppColorsDark.outlineVariant.withValues(alpha: 0.2))),
+                color: ThemeScope.of(context)
+                    .outlineVariant
+                    .withValues(alpha: 0.2))),
       ),
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          return Stack(
-            clipBehavior: Clip.none,
-            children: [
-              _buildInputRow(constraints.maxWidth),
-              if (_dropdownOpen)
-                Positioned(
-                  right: 8,
-                  bottom: constraints.maxHeight + 8,
-                  child: ModelDropdown(
-                    selected: widget.model,
-                    onSelected: _selectModel,
-                  ),
-                ),
-            ],
-          );
-        },
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 768),
+              child: _buildComposer(),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Center(
+            child: Text(
+              'soybluia puede cometer errores. Revisa la información importante.',
+              textAlign: TextAlign.center,
+              style: kBodyXs.copyWith(
+                  color: ThemeScope.of(context).textQuaternary),
+            ),
+          ),
+          const SizedBox(height: 4),
+        ],
       ),
     );
   }
 
-  Widget _buildInputRow(double width) {
-    final narrow = width < 420;
-    return Container(
-      padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
-      decoration: BoxDecoration(
-        color: AppColorsDark.surfaceContainerLow,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-            color: AppColorsDark.outlineVariant.withValues(alpha: 0.2)),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          const IconButton(
-            icon: Icon(Icons.add, size: 20, color: AppColorsDark.onSurfaceVariant),
-            onPressed: null,
+  Widget _buildComposer() {
+    final c = ThemeScope.of(context);
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            color: c.surfaceContainerLow,
+            borderRadius: BorderRadius.circular(24),
+            border:
+                Border.all(color: c.outlineVariant.withValues(alpha: 0.25)),
+            boxShadow: AppShadows.m,
           ),
-          const SizedBox(width: 4),
-          Expanded(
-            child: TextField(
-              controller: widget.controller,
-              minLines: 1,
-              maxLines: 6,
-              style:
-                  kBodyMd.copyWith(fontSize: 15, color: AppColorsDark.onSurface),
-              decoration: const InputDecoration(
-                hintText: 'Pregunta lo que quieras',
-                hintStyle:
-                    TextStyle(color: AppColorsDark.onSurfaceVariant, fontSize: 15),
-                border: InputBorder.none,
-                isCollapsed: true,
-                contentPadding: EdgeInsets.symmetric(vertical: 10),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.add,
+                        size: 20, color: c.onSurfaceVariant),
+                    onPressed: () => showAttachmentSheet(context),
+                    tooltip: 'Adjuntar',
+                  ),
+                  const SizedBox(width: 4),
+                  Expanded(
+                    child: TextField(
+                      controller: widget.controller,
+                      minLines: 1,
+                      maxLines: 6,
+                      style: kBodyMd.copyWith(
+                          fontSize: 16, color: c.onSurface),
+                      decoration: InputDecoration(
+                        hintText: 'Pregunta lo que quieras',
+                        hintStyle: TextStyle(
+                            color: c.onSurfaceVariant, fontSize: 16),
+                        border: InputBorder.none,
+                        isCollapsed: true,
+                        contentPadding:
+                            const EdgeInsets.symmetric(vertical: 10),
+                      ),
+                      onSubmitted: (_) => _send(),
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  if (MediaQuery.of(context).size.width >= 480) ...[
+                    VoiceButton(
+                      onTranscribed: (text) => widget.controller.text = text,
+                    ),
+                    const SizedBox(width: 4),
+                  ],
+                  ChatSendButton(
+                    onTap: _send,
+                    onStop: widget.onStop,
+                    isStreaming: widget.isStreaming,
+                    active: _hasText,
+                  ),
+                ],
               ),
-              onSubmitted: (_) => _send(),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 2, 16, 10),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      AgentPill(
+                        label: widget.agent,
+                        onTap: () => setState(
+                            () => _dropdownOpen = !_dropdownOpen),
+                      ),
+                      ModelPill(
+                        label: widget.model,
+                        active: widget.model == kAutoModel,
+                        onTap: () => setState(
+                            () => _dropdownOpen = !_dropdownOpen),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        if (_dropdownOpen)
+          Positioned(
+            right: 16,
+            bottom: 88,
+            child: ModelDropdown(
+              selected: widget.model,
+              agent: widget.agent,
+              onSelected: _selectModel,
+              onAgentChanged: _selectAgent,
             ),
           ),
-          const SizedBox(width: 4),
-          ModelPill(
-            label: widget.model,
-            onTap: () => setState(() => _dropdownOpen = !_dropdownOpen),
-          ),
-          if (!narrow) ...[
-            const SizedBox(width: 4),
-            const IconButton(
-              icon: Icon(Icons.mic_none,
-                  size: 20, color: AppColorsDark.onSurfaceVariant),
-              onPressed: null,
-            ),
-          ],
-          const SizedBox(width: 4),
-          ChatSendButton(onTap: _send),
-        ],
-      ),
+      ],
     );
   }
 }

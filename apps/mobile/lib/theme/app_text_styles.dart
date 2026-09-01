@@ -10,6 +10,14 @@ const kBodyLg = TextStyle(
     fontFamily: 'Inter', fontSize: 16, height: 1.6, fontWeight: FontWeight.w400);
 const kBodyMd = TextStyle(
     fontFamily: 'Inter', fontSize: 14, height: 1.5, fontWeight: FontWeight.w400);
+
+/// Texto auxiliar/metadatos (snippets, timestamps, tercer nivel).
+const kBodySm = TextStyle(
+    fontFamily: 'Inter', fontSize: 13, height: 1.4, fontWeight: FontWeight.w400);
+
+/// Etiqueta pequeña sobria (cuarto nivel: créditos, contadores).
+const kBodyXs = TextStyle(
+    fontFamily: 'Inter', fontSize: 11, height: 1.3, fontWeight: FontWeight.w400);
 const kLabelMd = TextStyle(
     fontFamily: 'Geist',
     fontSize: 12,

@@ -16,10 +16,10 @@ class AppCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColorsDark.surfaceContainerLow,
+        color: ThemeScope.of(context).surfaceContainerLow,
         borderRadius: BorderRadius.circular(12),
         border: border ??
-            Border.all(color: AppColorsDark.outlineVariant.withValues(alpha: 0.2)),
+            Border.all(color: ThemeScope.of(context).outlineVariant.withValues(alpha: 0.2)),
       ),
       child: child,
     );
@@ -42,10 +42,10 @@ class PageHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: kHeadlineLg.copyWith(color: AppColorsDark.onSurface)),
+        Text(title, style: kHeadlineLg.copyWith(color: ThemeScope.of(context).onSurface)),
         const SizedBox(height: 8),
         Text(subtitle,
-            style: kBodyMd.copyWith(color: AppColorsDark.onSurfaceVariant)),
+            style: kBodyMd.copyWith(color: ThemeScope.of(context).onSurfaceVariant)),
       ],
     );
   }
@@ -71,19 +71,19 @@ class SectionHeader extends StatelessWidget {
       children: [
         Row(
           children: [
-            Icon(icon, size: 20, color: AppColorsDark.primary),
+            Icon(icon, size: 20, color: ThemeScope.of(context).primary),
             const SizedBox(width: 8),
             Expanded(
               child: Text(title,
                   overflow: TextOverflow.ellipsis,
-                  style: kHeadlineMd.copyWith(color: AppColorsDark.onSurface)),
+                  style: kHeadlineMd.copyWith(color: ThemeScope.of(context).onSurface)),
             ),
           ],
         ),
         if (description != null) ...[
           const SizedBox(height: 4),
           Text(description!,
-              style: kBodyMd.copyWith(color: AppColorsDark.onSurfaceVariant)),
+              style: kBodyMd.copyWith(color: ThemeScope.of(context).onSurfaceVariant)),
         ],
       ],
     );

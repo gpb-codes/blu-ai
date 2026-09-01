@@ -15,21 +15,22 @@ class AppearanceSection extends StatelessWidget {
   });
 
   static const _options = [
-    (Icons.dark_mode_outlined, 'Dark Mode'),
-    (Icons.light_mode_outlined, 'Light Mode'),
-    (Icons.desktop_windows_outlined, 'System'),
+    (Icons.dark_mode_outlined, 'Modo oscuro'),
+    (Icons.light_mode_outlined, 'Modo blanco'),
+    (Icons.desktop_windows_outlined, 'Sistema'),
   ];
 
   @override
   Widget build(BuildContext context) {
+    final c = ThemeScope.of(context);
     return AppCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SectionHeader(
               icon: Icons.palette_outlined,
-              title: 'Appearance',
-              description: 'Customize the UI theme.'),
+              title: 'Apariencia',
+              description: 'Personaliza el tema de la interfaz.'),
           const SizedBox(height: 16),
           RadioGroup<int>(
             groupValue: themeIndex,
@@ -44,7 +45,7 @@ class AppearanceSection extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 8),
                     child: Material(
                       color: selected
-                          ? AppColorsDark.surfaceVariant.withValues(alpha: 0.3)
+                          ? c.surfaceVariant.withValues(alpha: 0.3)
                           : Colors.transparent,
                       borderRadius: BorderRadius.circular(8),
                       child: InkWell(
@@ -56,9 +57,8 @@ class AppearanceSection extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(
                               color: selected
-                                  ? AppColorsDark.primary
-                                  : AppColorsDark.outlineVariant
-                                      .withValues(alpha: 0.3),
+                                  ? c.primary
+                                  : c.outlineVariant.withValues(alpha: 0.3),
                             ),
                           ),
                           child: Row(
@@ -66,23 +66,23 @@ class AppearanceSection extends StatelessWidget {
                               Icon(_options[i].$1,
                                   size: 20,
                                   color: selected
-                                      ? AppColorsDark.primary
-                                      : AppColorsDark.onSurfaceVariant),
+                                      ? c.primary
+                                      : c.onSurfaceVariant),
                               const SizedBox(width: 12),
                               Expanded(
                                 child: Text(_options[i].$2,
                                     style: kBodyMd.copyWith(
                                         color: selected
-                                            ? AppColorsDark.onSurface
-                                            : AppColorsDark.onSurfaceVariant)),
+                                            ? c.onSurface
+                                            : c.onSurfaceVariant)),
                               ),
                               Radio<int>(
                                 value: i,
-                                activeColor: AppColorsDark.primaryContainer,
+                                activeColor: c.primaryContainer,
                                 fillColor: WidgetStatePropertyAll(
                                     selected
-                                        ? AppColorsDark.primaryContainer
-                                        : AppColorsDark.outlineVariant),
+                                        ? c.primaryContainer
+                                        : c.outlineVariant),
                               ),
                             ],
                           ),
