@@ -10,8 +10,8 @@ class ThemeController extends ChangeNotifier {
 
   static const _prefsKey = 'themeIndex';
 
-  /// 0 = oscuro, 1 = blanco (por defecto), 2 = sistema.
-  int themeIndex = 1;
+  /// 0 = noche #020A17 (por defecto), 1 = blanco, 2 = sistema.
+  int themeIndex = 0;
 
   ThemeMode get mode => switch (themeIndex) {
         0 => ThemeMode.dark,

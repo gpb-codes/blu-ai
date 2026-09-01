@@ -1,27 +1,34 @@
 import 'package:flutter/material.dart';
 
-/// Paleta oficial soybluia (SPEC-DISENO-FALTANTE §1).
+/// Paleta oficial soybluia — ACTUALIZADA 2026-09: fondo #020A17, accent #023CF7.
 class BrandColors {
-  /// Marca principal: botones primarios, enlaces, foco, selección, logotipo.
-  static const cobalt = Color(0xFF0A34F5);
+  /// Accent: azul eléctrico #023CF7 (botones, selección, logo).
+  static const cobalt = Color(0xFF023CF7);
+  static const accent = Color(0xFF023CF7);
 
-  /// Acentos sobre fondos oscuros: texto primario, iconos activos, distintivos.
+  /// Fondo: azul noche profundo #020A17.
+  static const fondo = Color(0xFF020A17);
+  static const negroSuave = Color(0xFF020A17);
+
+  /// Secondary: azul grisáceo #1B2A4F (sidebar, cards).
+  static const secondary = Color(0xFF1B2A4F);
+  static const grisFondo = Color(0xFF1B2A4F);
+
+  /// Texto: gris muy claro #DEE1E7.
+  static const textClaro = Color(0xFFDEE1E7);
+  static const grisClaro = Color(0xFFDEE1E7);
+
+  /// Muted: gris #9A9CA3 (secundario, hints).
+  static const gris = Color(0xFF9A9CA3);
+  static const muted = Color(0xFF9A9CA3);
+
+  /// Blanco puro #FFFFFF.
+  static const blanco = Color(0xFFFFFFFF);
+  static const crema = Color(0xFFFFFFFF);
+
+  /// Legacy alias para compatibilidad.
   static const azulClaro = Color(0xFF3D6BFF);
-
-  /// Texto principal y fondos oscuros.
-  static const negroSuave = Color(0xFF0B0F1A);
-
-  /// Texto secundario, pistas, metadatos, iconos inactivos.
-  static const gris = Color(0xFF8E8E93);
-
-  /// Superficies claras: tarjetas, campos, paneles, hover.
-  static const grisFondo = Color(0xFFF2F4F8);
-
-  /// Crema cálido del fondo claro (inspiración claude.ai).
-  static const crema = Color(0xFFF5F4EE);
-
-  /// Acento terracota para detalles de marca (chispa del saludo, etc.).
-  static const terracota = Color(0xFFD97757);
+  static const terracota = Color(0xFF023CF7);
 }
 
 /// Paleta de colores activa para una apariencia (oscura o clara).
@@ -93,63 +100,63 @@ class AppPalette {
     required this.warningContainer,
   });
 
-  /// Tema oscuro ChatGPT: sidebar #202123, main #343541, input #40414F.
+  /// Tema noche BLU: fondo #020A17, secondary #1B2A4F, accent #023CF7, text #DEE1E7.
   static const dark = AppPalette(
-    background: Color(0xFF343541),
-    surface: Color(0xFF343541),
-    surfaceContainerLow: Color(0xFF202123),
-    surfaceContainer: Color(0xFF2A2B32),
-    surfaceContainerHigh: Color(0xFF40414F),
-    surfaceContainerHighest: Color(0xFF4A4B58),
-    surfaceVariant: Color(0xFF40414F),
-    surfaceBright: Color(0xFF4A4B58),
-    onSurface: Color(0xFFECECEC),
-    onSurfaceVariant: Color(0xFF9A9B9E),
-    outlineVariant: Color(0xFF565869),
-    outline: Color(0xFF8E8FA3),
-    primary: BrandColors.cobalt,
+    background: Color(0xFF020A17),
+    surface: Color(0xFF020A17),
+    surfaceContainerLow: Color(0xFF0A1930),
+    surfaceContainer: Color(0xFF1B2A4F),
+    surfaceContainerHigh: Color(0xFF24365F),
+    surfaceContainerHighest: Color(0xFF2E426E),
+    surfaceVariant: Color(0xFF1B2A4F),
+    surfaceBright: Color(0xFF24365F),
+    onSurface: Color(0xFFDEE1E7),
+    onSurfaceVariant: Color(0xFF9A9CA3),
+    outlineVariant: Color(0xFF2A3A5E),
+    outline: Color(0xFF3A4A6E),
+    primary: Color(0xFF023CF7),
     onPrimary: Color(0xFFFFFFFF),
-    primaryContainer: BrandColors.cobalt,
-    onPrimaryContainer: Color(0xFFECECEC),
-    secondaryContainer: Color(0xFF202123),
-    onSecondaryContainer: Color(0xFF9A9B9E),
-    tertiary: Color(0xFF9A9B9E),
-    inversePrimary: BrandColors.cobalt,
+    primaryContainer: Color(0xFF023CF7),
+    onPrimaryContainer: Color(0xFFDEE1E7),
+    secondaryContainer: Color(0xFF1B2A4F),
+    onSecondaryContainer: Color(0xFF9A9CA3),
+    tertiary: Color(0xFF9A9CA3),
+    inversePrimary: Color(0xFF023CF7),
     error: Color(0xFFFFB4AB),
     errorContainer: Color(0xFF93000A),
-    textQuaternary: Color(0xFF6E6E80),
-    elevatedOverlay: Color(0xFF40414F),
+    textQuaternary: Color(0xFF6B7280),
+    elevatedOverlay: Color(0xFF1B2A4F),
     success: Color(0xFF10A37F),
     successContainer: Color(0x1F10A37F),
     warning: Color(0xFFFFBF36),
     warningContainer: Color(0x1FFFBF36),
   );
 
-  /// Tema claro ChatGPT: sidebar #F7F7F8, main #FFFFFF, input #FFFFFF con borde #E5E5E5.
+  /// Tema claro: blanco #FFFFFF con accent #023CF7 — espejo del noche.
   static const light = AppPalette(
     background: Color(0xFFFFFFFF),
     surface: Color(0xFFFFFFFF),
-    surfaceContainerLow: Color(0xFFF7F7F8),
-    surfaceContainer: Color(0xFFECECF1),
-    surfaceContainerHigh: Color(0xFFE5E5E5),
-    surfaceContainerHighest: Color(0xFFD9D9D3),
-    surfaceVariant: Color(0xFFECECF1),
+    surfaceContainerLow: Color(0xFFF1F5FF),
+    surfaceContainer: Color(0xFFE8ECFF),
+    surfaceContainerHigh: Color(0xFFD9E0FF),
+    surfaceContainerHighest: Color(0xFFCBD6FF),
+    surfaceVariant: Color(0xFFE8ECFF),
     surfaceBright: Color(0xFFFFFFFF),
-    onSurface: Color(0xFF0D0D0D),
-    onSurfaceVariant: Color(0xFF6E6E80),
-    outlineVariant: Color(0xFFE5E5E5),
-    outline: Color(0xFFD9D9D9),
-    primary: BrandColors.cobalt,
+    onSurface: Color(0xFF020A17),
+    onSurfaceVariant: Color(0xFF64748B),
+    outlineVariant: Color(0xFFCBD6FF),
+    outline: Color(0xFF94A3B8),
+    primary: Color(0xFF023CF7),
     onPrimary: Color(0xFFFFFFFF),
-    primaryContainer: BrandColors.cobalt,
+    primaryContainer: Color(0xFF023CF7),
     onPrimaryContainer: Color(0xFFFFFFFF),
     secondaryContainer: Color(0xFFE0E7FF),
     onSecondaryContainer: Color(0xFF001A97),
-    tertiary: Color(0xFF676767),
-    inversePrimary: BrandColors.cobalt,
+    tertiary: Color(0xFF475569),
+    inversePrimary: Color(0xFF023CF7),
     error: Color(0xFFDC2626),
     errorContainer: Color(0xFFFEE2E2),
-    textQuaternary: Color(0xFFACACBE),
+    textQuaternary: Color(0xFF9A9CA3),
     elevatedOverlay: Color(0xFFFFFFFF),
     success: Color(0xFF10A37F),
     successContainer: Color(0x1A10A37F),
