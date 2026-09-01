@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:intelligence_chat/main.dart';
-import 'package:intelligence_chat/services/stores.dart';
-import 'package:intelligence_chat/theme/theme_controller.dart';
+import 'package:blu_ia_app/main.dart';
+import 'package:blu_ia_app/services/stores.dart';
+import 'package:blu_ia_app/theme/theme_controller.dart';
 
 import 'test_fonts.dart';
 

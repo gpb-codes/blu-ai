@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:intelligence_chat/screens/agenda_screen.dart';
-import 'package:intelligence_chat/screens/chat_screen.dart';
-import 'package:intelligence_chat/screens/login_screen.dart';
-import 'package:intelligence_chat/screens/memory_screen.dart';
-import 'package:intelligence_chat/screens/mini_apps_screen.dart';
-import 'package:intelligence_chat/screens/plans_screen.dart';
-import 'package:intelligence_chat/screens/profile_screen.dart';
-import 'package:intelligence_chat/screens/projects_screen.dart';
-import 'package:intelligence_chat/screens/register_screen.dart';
-import 'package:intelligence_chat/screens/settings_screen.dart';
-import 'package:intelligence_chat/theme/app_colors.dart';
+import 'package:blu_ia_app/screens/agenda_screen.dart';
+import 'package:blu_ia_app/screens/chat_screen.dart';
+import 'package:blu_ia_app/screens/login_screen.dart';
+import 'package:blu_ia_app/screens/memory_screen.dart';
+import 'package:blu_ia_app/screens/mini_apps_screen.dart';
+import 'package:blu_ia_app/screens/plans_screen.dart';
+import 'package:blu_ia_app/screens/profile_screen.dart';
+import 'package:blu_ia_app/screens/projects_screen.dart';
+import 'package:blu_ia_app/screens/register_screen.dart';
+import 'package:blu_ia_app/screens/settings_screen.dart';
+import 'package:blu_ia_app/theme/app_colors.dart';
 
 import 'test_fonts.dart';
 

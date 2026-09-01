@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:intelligence_chat/theme/app_colors.dart';
+import 'package:blu_ia_app/theme/app_colors.dart';
 
 /// Carga las fuentes reales (Inter/Geist) para que los tests usen métricas
 /// reales de texto en lugar de la fuente Ahem (que exagera el ancho de cada

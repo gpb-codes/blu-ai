@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:intelligence_chat/screens/chat_screen.dart';
-import 'package:intelligence_chat/screens/login_screen.dart';
-import 'package:intelligence_chat/screens/profile_screen.dart';
-import 'package:intelligence_chat/screens/settings_screen.dart';
+import 'package:blu_ia_app/screens/chat_screen.dart';
+import 'package:blu_ia_app/screens/login_screen.dart';
+import 'package:blu_ia_app/screens/profile_screen.dart';
+import 'package:blu_ia_app/screens/settings_screen.dart';
 
 import 'test_fonts.dart';
 
