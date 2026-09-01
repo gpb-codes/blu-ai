@@ -201,14 +201,14 @@ class ModelDropdown extends StatelessWidget {
                         width: 20,
                         child: Icon(Icons.person_outline,
                             size: 16,
-                            color: ThemeScope.of(context).onSurfaceVariant),
+                            color: agent == kNoAgent ? Colors.white : ThemeScope.of(context).onSurfaceVariant),
                       ),
                       const SizedBox(width: 12),
                       Expanded(
                         child: Text(kNoAgent,
                             style: kBodyMd.copyWith(
                                 fontSize: 14,
-                                color: ThemeScope.of(context).onSurface)),
+                                color: agent == kNoAgent ? Colors.white : ThemeScope.of(context).onSurface)),
                       ),
                     ],
                   ),
@@ -223,7 +223,7 @@ class ModelDropdown extends StatelessWidget {
                           width: 20,
                           child: Icon(a.icon,
                               size: 16,
-                              color: ThemeScope.of(context).onSurfaceVariant),
+                              color: agent == a.name ? Colors.white : ThemeScope.of(context).onSurfaceVariant),
                         ),
                         const SizedBox(width: 12),
                         Expanded(
@@ -235,14 +235,13 @@ class ModelDropdown extends StatelessWidget {
                                   overflow: TextOverflow.ellipsis,
                                   style: kBodyMd.copyWith(
                                       fontSize: 14,
-                                      color: ThemeScope.of(context).onSurface)),
+                                      color: agent == a.name ? Colors.white : ThemeScope.of(context).onSurface)),
                               Text(a.description,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: kLabelMd.copyWith(
                                       fontSize: 11,
-                                      color: ThemeScope.of(context)
-                                          .onSurfaceVariant)),
+                                      color: agent == a.name ? Colors.white.withValues(alpha: 0.85) : ThemeScope.of(context).onSurfaceVariant)),
                             ],
                           ),
                         ),
@@ -265,14 +264,15 @@ class ModelDropdown extends StatelessWidget {
                 for (final m in kOtherModels)
                   _DropdownButton(
                     onTap: () => onSelected(m.name),
+                    selected: selected == m.name,
                     child: Row(
                       children: [
-                        Icon(m.icon, size: 16, color: m.color),
+                        Icon(m.icon, size: 16, color: selected == m.name ? Colors.white : m.color),
                         const SizedBox(width: 12),
                         Text(m.name,
                             style: kBodyMd.copyWith(
                                 fontSize: 14,
-                                color: ThemeScope.of(context).onSurface)),
+                                color: selected == m.name ? Colors.white : ThemeScope.of(context).onSurface)),
                       ],
                     ),
                   ),
@@ -301,14 +301,13 @@ class ModelDropdown extends StatelessWidget {
                             Text('Auto',
                                 style: kBodyMd.copyWith(
                                     fontSize: 14,
-                                    color: ThemeScope.of(context).onSurface)),
+                                    color: selected == kAutoModel ? Colors.white : ThemeScope.of(context).onSurface)),
                             Text('Selección inteligente',
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: kLabelMd.copyWith(
                                     fontSize: 11,
-                                    color: ThemeScope.of(context)
-                                        .onSurfaceVariant)),
+                                    color: selected == kAutoModel ? Colors.white.withValues(alpha: 0.85) : ThemeScope.of(context).onSurfaceVariant)),
                           ],
                         ),
                       ),
@@ -325,7 +324,7 @@ class ModelDropdown extends StatelessWidget {
                           child: Text(name,
                               style: kBodyMd.copyWith(
                                   fontSize: 14,
-                                  color: ThemeScope.of(context).onSurface)),
+                                  color: selected == name ? Colors.white : ThemeScope.of(context).onSurface)),
                         ),
                       ],
                     ),
@@ -374,6 +373,7 @@ class _DropdownButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = ThemeScope.of(context);
+    // Screenshot: seleccionado = fondo #0A34F5 azul vivo con texto blanco y check blanco
     return Padding(
       padding: const EdgeInsets.only(top: 4),
       child: Material(
@@ -381,11 +381,11 @@ class _DropdownButton extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           borderRadius: BorderRadius.circular(8),
-          hoverColor: c.surfaceContainerHigh,
+          hoverColor: selected ? BrandColors.cobalt.withValues(alpha: 0.9) : c.surfaceContainerHigh,
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
             decoration: BoxDecoration(
-              color: selected ? c.surfaceContainerHigh : Colors.transparent,
+              color: selected ? BrandColors.cobalt : Colors.transparent,
               borderRadius: BorderRadius.circular(8),
               border: Border.all(
                 color: selected ? BrandColors.cobalt : Colors.transparent,
@@ -393,10 +393,18 @@ class _DropdownButton extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Expanded(child: child),
+                Expanded(
+                  child: DefaultTextStyle.merge(
+                    style: TextStyle(color: selected ? Colors.white : null),
+                    child: IconTheme.merge(
+                      data: IconThemeData(color: selected ? Colors.white : null),
+                      child: child,
+                    ),
+                  ),
+                ),
                 if (selected) ...[
                   const SizedBox(width: 8),
-                  const Icon(Icons.check, size: 18, color: BrandColors.cobalt),
+                  const Icon(Icons.check, size: 18, color: Colors.white),
                 ],
               ],
             ),

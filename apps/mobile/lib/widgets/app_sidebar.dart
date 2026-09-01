@@ -274,26 +274,24 @@ class _BrandHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLight = ThemeScope.of(context).background == AppPalette.light.background;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),
       child: Row(
         children: [
-          Container(
-            width: 32,
-            height: 32,
-            decoration: BoxDecoration(
-              color: BrandColors.cobalt,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            alignment: Alignment.center,
-            child: const Icon(Icons.auto_awesome, size: 16, color: Colors.white),
-          ),
-          const SizedBox(width: 12),
+          Image.asset('assets/logos/mark-azul.png', width: 32, height: 32, filterQuality: FilterQuality.high),
+          const SizedBox(width: 10),
           Expanded(
-            child: Text('soybluia',
-                style: kHeadlineMd.copyWith(
-                    color: ThemeScope.of(context).onSurface,
-                    fontWeight: FontWeight.bold)),
+            child: Image.asset(
+              isLight ? 'assets/logos/wordmark-oscuro.png' : 'assets/logos/wordmark-claro.png',
+              height: 18,
+              alignment: Alignment.centerLeft,
+              fit: BoxFit.contain,
+              filterQuality: FilterQuality.high,
+              errorBuilder: (_, __, ___) => Text('soybluia',
+                  style: kHeadlineMd.copyWith(
+                      color: ThemeScope.of(context).onSurface, fontWeight: FontWeight.bold)),
+            ),
           ),
           const SizedBox(width: 4),
           IconButton(
@@ -320,16 +318,7 @@ class _CollapsedBrand extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(8),
-        child: Container(
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(
-            color: BrandColors.cobalt,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          alignment: Alignment.center,
-          child: const Icon(Icons.auto_awesome, size: 18, color: Colors.white),
-        ),
+        child: Image.asset('assets/logos/mark-azul.png', width: 40, height: 40, filterQuality: FilterQuality.high),
       ),
     );
   }

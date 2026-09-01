@@ -47,6 +47,7 @@ class TopAppBar extends StatelessWidget {
 
   Widget _buildMobile(BuildContext context) {
     final c = ThemeScope.of(context);
+    final isLight = c.background == AppPalette.light.background;
     return Row(
       children: [
         IconButton(
@@ -56,20 +57,15 @@ class TopAppBar extends StatelessWidget {
               showBack ? () => Navigator.of(context).maybePop() : onMenuTap,
           tooltip: showBack ? 'Volver' : 'Abrir menú',
         ),
-        Container(
-          width: 32,
-          height: 32,
-          decoration: BoxDecoration(
-            color: c.primaryContainer,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          alignment: Alignment.center,
-          child: const Icon(Icons.auto_awesome, size: 16, color: Colors.white),
+        Image.asset('assets/logos/mark-azul.png', width: 32, height: 32, filterQuality: FilterQuality.high),
+        const SizedBox(width: 10),
+        Image.asset(
+          isLight ? 'assets/logos/wordmark-oscuro.png' : 'assets/logos/wordmark-claro.png',
+          height: 16,
+          fit: BoxFit.contain,
+          errorBuilder: (_, __, ___) => Text('soybluia',
+              style: kHeadlineMd.copyWith(color: c.onSurface, fontWeight: FontWeight.bold)),
         ),
-        const SizedBox(width: 12),
-        Text('soybluia',
-            style: kHeadlineMd.copyWith(
-                color: c.onSurface, fontWeight: FontWeight.bold)),
         const Spacer(),
         if (onSettingsTap != null)
           IconButton(

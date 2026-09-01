@@ -19,6 +19,12 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/logos/mark-azul.png
+    - assets/logos/wordmark-oscuro.png
+    - assets/logos/wordmark-claro.png
+    - assets/logos/app-icon-claro.png
+    - assets/logos/favicon-64.png
   fonts:
     - family: Inter
       fonts:
