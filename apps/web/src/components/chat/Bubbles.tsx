@@ -5,7 +5,7 @@
 
 import { cn } from "@/lib/utils";
 import { MarkdownRenderer } from "@/components/chat/MarkdownRenderer";
-import type { ChatMessage } from "@/types";
+import type { ChatMessage, MessageBlock } from "@/types";
 
 export function UserBubble({ text }: { text: string }) {
   return (
@@ -17,12 +17,25 @@ export function UserBubble({ text }: { text: string }) {
   );
 }
 
-export function AiBubble({ text }: { text: string }) {
+export function AiBubble({ text, blocks }: { text: string; blocks?: MessageBlock[] }) {
+  const hasBlocks = blocks && blocks.length > 0;
   return (
     <div className="flex items-start gap-3">
       <AiAvatar />
       <div className="min-w-0 flex-1 pt-1">
-        <MarkdownRenderer text={text} />
+        {hasBlocks ? (
+          <div className="space-y-3">
+            {blocks!.map((b, i) => {
+              if (b.type === "code" && "code" in b) return <CodePreview key={i} code={(b as { code: string }).code} lang={(b as { lang?: string }).lang} />;
+              if (b.type === "image" && "url" in b) return <img key={i} src={(b as { url: string }).url} alt={(b as { alt?: string }).alt ?? ""} className="max-w-full rounded-lg border border-blu-outline/20" />;
+              if (b.type === "artifact" && "html" in b) return <ArtifactPreview key={i} html={(b as { html?: string }).html ?? ""} title={(b as { title: string }).title} />;
+              const t = (b as { text?: string }).text ?? text;
+              return <MarkdownRenderer key={i} text={t} />;
+            })}
+          </div>
+        ) : (
+          <MarkdownRenderer text={text} />
+        )}
         <div className="mt-3 flex gap-1 opacity-60 hover:opacity-100">
           <button
             type="button"
@@ -35,6 +48,32 @@ export function AiBubble({ text }: { text: string }) {
           <ActionIcon label="Me gusta">👍</ActionIcon>
           <ActionIcon label="Regenerar">↻</ActionIcon>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function CodePreview({ code, lang }: { code: string; lang?: string }) {
+  return (
+    <div className="overflow-hidden rounded-lg border border-blu-outline/20 bg-blu-surface-low">
+      <div className="flex items-center justify-between border-b border-blu-outline/10 bg-blu-surface px-3 py-1.5">
+        <span className="font-mono text-xs text-blu-on-variant">{lang || "code"}</span>
+        <button type="button" onClick={() => void navigator.clipboard.writeText(code)} className="text-xs text-blu-on-variant hover:text-blu-on">Copiar</button>
+      </div>
+      <pre className="overflow-x-auto p-3 font-mono text-sm text-blu-on"><code>{code}</code></pre>
+    </div>
+  );
+}
+
+function ArtifactPreview({ html, title }: { html: string; title: string }) {
+  return (
+    <div className="overflow-hidden rounded-xl border border-blu-outline/20 bg-white">
+      <div className="flex items-center justify-between border-b bg-blu-surface-low px-3 py-2">
+        <span className="text-sm font-medium text-blu-on">{title}</span>
+        <span className="text-xs text-blu-on-variant">Preview</span>
+      </div>
+      <div className="p-3">
+        <div dangerouslySetInnerHTML={{ __html: html }} />
       </div>
     </div>
   );
@@ -81,8 +120,8 @@ export function MessageList({ messages, typing }: { messages: ChatMessage[]; typ
   return (
     <div className="space-y-6">
       {messages.map((message, i) => (
-        <div key={i} className={cn(message.role === "user" ? "flex justify-end" : "flex")}>
-          {message.role === "user" ? <UserBubble text={message.content} /> : <AiBubble text={message.content} />}
+        <div key={message.id ?? i} className={cn(message.role === "user" ? "flex justify-end" : "flex")}>
+          {message.role === "user" ? <UserBubble text={message.content} /> : <AiBubble text={message.content} blocks={message.blocks} />}
         </div>
       ))}
       {typing && <TypingIndicator />}

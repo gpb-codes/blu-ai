@@ -3,19 +3,19 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* Paleta BLU 2026-09: fondo #020A17, secondary #1B2A4F, accent #023CF7, text #DEE1E7 */
-  --color-blu-bg: #020a17;
-  --color-blu-surface: #020a17;
-  --color-blu-surface-low: #0a1930;
-  --color-blu-surface-high: #1b2a4f;
-  --color-blu-surface-highest: #24365f;
-  --color-blu-on: #dee1e7;
-  --color-blu-on-variant: #9a9ca3;
-  --color-blu-outline: #2a3a5e;
+  /* Brand Book oficial: #0A34F5 Cobalto, #0B0F1A dark, #F2F4F8 light */
+  --color-blu-bg: #0b0f1a;
+  --color-blu-surface: #111625;
+  --color-blu-surface-low: #111625;
+  --color-blu-surface-high: #171d2d;
+  --color-blu-surface-highest: #242b3d;
+  --color-blu-on: #f7f8fa;
+  --color-blu-on-variant: #8e8e93;
+  --color-blu-outline: #242b3d;
   --color-blu-outline-soft: #3a4a6e;
-  --color-blu-primary: #023cf7;
-  --color-blu-primary-solid: #023cf7;
-  --color-blu-primary-soft: #1a4dff;
+  --color-blu-primary: #0a34f5;
+  --color-blu-primary-solid: #0a34f5;
+  --color-blu-primary-soft: #3d6bff;
   --color-blu-error: #ffb4ab;
 
   --font-sans: var(--font-inter);

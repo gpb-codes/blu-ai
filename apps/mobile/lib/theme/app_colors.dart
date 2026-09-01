@@ -1,34 +1,32 @@
 import 'package:flutter/material.dart';
 
-/// Paleta oficial soybluia — ACTUALIZADA 2026-09: fondo #020A17, accent #023CF7.
+/// Brand Book oficial SoyBluia — fuente de verdad.
 class BrandColors {
-  /// Accent: azul eléctrico #023CF7 (botones, selección, logo).
-  static const cobalt = Color(0xFF023CF7);
-  static const accent = Color(0xFF023CF7);
+  /// Cobalto #0A34F5 — primary, CTA, logo.
+  static const cobalt = Color(0xFF0A34F5);
+  static const accent = Color(0xFF0A34F5);
 
-  /// Fondo: azul noche profundo #020A17.
-  static const fondo = Color(0xFF020A17);
-  static const negroSuave = Color(0xFF020A17);
+  /// Negro suave #0B0F1A — dark background.
+  static const fondo = Color(0xFF0B0F1A);
+  static const negroSuave = Color(0xFF0B0F1A);
 
-  /// Secondary: azul grisáceo #1B2A4F (sidebar, cards).
-  static const secondary = Color(0xFF1B2A4F);
-  static const grisFondo = Color(0xFF1B2A4F);
-
-  /// Texto: gris muy claro #DEE1E7.
-  static const textClaro = Color(0xFFDEE1E7);
-  static const grisClaro = Color(0xFFDEE1E7);
-
-  /// Muted: gris #9A9CA3 (secundario, hints).
-  static const gris = Color(0xFF9A9CA3);
-  static const muted = Color(0xFF9A9CA3);
-
-  /// Blanco puro #FFFFFF.
-  static const blanco = Color(0xFFFFFFFF);
-  static const crema = Color(0xFFFFFFFF);
-
-  /// Legacy alias para compatibilidad.
+  /// Azul claro #3D6BFF — interactive.
   static const azulClaro = Color(0xFF3D6BFF);
-  static const terracota = Color(0xFF023CF7);
+
+  /// Gris #8E8E93 — secondary text.
+  static const gris = Color(0xFF8E8E93);
+  static const muted = Color(0xFF8E8E93);
+
+  /// Gris claro #F2F4F8 — light background.
+  static const grisFondo = Color(0xFFF2F4F8);
+  static const grisClaro = Color(0xFFF2F4F8);
+
+  /// Blanco / Texto claro
+  static const blanco = Color(0xFFFFFFFF);
+  static const textClaro = Color(0xFFF7F8FA);
+  static const crema = Color(0xFFF7F8FA);
+  static const terracota = Color(0xFF0A34F5);
+  static const secondary = Color(0xFF8E8E93);
 }
 
 /// Paleta de colores activa para una apariencia (oscura o clara).
@@ -100,63 +98,63 @@ class AppPalette {
     required this.warningContainer,
   });
 
-  /// Tema noche BLU: fondo #020A17, secondary #1B2A4F, accent #023CF7, text #DEE1E7.
+  /// Dark: #0B0F1A / #111625 / #171D2D / #242B3D — Brand Book §10.
   static const dark = AppPalette(
-    background: Color(0xFF020A17),
-    surface: Color(0xFF020A17),
-    surfaceContainerLow: Color(0xFF0A1930),
-    surfaceContainer: Color(0xFF1B2A4F),
-    surfaceContainerHigh: Color(0xFF24365F),
-    surfaceContainerHighest: Color(0xFF2E426E),
-    surfaceVariant: Color(0xFF1B2A4F),
-    surfaceBright: Color(0xFF24365F),
-    onSurface: Color(0xFFDEE1E7),
-    onSurfaceVariant: Color(0xFF9A9CA3),
-    outlineVariant: Color(0xFF2A3A5E),
+    background: Color(0xFF0B0F1A),
+    surface: Color(0xFF111625),
+    surfaceContainerLow: Color(0xFF111625),
+    surfaceContainer: Color(0xFF171D2D),
+    surfaceContainerHigh: Color(0xFF1E2535),
+    surfaceContainerHighest: Color(0xFF242B3D),
+    surfaceVariant: Color(0xFF171D2D),
+    surfaceBright: Color(0xFF242B3D),
+    onSurface: Color(0xFFF7F8FA),
+    onSurfaceVariant: Color(0xFF8E8E93),
+    outlineVariant: Color(0xFF242B3D),
     outline: Color(0xFF3A4A6E),
-    primary: Color(0xFF023CF7),
+    primary: Color(0xFF0A34F5),
     onPrimary: Color(0xFFFFFFFF),
-    primaryContainer: Color(0xFF023CF7),
-    onPrimaryContainer: Color(0xFFDEE1E7),
-    secondaryContainer: Color(0xFF1B2A4F),
-    onSecondaryContainer: Color(0xFF9A9CA3),
-    tertiary: Color(0xFF9A9CA3),
-    inversePrimary: Color(0xFF023CF7),
+    primaryContainer: Color(0xFF0A34F5),
+    onPrimaryContainer: Color(0xFFF7F8FA),
+    secondaryContainer: Color(0xFF111625),
+    onSecondaryContainer: Color(0xFF8E8E93),
+    tertiary: Color(0xFF8E8E93),
+    inversePrimary: Color(0xFF3D6BFF),
     error: Color(0xFFFFB4AB),
     errorContainer: Color(0xFF93000A),
     textQuaternary: Color(0xFF6B7280),
-    elevatedOverlay: Color(0xFF1B2A4F),
+    elevatedOverlay: Color(0xFF171D2D),
     success: Color(0xFF10A37F),
     successContainer: Color(0x1F10A37F),
     warning: Color(0xFFFFBF36),
     warningContainer: Color(0x1FFFBF36),
   );
 
-  /// Tema claro: blanco #FFFFFF con accent #023CF7 — espejo del noche.
+  /// Light: #F2F4F8 / #FFFFFF / #F8F9FB / #E2E5EB — Brand Book §11.
   static const light = AppPalette(
-    background: Color(0xFFFFFFFF),
+    background: Color(0xFFF2F4F8),
     surface: Color(0xFFFFFFFF),
-    surfaceContainerLow: Color(0xFFF1F5FF),
-    surfaceContainer: Color(0xFFE8ECFF),
-    surfaceContainerHigh: Color(0xFFD9E0FF),
-    surfaceContainerHighest: Color(0xFFCBD6FF),
-    surfaceVariant: Color(0xFFE8ECFF),
+    surfaceContainerLow: Color(0xFFF8F9FB),
+    surfaceContainer: Color(0xFFEFF2F6),
+    surfaceContainerHigh: Color(0xFFE2E5EB),
+    surfaceContainerHighest: Color(0xFFD9DDE3),
+    surfaceVariant: Color(0xFFEFF2F6),
     surfaceBright: Color(0xFFFFFFFF),
-    onSurface: Color(0xFF020A17),
-    onSurfaceVariant: Color(0xFF64748B),
-    outlineVariant: Color(0xFFCBD6FF),
-    outline: Color(0xFF94A3B8),
-    primary: Color(0xFF023CF7),
+    onSurface: Color(0xFF0B0F1A),
+    onSurfaceVariant: Color(0xFF8E8E93),
+    outlineVariant: Color(0xFFE2E5EB),
+    outline: Color(0xFFCBD6FF),
+    primary: Color(0xFF0A34F5),
     onPrimary: Color(0xFFFFFFFF),
-    primaryContainer: Color(0xFF023CF7),
+    primaryContainer: Color(0xFF0A34F5),
     onPrimaryContainer: Color(0xFFFFFFFF),
     secondaryContainer: Color(0xFFE0E7FF),
     onSecondaryContainer: Color(0xFF001A97),
     tertiary: Color(0xFF475569),
-    inversePrimary: Color(0xFF023CF7),
+    inversePrimary: Color(0xFF3D6BFF),
     error: Color(0xFFDC2626),
     errorContainer: Color(0xFFFEE2E2),
-    textQuaternary: Color(0xFF9A9CA3),
+    textQuaternary: Color(0xFF8E8E93),
     elevatedOverlay: Color(0xFFFFFFFF),
     success: Color(0xFF10A37F),
     successContainer: Color(0x1A10A37F),

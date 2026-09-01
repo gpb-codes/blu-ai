@@ -54,18 +54,57 @@ export interface ChatSession {
 }
 
 export interface ChatMessage {
-  role: "user" | "assistant";
+  id?: string;
+  role: "user" | "assistant" | "tool" | "system";
   content: string;
+  createdAt?: string;
+  // Evolución a bloques (P0): si existe `blocks`, renderiza bloques en lugar de `content`
+  blocks?: MessageBlock[];
+  metadata?: MessageMetadata;
+}
+
+export type MessageBlock =
+  | { type: "text"; text: string }
+  | { type: "markdown"; text: string }
+  | { type: "code"; code: string; lang?: string }
+  | { type: "image"; url: string; alt?: string }
+  | { type: "file"; name: string; url: string; mime?: string }
+  | { type: "citation"; text: string; source?: string }
+  | { type: "tool_call"; name: string; input?: string; output?: string }
+  | { type: "thinking"; text: string }
+  | { type: "artifact"; id: string; title: string; html?: string }
+  | { type: "error"; message: string };
+
+export interface MessageMetadata {
+  model?: string;
+  agentId?: AgentId;
+  citedNotes?: string[];
+  usage?: { credits: number; model: string; tier: Tier };
 }
 
 export interface ChatResponse {
   text: string;
+  blocks?: MessageBlock[];
   usage: {
     credits: number;
     model: string;
     tier: Tier;
   };
 }
+
+// Streaming events preparados para SSE (no rompe POST /chat actual)
+export type StreamEvent =
+  | { type: "message.start"; id: string; role: "assistant" }
+  | { type: "text.delta"; delta: string }
+  | { type: "thinking.start"; text?: string }
+  | { type: "tool.start"; name: string }
+  | { type: "tool.output"; output: string }
+  | { type: "citation.add"; text: string; source?: string }
+  | { type: "artifact.start"; id: string; title: string }
+  | { type: "artifact.delta"; html: string }
+  | { type: "artifact.complete" }
+  | { type: "message.complete"; blocks?: MessageBlock[] }
+  | { type: "message.error"; error: string };
 
 export interface NoteSummary {
   id: string;

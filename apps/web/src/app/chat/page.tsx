@@ -66,13 +66,22 @@ function ChatPageInner() {
     const text = input.trim();
     if (!text || sending) return;
     const history = messages.filter((m) => m.role === "user" || m.role === "assistant");
-    setMessages((prev) => [...prev, { role: "user", content: text }]);
+    const userMsg: ChatMessage = { id: `u-${Date.now()}`, role: "user", content: text, createdAt: new Date().toISOString() };
+    setMessages((prev) => [...prev, userMsg]);
     setInput("");
     setSending(true);
     setError(null);
     try {
       const response = await chatApi.send({ text, tier: modelToTier(model), agentId: agent, projectId, history });
-      setMessages((prev) => [...prev, { role: "assistant", content: response.text }]);
+      const assistantMsg: ChatMessage = {
+        id: `a-${Date.now()}`,
+        role: "assistant",
+        content: response.text,
+        blocks: response.blocks,
+        createdAt: new Date().toISOString(),
+        metadata: { model: response.usage?.model, agentId: agent },
+      };
+      setMessages((prev) => [...prev, assistantMsg]);
       if (!session) {
         const created = await chatApi.createSession({ projectId, agentId: agent, title: text.slice(0, 60) });
         setSession(created);

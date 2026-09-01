@@ -65,13 +65,36 @@ const (
 )
 
 type ChatMessage struct {
-	ID         string   `json:"id"`
-	Role       ChatRole `json:"role"`
-	Content    string   `json:"content"`
-	Model      *string  `json:"model,omitempty"`
+	ID         string         `json:"id"`
+	Role       ChatRole       `json:"role"`
+	Content    string         `json:"content"`
+	Blocks     []MessageBlock `json:"blocks,omitempty"`
+	Model      *string        `json:"model,omitempty"`
+	AgentID    *AgentID       `json:"agentId,omitempty"`
+	CreatedAt  string         `json:"createdAt"`
+	CitedNotes []string       `json:"citedNotes,omitempty"`
+	Metadata   *MessageMeta  `json:"metadata,omitempty"`
+}
+
+type MessageBlock struct {
+	Type   string  `json:"type"`
+	Text   *string `json:"text,omitempty"`
+	Code   *string `json:"code,omitempty"`
+	Lang   *string `json:"lang,omitempty"`
+	URL    *string `json:"url,omitempty"`
+	Alt    *string `json:"alt,omitempty"`
+	Source *string `json:"source,omitempty"`
+}
+
+type MessageMeta struct {
+	Model      *string `json:"model,omitempty"`
 	AgentID    *AgentID `json:"agentId,omitempty"`
-	CreatedAt  string   `json:"createdAt"`
 	CitedNotes []string `json:"citedNotes,omitempty"`
+}
+
+type StreamEvent struct {
+	Type string `json:"type"`
+	Data any    `json:"data,omitempty"`
 }
 
 type UserProfile struct {
