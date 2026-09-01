@@ -8,27 +8,25 @@ import type { ChatMessage } from "@/types";
 
 export function UserBubble({ text }: { text: string }) {
   return (
-    <div className="flex flex-col items-end">
-      <div className="max-w-[70%] rounded-[20px] bg-blu-primary-solid px-5 py-3 text-[15px] leading-relaxed text-white shadow-md">
+    <div className="flex justify-end">
+      <div className="max-w-[70%] rounded-[18px] border border-blu-outline/30 bg-blu-surface-high px-4 py-3 text-[15px] leading-relaxed text-blu-on">
         {text}
       </div>
-      <span className="px-2 pt-1 text-[10px] uppercase tracking-widest text-blu-on-variant">Enviado</span>
     </div>
   );
 }
 
 export function AiBubble({ text }: { text: string }) {
   return (
-    <div className="flex items-start gap-4">
+    <div className="flex items-start gap-3">
       <AiAvatar />
-      <div className="min-w-0 flex-1">
-        <div className="rounded-2xl border border-blu-outline/20 bg-blu-surface-low p-5 text-[15px] leading-relaxed text-blu-on">
+      <div className="min-w-0 flex-1 pt-1">
+        <div className="prose prose-sm max-w-none text-[15px] leading-relaxed text-blu-on prose-p:my-2 prose-code:text-sm">
           {text}
         </div>
-        <div className="flex gap-4 px-2 pt-2 text-blu-on-variant">
-          <ActionIcon label="Me gusta">👍</ActionIcon>
-          <ActionIcon label="No me gusta">👎</ActionIcon>
+        <div className="mt-3 flex gap-1 opacity-60 hover:opacity-100">
           <ActionIcon label="Copiar">⧉</ActionIcon>
+          <ActionIcon label="Me gusta">👍</ActionIcon>
           <ActionIcon label="Regenerar">↻</ActionIcon>
         </div>
       </div>
@@ -38,8 +36,8 @@ export function AiBubble({ text }: { text: string }) {
 
 export function AiAvatar() {
   return (
-    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-blu-outline/30 bg-blu-surface-highest">
-      <svg viewBox="0 0 24 24" className="h-4 w-4 text-blu-primary" fill="currentColor" aria-hidden>
+    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-blu-outline/20 bg-white">
+      <svg viewBox="0 0 24 24" className="h-4 w-4 text-blu-primary-solid" fill="currentColor" aria-hidden>
         <path d="M13 2 4.5 13.5h5L11 22l8.5-11.5h-5L13 2z" />
       </svg>
     </div>

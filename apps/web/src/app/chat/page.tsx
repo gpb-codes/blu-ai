@@ -1,7 +1,3 @@
-// Chat con el diseño soybluia: landing "¿En qué trabajamos hoy?", burbujas con
-// estado SENT, selector de modelo (Blu Light/Flash/Ultra + otros modelos) y
-// sesiones persistentes vinculadas a proyectos.
-
 "use client";
 
 import { Suspense, useCallback, useEffect, useRef, useState } from "react";
@@ -10,7 +6,8 @@ import { BottomInputArea } from "@/components/chat/BottomInputArea";
 import { MessageList } from "@/components/chat/Bubbles";
 import { LandingCard } from "@/components/chat/LandingCard";
 import { BLU_MODELS, modelToTier } from "@/components/chat/ModelSelector";
-import { MainLayout } from "@/components/MainLayout";
+import { AppShell } from "@/components/shell/AppShell";
+import { ChatHeader } from "@/components/shell/ChatHeader";
 import { chatApi, projectsApi } from "@/lib/api";
 import type { AgentId, ChatMessage, ChatSession, ProjectSummary } from "@/types";
 
@@ -49,18 +46,15 @@ function ChatPageInner() {
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    void projectsApi
-      .list()
-      .then(setProjects)
-      .catch(() => setProjects([]));
+    void projectsApi.list().then(setProjects).catch(() => setProjects([]));
   }, []);
 
   useEffect(() => {
     if (sessionId) {
-      void chatApi
-        .session(sessionId)
-        .then(setSession)
-        .catch(() => setSession(null));
+      void chatApi.session(sessionId).then(setSession).catch(() => setSession(null));
+    } else {
+      setSession(null);
+      setMessages([]);
     }
   }, [sessionId]);
 
@@ -71,13 +65,11 @@ function ChatPageInner() {
   const send = useCallback(async () => {
     const text = input.trim();
     if (!text || sending) return;
-
     const history = messages.filter((m) => m.role === "user" || m.role === "assistant");
     setMessages((prev) => [...prev, { role: "user", content: text }]);
     setInput("");
     setSending(true);
     setError(null);
-
     try {
       const response = await chatApi.send({ text, tier: modelToTier(model), agentId: agent, projectId, history });
       setMessages((prev) => [...prev, { role: "assistant", content: response.text }]);
@@ -93,43 +85,45 @@ function ChatPageInner() {
     }
   }, [input, sending, model, agent, projectId, messages, session, router]);
 
-  return (
-    <MainLayout>
-      <div className="flex h-[calc(100vh-0px)] flex-col">
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-blu-outline/20 px-6 py-3">
-          <p className="text-sm text-blu-on-variant">
-            {session ? session.title : "Nueva conversación"}
-          </p>
-          <select
-            value={agent}
-            onChange={(e) => setAgent(e.target.value as AgentId)}
-            className="h-8 rounded-lg border border-blu-outline/40 bg-blu-surface-low px-2 text-xs text-blu-on focus:outline-none focus:ring-1 focus:ring-blu-primary/40"
-          >
-            {AGENTS.map((a) => (
-              <option key={a.id} value={a.id}>
-                {a.label}
-              </option>
-            ))}
-          </select>
-        </div>
+  const isEmpty = messages.length === 0;
 
-        <div className="flex-1 overflow-y-auto px-4 py-8">
-          {messages.length === 0 ? (
-            <div className="flex min-h-full items-center justify-center">
-              <LandingCard
-                input={input}
-                setInput={setInput}
-                model={model}
-                onModelSelected={(m) => setModel(m)}
-                projects={projects}
-                projectId={projectId}
-                onProjectSelected={setProjectId}
-                onSend={() => void send()}
-                sending={sending}
-              />
+  return (
+    <AppShell>
+      <div className="flex h-screen flex-col">
+        <ChatHeader
+          title={session ? session.title : isEmpty ? "BLU IA" : "Nueva conversación"}
+          onShare={
+            session
+              ? () => {
+                  navigator.clipboard.writeText(`${window.location.origin}/chat?session=${session.id}`);
+                }
+              : undefined
+          }
+        />
+
+        <div className="flex-1 overflow-y-auto">
+          {isEmpty ? (
+            <div className="flex min-h-full items-center justify-center px-4 py-12">
+              <div className="w-full max-w-[720px]">
+                <div className="mb-8 text-center">
+                  <h1 className="font-geist text-[28px] font-semibold tracking-tight text-blu-on">¿En qué puedo ayudarte?</h1>
+                  <p className="mt-2 text-sm text-blu-on-variant">Inicia una conversación o elige un proyecto para usar su memoria.</p>
+                </div>
+                <LandingCard
+                  input={input}
+                  setInput={setInput}
+                  model={model}
+                  onModelSelected={setModel}
+                  projects={projects}
+                  projectId={projectId}
+                  onProjectSelected={setProjectId}
+                  onSend={() => void send()}
+                  sending={sending}
+                />
+              </div>
             </div>
           ) : (
-            <div className="mx-auto max-w-4xl">
+            <div className="mx-auto max-w-[768px] px-4 py-8">
               <MessageList messages={messages} typing={sending} />
               <div ref={bottomRef} />
             </div>
@@ -137,20 +131,22 @@ function ChatPageInner() {
         </div>
 
         {error && (
-          <p className="border-t border-blu-outline/20 px-6 py-2 text-sm text-blu-error">{error}</p>
+          <div className="border-t border-blu-outline/20 bg-blu-surface-low px-4 py-2 text-center text-sm text-blu-error">
+            {error}
+          </div>
         )}
 
-        {messages.length > 0 && (
+        {!isEmpty && (
           <BottomInputArea
             input={input}
             setInput={setInput}
             model={model}
-            onModelSelected={(m) => setModel(m)}
+            onModelSelected={setModel}
             onSend={() => void send()}
             sending={sending}
           />
         )}
       </div>
-    </MainLayout>
+    </AppShell>
   );
 }

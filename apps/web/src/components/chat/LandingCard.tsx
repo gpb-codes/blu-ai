@@ -3,7 +3,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ChatSendButton, ModelDropdown, ModelPill } from "@/components/chat/ModelSelector";
 import { cn } from "@/lib/utils";
 import type { ProjectSummary } from "@/types";
@@ -31,7 +31,7 @@ export function LandingCard({
 }) {
   const [modelOpen, setModelOpen] = useState(false);
   const [projectOpen, setProjectOpen] = useState(false);
-  const [textarea, setTextarea] = useState<HTMLTextAreaElement | null>(null);
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const submit = () => {
     setModelOpen(false);
@@ -103,7 +103,7 @@ export function LandingCard({
               </svg>
             </button>
             <textarea
-              ref={setTextarea}
+              ref={textareaRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => {
@@ -115,9 +115,10 @@ export function LandingCard({
               placeholder="Pregunta lo que quieras"
               rows={1}
               onInput={() => {
-                if (!textarea) return;
-                textarea.style.height = "auto";
-                textarea.style.height = `${Math.min(textarea.scrollHeight, 132)}px`;
+                const el = textareaRef.current;
+                if (!el) return;
+                el.style.height = "auto";
+                el.style.height = `${Math.min(el.scrollHeight, 132)}px`;
               }}
               className="max-h-[132px] min-h-[40px] flex-1 resize-none bg-transparent py-2 text-[15px] text-blu-on placeholder:text-blu-on-variant focus:outline-none"
             />
