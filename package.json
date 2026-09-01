@@ -6,11 +6,16 @@
   "packageManager": "pnpm@11.15.1",
   "scripts": {
     "dev": "turbo dev",
+    "dev:api": "go run ./apps/api/cmd/server",
+    "dev:web": "turbo dev --filter=@blu-ia/web",
     "build": "turbo build",
+    "build:api": "go build -o bin/api ./apps/api/cmd/server",
     "lint": "turbo lint",
     "typecheck": "turbo typecheck",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:api": "go test ./apps/api/...",
+    "test:api:race": "go test -race ./apps/api/..."
   },
   "devDependencies": {
     "@types/supertest": "^7.2.1",

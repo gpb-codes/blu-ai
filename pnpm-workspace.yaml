@@ -1,5 +1,8 @@
 packages:
-  - "apps/*"
+  - "apps/web"
+  - "apps/mobile"
+  - "apps/extension"
+  - "apps/blu-code"
   - "packages/*"
 
 allowBuilds:

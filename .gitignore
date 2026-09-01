@@ -10,6 +10,7 @@ node_modules/
 # Builds
 dist/
 build/
+bin/
 .next/
 out/
 coverage/
