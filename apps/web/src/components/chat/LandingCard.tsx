@@ -112,7 +112,7 @@ export function LandingCard({
                   submit();
                 }
               }}
-              placeholder="Pregunta lo que quieras"
+              placeholder="Ask soybluia..."
               rows={1}
               onInput={() => {
                 const el = textareaRef.current;
@@ -122,6 +122,25 @@ export function LandingCard({
               }}
               className="max-h-[132px] min-h-[40px] flex-1 resize-none bg-transparent py-2 text-[15px] text-blu-on placeholder:text-blu-on-variant focus:outline-none"
             />
+            <div className="hidden items-center gap-1 md:flex">
+              <button
+                type="button"
+                onClick={() => setInput(`${input}@`)}
+                className="rounded px-1.5 py-1 text-xs text-blu-on-variant hover:bg-blu-surface-high"
+              >
+                @
+              </button>
+              <button
+                type="button"
+                onClick={() => setInput(`${input}/`)}
+                className="rounded px-1.5 py-1 text-xs text-blu-on-variant hover:bg-blu-surface-high"
+              >
+                /
+              </button>
+              <button type="button" onClick={() => alert("Tools — Próximamente")} className="rounded px-1.5 py-1 text-xs text-blu-on-variant hover:bg-blu-surface-high">
+                Tools
+              </button>
+            </div>
             <div className="relative">
               <ModelPill label={model} onToggle={() => setModelOpen((v) => !v)} />
               {modelOpen && (

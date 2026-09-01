@@ -4,6 +4,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { MarkdownRenderer } from "@/components/chat/MarkdownRenderer";
 import type { ChatMessage } from "@/types";
 
 export function UserBubble({ text }: { text: string }) {
@@ -21,11 +22,16 @@ export function AiBubble({ text }: { text: string }) {
     <div className="flex items-start gap-3">
       <AiAvatar />
       <div className="min-w-0 flex-1 pt-1">
-        <div className="prose prose-sm max-w-none text-[15px] leading-relaxed text-blu-on prose-p:my-2 prose-code:text-sm">
-          {text}
-        </div>
+        <MarkdownRenderer text={text} />
         <div className="mt-3 flex gap-1 opacity-60 hover:opacity-100">
-          <ActionIcon label="Copiar">⧉</ActionIcon>
+          <button
+            type="button"
+            onClick={() => void navigator.clipboard.writeText(text)}
+            aria-label="Copiar"
+            className="rounded p-1.5 text-blu-on-variant hover:bg-blu-surface-high hover:text-blu-on"
+          >
+            ⧉
+          </button>
           <ActionIcon label="Me gusta">👍</ActionIcon>
           <ActionIcon label="Regenerar">↻</ActionIcon>
         </div>

@@ -48,7 +48,7 @@ export function BottomInputArea({
                 submit();
               }
             }}
-            placeholder="Pregunta lo que quieras"
+            placeholder="Ask soybluia..."
             rows={1}
             onInput={() => {
               const el = textareaRef.current;
@@ -58,6 +58,35 @@ export function BottomInputArea({
             }}
             className="max-h-[132px] min-h-[40px] flex-1 resize-none bg-transparent px-2 py-2.5 text-[15px] text-blu-on placeholder:text-blu-on-variant focus:outline-none"
           />
+          <div className="hidden items-center gap-1 md:flex">
+            <button
+              type="button"
+              aria-label="Memoria"
+              title="Mencionar memoria @"
+              onClick={() => setInput(`${input}@`)}
+              className="rounded px-1.5 py-1 text-xs font-medium text-blu-on-variant hover:bg-blu-surface-high hover:text-blu-on"
+            >
+              @
+            </button>
+            <button
+              type="button"
+              aria-label="Comandos"
+              title="Comandos /"
+              onClick={() => setInput(`${input}/`)}
+              className="rounded px-1.5 py-1 text-xs font-medium text-blu-on-variant hover:bg-blu-surface-high hover:text-blu-on"
+            >
+              /
+            </button>
+            <button
+              type="button"
+              aria-label="Herramientas"
+              title="Herramientas (próximamente)"
+              onClick={() => alert("Tools — Próximamente")}
+              className="rounded px-1.5 py-1 text-xs text-blu-on-variant hover:bg-blu-surface-high"
+            >
+              Tools
+            </button>
+          </div>
           <div className="relative shrink-0">
             <ModelPill label={model} onToggle={() => setModelOpen((v) => !v)} />
             {modelOpen && <ModelDropdown selected={model} onSelected={onModelSelected} onClose={() => setModelOpen(false)} />}

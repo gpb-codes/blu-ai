@@ -271,7 +271,7 @@ export function Sidebar({ mobile = false }: { mobile?: boolean }) {
           ))
         )}
 
-        {/* Secondary nav */}
+        {/* Secondary nav — ChatGPT Projects/Memory/Agents/Artifacts/Library */}
         <div className="mt-6 space-y-0.5 border-t border-blu-outline/20 pt-4">
           <Link
             href="/projects"
@@ -281,7 +281,47 @@ export function Sidebar({ mobile = false }: { mobile?: boolean }) {
               pathname.startsWith("/projects") ? "bg-blu-surface-high text-blu-on" : "text-blu-on-variant",
             )}
           >
-            <span className="w-4 text-center">▤</span> Proyectos
+            <span className="w-4 text-center">▤</span> Projects
+          </Link>
+          <Link
+            href="/memory"
+            onClick={() => setOpen(false)}
+            className={cn(
+              "flex items-center gap-3 rounded-lg px-2 py-2 text-sm hover:bg-blu-surface-high",
+              pathname.startsWith("/memory") ? "bg-blu-surface-high text-blu-on" : "text-blu-on-variant",
+            )}
+          >
+            <span className="w-4 text-center">🧠</span> Memory
+          </Link>
+          <Link
+            href="/agents"
+            onClick={() => setOpen(false)}
+            className={cn(
+              "flex items-center gap-3 rounded-lg px-2 py-2 text-sm hover:bg-blu-surface-high",
+              pathname.startsWith("/agents") ? "bg-blu-surface-high text-blu-on" : "text-blu-on-variant",
+            )}
+          >
+            <span className="w-4 text-center">🤖</span> Agents
+          </Link>
+          <Link
+            href="/artifacts"
+            onClick={() => setOpen(false)}
+            className={cn(
+              "flex items-center gap-3 rounded-lg px-2 py-2 text-sm hover:bg-blu-surface-high",
+              pathname.startsWith("/artifacts") ? "bg-blu-surface-high text-blu-on" : "text-blu-on-variant",
+            )}
+          >
+            <span className="w-4 text-center">⬢</span> Artifacts
+          </Link>
+          <Link
+            href="/library"
+            onClick={() => setOpen(false)}
+            className={cn(
+              "flex items-center gap-3 rounded-lg px-2 py-2 text-sm hover:bg-blu-surface-high",
+              pathname.startsWith("/library") ? "bg-blu-surface-high text-blu-on" : "text-blu-on-variant",
+            )}
+          >
+            <span className="w-4 text-center">📚</span> Library
           </Link>
           <Link
             href="/dashboard"
