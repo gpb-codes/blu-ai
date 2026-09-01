@@ -3,19 +3,19 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* Paleta BLU (tomada 1:1 de las variables Tailwind del diseño original, ver apps/mobile/lib/theme/app_colors.dart) */
-  --color-blu-bg: #0f131e;
-  --color-blu-surface: #1b1f2b;
-  --color-blu-surface-low: #171b27;
-  --color-blu-surface-high: #262a36;
-  --color-blu-surface-highest: #313441;
-  --color-blu-on: #dfe2f2;
-  --color-blu-on-variant: #c4c5da;
-  --color-blu-outline: #444657;
-  --color-blu-outline-soft: #8e8fa3;
-  --color-blu-primary: #bcc3ff;
-  --color-blu-primary-solid: #0a34f5;
-  --color-blu-primary-soft: #2141fe;
+  /* Paleta BLU 2026-09: fondo #020A17, secondary #1B2A4F, accent #023CF7, text #DEE1E7 */
+  --color-blu-bg: #020a17;
+  --color-blu-surface: #020a17;
+  --color-blu-surface-low: #0a1930;
+  --color-blu-surface-high: #1b2a4f;
+  --color-blu-surface-highest: #24365f;
+  --color-blu-on: #dee1e7;
+  --color-blu-on-variant: #9a9ca3;
+  --color-blu-outline: #2a3a5e;
+  --color-blu-outline-soft: #3a4a6e;
+  --color-blu-primary: #023cf7;
+  --color-blu-primary-solid: #023cf7;
+  --color-blu-primary-soft: #1a4dff;
   --color-blu-error: #ffb4ab;
 
   --font-sans: var(--font-inter);
@@ -27,6 +27,8 @@ body {
   background: var(--color-blu-bg);
   color: var(--color-blu-on);
   font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
